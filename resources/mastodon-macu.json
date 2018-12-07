@@ -1,0 +1,55 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://w3id.org/security/v1",
+    {
+        "manuallyApprovesFollowers": "as:manuallyApprovesFollowers",
+        "sensitive":"as:sensitive",
+        "movedTo":{
+            "@id":"as:movedTo",
+            "@type":"@id"
+        },
+        "Hashtag":"as:Hashtag",
+        "ostatus":"http://ostatus.org#",
+        "atomUri":"ostatus:atomUri",
+        "inReplyToAtomUri":
+        "ostatus:inReplyToAtomUri",
+        "conversation":"ostatus:conversation",
+        "toot":"http://joinmastodon.org/ns#",
+        "Emoji":"toot:Emoji",
+        "focalPoint": {
+            "@container":"@list",
+            "@id":"toot:focalPoint"
+        },
+        "featured": {
+            "@id":"toot:featured",
+            "@type":"@id"
+        },
+        "schema":"http://schema.org#",
+        "PropertyValue":"schema:PropertyValue",
+        "value":"schema:value"
+    }
+  ],
+  "id":"https://mastodon.social/users/macu",
+  "type":"Person",
+  "following":"https://mastodon.social/users/macu/following",
+  "followers":"https://mastodon.social/users/macu/followers",
+  "inbox":"https://mastodon.social/users/macu/inbox",
+  "outbox":"https://mastodon.social/users/macu/outbox",
+  "featured":"https://mastodon.social/users/macu/collections/featured",
+  "preferredUsername":"macu",
+  "name":"",
+  "summary":"\u003cp\u003e\u003c/p\u003e",
+  "url":"https://mastodon.social/@macu",
+  "manuallyApprovesFollowers":false,
+  "publicKey":{
+    "id":"https://mastodon.social/users/macu#main-key",
+    "owner":"https://mastodon.social/users/macu",
+    "publicKeyPem":"-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvGOWsb/tTRCd5BcZOZYa\nqQ6os0vMJmOeg9kNvB5KXZhZwiwjTbXf7VEshUoDnoYUAF1jFnhfP5ChODVq9r9X\nS+Wx3o65vjdhjXTrZrVHicTFoB4RaC9sCEHfTinR8ywewzo7VrEVQ2KnbeXzzf+v\na+Dr2h1qkwNv9E9QJ5Mq6RfCKdoFzOFhPqdFOKmgCPuaUOnzgirKoLkwJz0Qe8ky\neFDNT4uQKoFPmjXt3tl5ZMlR/0FEuk9Vn0l+rrLXqNUrsq7AINoY3rZf97d/CMDy\nChNbN/6N9B1xFN+AvQSAoLWjbD0Zrkm3vy6/dnyDcgXQmrpR0selWQvV/PgbeSgP\nhQIDAQAB\n-----END PUBLIC KEY-----\n"
+   },
+   "tag":[],
+   "attachment":[],
+   "endpoints":{
+    "sharedInbox":"https://mastodon.social/inbox"
+   }
+}

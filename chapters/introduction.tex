@@ -1,0 +1,36 @@
+%% LaTeX2e class for student theses
+%% sections/content.tex
+%%
+%% Karlsruhe University of Applied Sciences
+%% Faculty of  Computer Science and Business Information Systems
+%% Distributed Systems (vsys)
+%%
+%% Prof. Dr. Christian Zirpins
+%% christian.zirpins@hs-karlsruhe.de
+%%
+%%
+%% Version 0.2, 2017-11-15
+%%
+%% --------------------------------------------------------
+%% | Derived from sdqthesis by Erik Burger burger@kit.edu |
+%% --------------------------------------------------------
+
+\chapter{Einleitung}
+\label{ch:Introduction}
+- 	Rechtfertigung der Arbeit\\\\
+	Viele Portale berichten heutzutage davon, dass zentrale soziale Netzwerke dezentralisiert werden sollen.\textbf{(Quellen!!!)} Außerdem liest man immer häufiger darüber, dass ActivityPub die \glqq Zukunft der dezentralen sozialen Netzwerke\grqq~sei. Zentralisierung von Daten und das Vertrauen auf einzelne Instanzen ist heutzutage allgegenwärtig. Da die Dezentralisierung vorangebracht und ActivityPub immer häufiger eingesetzt werden soll, wird in dieser Arbeit ein Blick auf die Sicherheit des Protokolls gelegt.\\
+
+- 	Ziel der Arbeit\\\\
+	Um die Arbeit erfolgreich abzuschließen soll eine Implementierung des verteilten Server-zu-Server
+	Protokolls als Prototyp und eventuell ein Konzept zum sicheren Einsatz des Protokolls vorliegen. Darüber hinaus soll die Arbeit einen Überblick über die Grundlagen des Protokolls geben und wie die relevanten Bestandteile zu verstehen sind. \\\\
+- 	Abgrenzung des Themas und Themenbezogenen Definitionen\\\\
+	
+- 	Geschichte und Stand der Forschung:\\\\
+	Der ActivityPub\footnote{\url{https://www.w3.org/TR/activitypub/}} Standard wurde am 23 Januar 2018 von der W3C empfohlen und von einer Arbeitsgruppe des W3C, der Social Web Working Group(SWWG)\footnote{\url{https://www.w3.org/wiki/Socialwg}\label{swwg-footnote}}\footnote{\url{https://www.w3.org/blog/news/archives/3958}}, entwickelt. Diese Gruppe war vom 21. Juli 2014 bis zum 13 Februar 2018 aktiv$^{\ref{swwg-footnote}}$ und entwickelte unter anderem ActivityPub, Activity Streams Core\footnote{\url{https://www.w3.org/TR/activitystreams-core/}}, Activity Streams Vocab\footnote{\url{https://www.w3.org/TR/activitystreams-vocabulary/}}.
+	\\\\\textbf{Über wissenschaftliche Puklikationen über ActivityPub ist mir bis jetzt nichts bekannt. Wenn jemand was weiß bitte melden!}
+\section{Motivation}
+	Um der Zentralisierung von Daten entgegenzuwirken ist es sinnvoll die Daten zu dezentralisieren. Mail Server sind zum Beispiel dezentral ausgelegt, sodass nicht ein Mail Server alle E-Mails verwaltet sondern jeder Mail Server die Mails für die eigene Domain. \textbf{(Richtig???)} Auch das Internet ist dezentral aufgebaut um nicht einen Flaschenhals zu haben, von dem die ganze Kommunikation im Netz abhängt. Wenn der Transport über ein Autonomes System nicht funktioniert wird ein anderer Weg gewählt. 
+	\\\\Protokolle wie \glqq Diaspora Federation und OStatus\grqq~bieten den Zugriff auf dezentral gespeicherte soziale Inhalte und ermöglichen das veröffentlichen von sozialen Inhalten. Der im März letzten Jahres vom W3C empfohlene Standard namens \glqq ActivityPub\grqq. Dieser Standard wurde unter anderem von Christopher Lemmert Webber entwickelt auf der Basis des Wissens im Umgang mit dem Diaspora|OStatus Protokoll\textbf{(Quelle angeben!!!)}. 
+	\\\\ActivityPub ist wie \glqq Diaspora\grqq~und \glqq OStatus\grqq~ein Protokoll für dezentrale soziale Netzwerke und wird in dieser Bachelor Arbeit untersucht.
+\section{Unterschied zentraler sozialer zu dezentralen sozialen Netzwerken}
+\label{sec:Introduction:Motivation}
