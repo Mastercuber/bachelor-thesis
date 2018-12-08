@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.11.27)  7 DEC 2018 18:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.11.27)  8 DEC 2018 03:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2450,12 +2450,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 28--31
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/b/n' will be
 (Font)              scaled to size 15.89755pt on input line 31.
 
-Underfull \hbox (badness 10000) in paragraph at lines 32--35
+Underfull \hbox (badness 10000) in paragraph at lines 33--36
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 32--35
+Underfull \hbox (badness 10000) in paragraph at lines 33--36
 
  []
 
@@ -2463,13 +2463,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 32--35
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 35.
+(babel)             in language  on input line 36.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 35.
+(babel)             in language  on input line 36.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 35.
+(babel)             in language  on input line 36.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 35.
+(babel)             in language  on input line 36.
  [1
 
 
@@ -2496,41 +2496,43 @@ Package babel Info: Redefining ngerman shorthand "~
  (./chapters/fundamentals.tex
 chapter 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 22--26
+Underfull \hbox (badness 10000) in paragraph at lines 23--27
 
  []
 
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/b/n' will be
-(Font)              scaled to size 13.24796pt on input line 27.
+(Font)              scaled to size 13.24796pt on input line 28.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/sb/n' will be
-(Font)              scaled to size 13.24796pt on input line 27.
+(Font)              scaled to size 13.24796pt on input line 28.
 LaTeX Font Info:    Try loading font information for TS1+LinuxLibertineT-TLF on
- input line 30.
+ input line 31.
 (/home/armin/texmf/tex/latex/libertine/TS1LinuxLibertineT-TLF.fd
 File: TS1LinuxLibertineT-TLF.fd 2017/03/20 (autoinst) Font definitions for TS1/
 LinuxLibertineT-TLF.
 )
 LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 30.
+(Font)              scaled to size 12.0pt on input line 31.
 
-Overfull \hbox (3.4032pt too wide) in paragraph at lines 33--35
+Overfull \hbox (3.4032pt too wide) in paragraph at lines 34--36
 \T1/LinuxLibertineT-TLF/m/n/12 Die bei-den Pro-tokolle kön-nen un-ab-hängig von
 einan-der im-ple-men-tiert wer-den. Das Client-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 33--35
+Underfull \hbox (badness 10000) in paragraph at lines 34--36
 
  []
 
+LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
+(Font)              scaled to size 9.35999pt on input line 37.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 41.
+(babel)             in language  on input line 37.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 41.
+(babel)             in language  on input line 37.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 41.
+(babel)             in language  on input line 37.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 41.
+(babel)             in language  on input line 37.
 [3
 
 
@@ -2540,23 +2542,11 @@ Package babel Info: Redefining ngerman shorthand "~
 File: figures/inbox-outbox.png Graphic file (type png)
 
 <use figures/inbox-outbox.png>
-Package pdftex.def Info: figures/inbox-outbox.png used on input line 46.
+Package pdftex.def Info: figures/inbox-outbox.png used on input line 47.
 (pdftex.def)             Requested size: 198.74402pt x 180.67638pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 43--51
+Underfull \hbox (badness 10000) in paragraph at lines 44--52
 
- []
-
-
-Overfull \hbox (158.13144pt too wide) in paragraph at lines 60--61
-[]\T1/LinuxLibertineT-TLF/m/n/12 Eine HTTP POST An-frage mit ^^RContent-Type: a
-p-pli-ca-tion/ld+json: pro-file="https://w3.org/ns/activitystreams"^^P oder
- []
-
-
-Overfull \hbox (28.91147pt too wide) in paragraph at lines 60--61
-\T1/LinuxLibertineT-TLF/m/n/12 ^^RContent-Type: ap-pli-ca-tion/ac-tiv-i-ty+json
-: pro-file="https://w3.org/ns/activitystreams"^^P an
  []
 
 Package babel Info: Redefining ngerman shorthand "|
@@ -2568,50 +2558,61 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 61.
 [4 <./figures/inbox-outbox.png>]
+Overfull \hbox (158.13144pt too wide) in paragraph at lines 61--62
+[]\T1/LinuxLibertineT-TLF/m/n/12 Eine HTTP POST An-frage mit ^^RContent-Type: a
+p-pli-ca-tion/ld+json: pro-file="https://w3.org/ns/activitystreams"^^P oder
+ []
+
+
+Overfull \hbox (28.91147pt too wide) in paragraph at lines 61--62
+\T1/LinuxLibertineT-TLF/m/n/12 ^^RContent-Type: ap-pli-ca-tion/ac-tiv-i-ty+json
+: pro-file="https://w3.org/ns/activitystreams"^^P an
+ []
+
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 8.8pt on input line 74.
+(Font)              scaled to size 8.8pt on input line 75.
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--75
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 68--75
+Underfull \hbox (badness 10000) in paragraph at lines 69--76
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--75
+Underfull \hbox (badness 10000) in paragraph at lines 69--76
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--75
+Underfull \hbox (badness 10000) in paragraph at lines 69--76
 
  []
 
-<figures/client-server-federated.png, id=120, 767.86874pt x 361.35pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--76
+
+ []
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 76.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 76.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 76.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 76.
+[5] <figures/client-server-federated.png, id=124, 767.86874pt x 361.35pt>
 File: figures/client-server-federated.png Graphic file (type png)
 
 <use figures/client-server-federated.png>
 Package pdftex.def Info: figures/client-server-federated.png used on input line
- 78.
+ 79.
 (pdftex.def)             Requested size: 422.32912pt x 198.74312pt.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 81.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 81.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 81.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 81.
- [5])
-Underfull \hbox (badness 10000) in paragraph at lines 84--190
+)
+Underfull \hbox (badness 10000) in paragraph at lines 85--190
 
  []
 
 
-Overfull \hbox (1.11105pt too wide) in paragraph at lines 84--190
+Overfull \hbox (1.11105pt too wide) in paragraph at lines 85--190
 \T1/LinuxLibertineT-TLF/m/n/12 tures^^Pzur Sich-er-stel-lung der Daten-in-tegri
 tät. Let-ztere Sig-natur wird eher ver-wen-den wenn
  []
@@ -2806,11 +2807,11 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 38947 strings out of 494945
- 715881 string characters out of 6181031
- 1296321 words of memory out of 5000000
- 41465 multiletter control sequences out of 15000+600000
- 176490 words of font info for 148 fonts, out of 8000000 for 9000
+ 38949 strings out of 494945
+ 715916 string characters out of 6181031
+ 1296265 words of memory out of 5000000
+ 41467 multiletter control sequences out of 15000+600000
+ 176811 words of font info for 149 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  80i,13n,86p,8818b,2280s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/home/armin/texmf/fonts/enc/dvips/libertine/lbtn_naooyc.enc}{/home/armin/tex
@@ -2824,7 +2825,7 @@ eTB.pfb></home/armin/texmf/fonts/type1/public/libertine/LinLibertineTI.pfb></ho
 me/armin/texmf/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb></home/ar
 min/texmf/fonts/type1/adobe/sourcesanspro/SourceSansPro-Semibold.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb>
-Output written on thesis.pdf (25 pages, 619028 bytes).
+Output written on thesis.pdf (25 pages, 619418 bytes).
 PDF statistics:
  195 PDF objects out of 1000 (max. 8388607)
  129 compressed objects within 2 object streams
