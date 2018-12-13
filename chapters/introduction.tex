@@ -14,24 +14,63 @@
 %% --------------------------------------------------------
 %% | Derived from sdqthesis by Erik Burger burger@kit.edu |
 %% --------------------------------------------------------
-
-\chapter{Einleitung}
+\chapter{ 
+	\iflanguage{english}{Introduction}{Einleitung}
+}
 \label{ch:Introduction}
-- 	Rechtfertigung der Arbeit\\\\
-	Viele Portale berichten heutzutage davon, dass zentrale soziale Netzwerke dezentralisiert werden sollen.\textbf{(Quellen!!!)} Außerdem liest man immer häufiger darüber, dass ActivityPub die \glqq Zukunft der dezentralen sozialen Netzwerke\grqq~sei. Zentralisierung von Daten und das Vertrauen auf einzelne Instanzen ist heutzutage allgegenwärtig. Da die Dezentralisierung vorangebracht und ActivityPub immer häufiger eingesetzt werden soll, wird in dieser Arbeit ein Blick auf die Sicherheit des Protokolls gelegt.\\
-
-- 	Ziel der Arbeit\\\\
+\iflanguage{english}{
+	\todo{- Justification of this work}\\\\
+	Using of the positive and indirect network effect
+	What is Decentralization?
+	
+	Centralization of data and trust in individual instances is ubiquitous today. On the internet there are lots of social networks like Facebook, Twitter, Google+, Instagram or Pinterest which mostly keep the right to the data you get from their users and last but not least sell these data for e.g. advertising purposes. It is also easier for crackers to access the entire database, since centralized networks usually also have a central database or a central access point.
+	
+	What does decentralized mean? In politics, decentralisation means the transfer of central government tasks to subnational or subsidiary level(s). So the transfer of tasks to your responsible levels (county, municipality, etc.). In the energy industry, one speaks of decentralised electricity generation if the electricity is also generated at the places where it is consumed. An example of this would be a hydroelectric power plant that supplies electricity to the surrounding villages or towns.
+	
+	\todo{- Purpose of this work}\\\\
+	What means secure?
+	Protection goals?
+	
+	To complete the work successfully should be an implementation of the distributed server-to-server. Protocol as a prototype and possibly a concept for the safe use of the protocol are available. In addition, the work should give an overview of the basics of the protocol and how the relevant components are to be understood.
+	
+	\todo{-	Delineation of the topic and topic related definitions}\\\\
+	
+	\todo{- History and level of research}\\\\
+	The ActivityPub Standard was recommended by the W3C on 23 January 2018 and developed by a working group of the W3C, the Social Web Working Group (SWWG). This working group was active from 21 July 2014 to 13 February 2018 and developed ActivityPub, Activity Streams Core, Activity Streams Vocab, etc.
+}{
+	- 	Rechtfertigung der Arbeit\\\\
+	Viele Portale berichten heutzutage davon, dass zentrale soziale Netzwerke dezentralisiert werden sollen.\todo{(Quellen!!!)} Außerdem liest man immer häufiger darüber, dass ActivityPub die \glqq Zukunft der dezentralen sozialen Netzwerke\grqq~sei. 
+	
+	Zentralisierung von Daten und das Vertrauen auf einzelne Instanzen ist heutzutage allgegenwärtig. Im Internet gibt es haufenweise soziale Netzwerke wie Facebook, Twitter, Google+, Instagram oder Pinterest die zumeist das Recht an den Daten, die Sie von ihren Nutzer bekommen, behalten und nicht zuletzt diese Daten auch verkaufen für zB. Werbezwecke. Für Cracker ist es außerdem leichter an die gesamte Datenbank zu kommen, da bei zentralisierten Netzwerken meist auch eine zentrale Datenbank, bzw. ein zentraler Zugriffspunkt, vorhanden ist.\\\\
+	
+	Was bedeutet nun dezentral? In der Politik bedeutet Dezentralisierung \glqq die Übertragung zentralstaatlicher Aufgaben auf subnationale oder subsidiäre Ebene(n)\grqq\cite{wikipedia-decentralization-politics}. Also das Übertragen von Aufgaben an Ihre zuständigen Ebenen (Landkreis, Kommune, etc.).\\
+	In der Energiewirtschaft spricht man von einer \glqq dezentralen Stromerzeugung\grqq, wenn der Strom an den Stellen wo er verbraucht auch erzeugt wird. Ein Beispiel hierfür währe ein Wasserkraftwerk, dass den Strom für die umgebenen Dörfer oder Städte liefert\cite{wikipedia-decentralization-power}.\\
+	
+	
+	Da die Dezentralisierung vorangebracht und ActivityPub immer häufiger eingesetzt werden soll, wird in dieser Arbeit ein Blick auf die Sicherheit des Protokolls gelegt.\\
+	
+	- 	Ziel der Arbeit\\\\
 	Um die Arbeit erfolgreich abzuschließen soll eine Implementierung des verteilten Server-zu-Server
 	Protokolls als Prototyp und eventuell ein Konzept zum sicheren Einsatz des Protokolls vorliegen. Darüber hinaus soll die Arbeit einen Überblick über die Grundlagen des Protokolls geben und wie die relevanten Bestandteile zu verstehen sind. \\\\
-- 	Abgrenzung des Themas und Themenbezogenen Definitionen\\\\
+	- 	Abgrenzung des Themas und Themenbezogenen Definitionen\\\\
 	
-- 	Geschichte und Stand der Forschung:\\\\
-	Der ActivityPub\footnote{\url{https://www.w3.org/TR/activitypub/}} Standard wurde am 23 Januar 2018 von der W3C empfohlen und von einer Arbeitsgruppe des W3C, der Social Web Working Group(SWWG)\footnote{\url{https://www.w3.org/wiki/Socialwg}\label{swwg-footnote}}\footnote{\url{https://www.w3.org/blog/news/archives/3958}}, entwickelt. Diese Gruppe war vom 21. Juli 2014 bis zum 13 Februar 2018 aktiv$^{\ref{swwg-footnote}}$ und entwickelte unter anderem ActivityPub, Activity Streams Core\footnote{\url{https://www.w3.org/TR/activitystreams-core/}}, Activity Streams Vocab\footnote{\url{https://www.w3.org/TR/activitystreams-vocabulary/}}.
-	\\\\\textbf{Über wissenschaftliche Puklikationen über ActivityPub ist mir bis jetzt nichts bekannt. Wenn jemand was weiß bitte melden!}
+	- 	Geschichte und Stand der Forschung:\\\\
+	Der ActivityPub\cite{activityPub} Standard wurde am 23 Januar 2018 von der W3C empfohlen und von einer Arbeitsgruppe des W3C, der Social Web Working Group(SWWG)\cite{socialWg,pushSocialWeb}, entwickelt. Diese Gruppe war vom 21. Juli 2014 bis zum 13 Februar 2018 aktiv\cite{socialWg} und entwickelte unter anderem ActivityPub, Activity Streams Core\cite{activityStreamsCore}, Activity Streams Vocab\cite{activityStreamsVocabulary}.
+}
+
 \section{Motivation}
 \label{sec:Introduction:Motivation}
-	Um der Zentralisierung von Daten entgegenzuwirken ist es sinnvoll die Daten zu dezentralisieren. Mail Server sind zum Beispiel dezentral ausgelegt, sodass nicht ein Mail Server alle E-Mails verwaltet sondern jeder Mail Server die Mails für die eigene Domain. \textbf{(Richtig???)} Auch das Internet ist dezentral aufgebaut um nicht einen Flaschenhals zu haben, von dem die ganze Kommunikation im Netz abhängt. Wenn der Transport über ein Autonomes System nicht funktioniert wird ein anderer Weg gewählt. 
-	\\\\Protokolle wie \glqq Diaspora Federation und OStatus\grqq~bieten den Zugriff auf dezentral gespeicherte soziale Inhalte und ermöglichen das veröffentlichen von sozialen Inhalten. Der im März letzten Jahres vom W3C empfohlene Standard namens \glqq ActivityPub\grqq~wurde unter anderem von Christopher Lemmert Webber und Jessica Tallon entwickelt auf der Basis des Wissens im Umgang mit dem Diaspora|OStatus Protokoll\textbf{(Quelle angeben!!!)}. 
-	\\\\ActivityPub ist wie \glqq Diaspora\grqq~und \glqq OStatus\grqq~ein Protokoll für dezentrale soziale Netzwerke und wird in dieser Bachelor Arbeit untersucht.
-\section{Unterschied zentraler sozialer zu dezentralen sozialen Netzwerken}
+\iflanguage{english}{
+	In order to counteract the centralization of data, it makes sense to decentralize the data. Mail servers, for example, are decentralized, so that not one mail server manages all e-mails, but each mail server manages the e-mails for its own domain. The Internet is also decentralized so as not to have a bottleneck on which all communication in the network depends. If the transport via an autonomous system does not work, another way is chosen.\\\\
 	
+	Protocols such as OStatus provide access to distributed social content and allow social content to be published. The standard recommended in March last year by the W3C called ActivityPub was developed by Christopher Lemmert Webber and Jessica Tallon among others on the basis of the knowledge in handling the OStatus protocol.\\\\
+	
+	ActivityPub is like OStatus a protocol for decentralized social networking and will be examined in this bachelor thesis.
+}{
+	Um der Zentralisierung von Daten entgegenzuwirken ist es sinnvoll die Daten zu dezentralisieren. Mail Server sind zum Beispiel dezentral ausgelegt, sodass nicht ein Mail Server alle E-Mails verwaltet sondern jeder Mail Server die Mails für die eigene Domain. \todo{(Richtig???)} Auch das Internet ist dezentral aufgebaut um nicht einen Flaschenhals zu haben, von dem die ganze Kommunikation im Netz abhängt. Wenn der Transport über ein Autonomes System nicht funktioniert wird ein anderer Weg gewählt.
+	
+	\\\\Protokolle wie \glqq Diaspora Federation und OStatus\grqq~bieten den Zugriff auf dezentral gespeicherte soziale Inhalte und ermöglichen das veröffentlichen von sozialen Inhalten. Der im März letzten Jahres vom W3C empfohlene Standard namens \glqq ActivityPub\grqq~wurde unter anderem von Christopher Lemmert Webber und Jessica Tallon entwickelt auf der Basis des Wissens im Umgang mit dem Diaspora|OStatus Protokoll\todo{(Quelle angeben!!!)}.\\\\
+	ActivityPub ist wie \glqq OStatus\grqq~ein Protokoll für dezentrale soziale Netzwerke und wird in dieser Bachelor Arbeit untersucht.
+}
+
+\section{Unterschied zentraler sozialer zu dezentralen sozialen Netzwerken}

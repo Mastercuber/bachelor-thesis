@@ -20,8 +20,8 @@
 \glqq ActivityStreams Core\grqq
 ActivityStreams Core beinhaltet Modelle für Aktoren, Aktivitäten, Intransitiven Aktivitäten, Objekte, Links, Sammlungen, Natürliche Sprachwerte (Strings) und für Internationalisierung per \glqq @language\grqq~Eigenschaft.
 \section{ActivityPub Standard}
-	ActivityPub definiert zwei Protokollschichten, sowie Konzepte, Sammlungen und Interaktionen für dezentrale soziale Netzwerke. Es setzt auf bereits bestehenden Empfehlungen des W3C auf, welche teilweise auch von der SWWG entwickelt wurden wie zB. Activity Streams Core und Activity Streams Vocab. 
-	\\\\Auch andere Technologien wie JSON-LD\footnote{\url{https://www.w3.org/TR/json-ld/}} werden benutzt um die Erweiterbarkeit zu gewährleisten. Über neue Ontologien (Vokabulare) können weitere syntaktische Definitionen und semantische Beschreibungen zu den bestehenden hinzugefügt werden. Diese Vokabulare können im Kontext des JSON-LD Objektes angegeben werden.\\ 
+	ActivityPub definiert zwei Protokollschichten, sowie Konzepte, Sammlungen und Interaktionen für dezentrale soziale Netzwerke. Es setzt auf bereits bestehenden Empfehlungen des W3C auf, welche teilweise auch von der SWWG entwickelt wurden wie zB. Activity Streams Core und Activity Streams Vocab.
+	\\\\Auch andere Technologien wie JSON-LD\cite{jsonLd} werden benutzt um die Erweiterbarkeit zu gewährleisten. Über neue Ontologien (Vokabulare) können weitere syntaktische Definitionen und semantische Beschreibungen zu den bestehenden hinzugefügt werden. Diese Vokabulare können im Kontext des JSON-LD Objektes angegeben werden.\\
 	\textbf{(Stimmt das mit den Ontologien???)}
 		\textbf{(Beispiel Context Abbildung mit erweitertem Context???)}
 
@@ -32,15 +32,15 @@ ActivityStreams Core beinhaltet Modelle für Aktoren, Aktivitäten, Intransitive
 		\item ActivityPub verteiltes Server-zu-Server Protokoll (Federation Protocol)
 	\end{itemize}
 	Die beiden Protokolle können unabhängig voneinander implementiert werden. Das Client-zu-Server Protokoll besteht aus einem Client und Server Teil.
-	\\\\ In ActivityPub werden Benutzer als \glqq Aktoren\grqq(actors) dargestellt. Jedes Aktoren Objekt muss eine \glqq Inbox\grqq~und \glqq Outbox\grqq, welche geordnete Sammlungen sein müssen, sowie eine ID und ein Typ besitzen\footnote{\href{https://www.w3.org/TR/activitypub/}{actor-objects https://www.w3.org/TR/activitypub/}}. Die ID muss global einzigartig sein und der Typ kann variieren zwischen \glqq Person\grqq, \glqq Application\grqq~und weiteren.\footnote{\href{https://www.w3.org/TR/activitystreams-core/}{actors https://www.w3.org/TR/activitystreams-core/}}
-	
+	\\\\ In ActivityPub werden Benutzer als \glqq Aktoren\grqq(actors) dargestellt. Jedes Aktoren Objekt muss eine \glqq Inbox\grqq~und \glqq Outbox\grqq, welche geordnete Sammlungen sein müssen, sowie eine ID und ein Typ besitzen\cite{activityPubActor}. Die ID muss global einzigartig sein und der Typ kann variieren zwischen \glqq Person\grqq, \glqq Application\grqq~und weiteren.\cite{activityStreamsCoreActor}
+
 	\lstinputlisting[caption={Beispiel Aktoren Objekt}, label=listing::actor, language=JavaScript]{resources/mastodon-macu.json}
 
 \subsection{Zugehörige Standards}
 	ActivityPub benutzt die ActivityStream Daten Syntax und das Vokabular. Zusätzlich kann das Sicherheitsvokabular von Webpayments benutzt werden um Syntax und Semantik für das Beschreiben eines öffentlichen Schlüssels o.ä. zur Verfügung zu stellen.
 
 \section{Client-zu-Server Kommunikation}
-	
+
 	Der Client empfängt Nachrichten über zwei Schnittstellen. Er kann sich per HTTP GET Anfrage auf seine eigene \glqq Inbox\grqq~die neusten an ihn adressierten Inhalt holen. Außerdem kann eine HTTP GET Anfrage an die \glqq shared Inbox\grqq~des Servers gesendet werden um eine Repräsentation aller Inhalte der Instanz zu bekommen.\\ \textbf{(Oder alle Inhalte des bekannten Netzwerks???)}\\\\
 	\begin{figure}[h]
 		\centering
@@ -48,8 +48,8 @@ ActivityStreams Core beinhaltet Modelle für Aktoren, Aktivitäten, Intransitive
 		\label{Client zu Server Interaktionen}
 		\caption{Interaktionen des Client mit dem Server}
 	\end{figure}\\
-	Um neue Aktivitäten an seine Folgenden, direkt an einzelne Personen oder sichtbar innerhalb der Domain zu veröffentlichen kann der Client eine HTTP POST Anfrage an seine \glqq Outbox\grqq~senden mit einer Aktivität oder einem ActivityStreams 2.0(AS2) Objekt als Inhalt. 
-	
+	Um neue Aktivitäten an seine Folgenden, direkt an einzelne Personen oder sichtbar innerhalb der Domain zu veröffentlichen kann der Client eine HTTP POST Anfrage an seine \glqq Outbox\grqq~senden mit einer Aktivität oder einem ActivityStreams 2.0(AS2) Objekt als Inhalt.
+
 
 	\subsection{Client Teil}
 		%%The client, represented as an actor, interacts with the server in two ways. First through sending a HTTP GET request with an Activity object to an actors inbox and through HTTP POST an Activity object to an actors outbox. An inbox and outbox must be a OrderedCollection.
@@ -64,15 +64,11 @@ ActivityStreams Core beinhaltet Modelle für Aktoren, Aktivitäten, Intransitive
 			\item Anfragen müssen mit den Zugangsdaten des Nutzer, zu dem die \glqq Outbox\grqq~gehört, authentifiziert werden
 		\end{itemize}
 		Zusammengefasst muss sich der Client um das Entdecken von Endpunkten - Inbox/Outbox - über Profile, das Serialisieren von Daten zu Aktivitäten oder AS2 Objekten sowie um das setzen der entsprechenden Kopfzeilen (Mittlerer Teil der obigen Auflistung) und absenden der HTTP POST Anfrage kümmern. Außerdem muss bei HTTP GET Anfragen an den Server die \glqq ACCEPT: application/ld+json\grqq Kopfzeile gesetzt sein.
-		
-	\subsection{Server Teil}
-  		Zu den Aufgaben des Serverteils gehören das Annehmen von HTTP POST Anfragen auf die \glqq Outbox\grqq~eines Nutzers und das verifizieren ob der Nutzer berechtigt ist diese Anfrage zu tätigen. Weiter werden die \glqq Inbox\grqq~Endpunkte bereitgestellt um authentifizierten Nutzern den Zugriff auf die neusten Inhalte zu geben.
-  		\\\\
-  		\textbf{(Ist das richtig oder bestehen die Aufgaben des Serverteils auch im weiterleiten zu anderen Instanzen, weil das ist ja eigentlich der Server-zu-Server Teil???) (Ist der Server Teil ein interner Speicher Mechanismus der Instanz oder ein delivery Mechanismus für alle Instanzen des Netzwerk oder für alle Instanzen mit einer Federated Implementierung insgesamt??? Ich verstehe es wie oben beschrieben, also ohne Server-to-Server Teil alles innerhalb einer Instanz)
-  		\\\\
-  		Angenommen der Server Part beinhaltet nicht nur das annehmen und abspeichern innerhalb einer Instanz, sonder auch das weiterleiten an andere Instanzen:
-  		\\\\
-  		Dann müsste ein Nutzer alleine durch die Implementierung des Server Teils des Client-zu-Server Protokolls in der Lage sein Inhalt mit anderen Servern auszutauschen. Den Unterschied zu einem förderierten Server liegt dann im Empfangen von öffentlichen Nachrichten (5.6 Public Addressing | Shared Inbox Delivery \footnote{\href{https://www.w3.org/TR/activitypub/}{sharedInbox https://www.w3.org/TR/activitypub/}}) und dem Weiterleiten (7.1.2 Forwarding from Inbox) von auf dieser Domäne nicht zustellbaren Empfängern.\\\\ Im Endeffekt ist die Frage ob der Server Teil des Client-zu-Server Protokolls eine Teilmenge des Server-zu-Server Protokolls ist???}
+
+	\subsection{Server Teil} 
+		Zu den Aufgaben des Serverteils gehören das Annehmen von HTTP POST Anfragen auf die \glqq Outbox\grqq~eines Nutzers und das verifizieren ob der Nutzer berechtigt ist diese Anfrage zu tätigen. Weiter werden die \glqq Inbox\grqq~Endpunkte bereitgestellt um authentifizierten Nutzern den Zugriff auf die neusten Inhalte zu geben. 
+	
+	\todo{(Ist das richtig oder bestehen die Aufgaben des Serverteils auch im weiterleiten zu anderen Instanzen, weil das ist ja eigentlich der Server-zu-Server Teil???) (Ist der Server Teil ein interner Speicher Mechanismus der Instanz oder ein delivery Mechanismus für alle Instanzen des Netzwerk oder für alle Instanzen mit einer Federated Implementierung insgesamt??? Ich verstehe es wie oben beschrieben, also ohne Server-to-Server Teil alles innerhalb einer Instanz). Angenommen der Server Part beinhaltet nicht nur das annehmen und abspeichern innerhalb einer Instanz, sonder auch das weiterleiten an andere Instanzen: Dann müsste ein Nutzer alleine durch die Implementierung des Server Teils des Client-zu-Server Protokolls in der Lage sein Inhalt mit anderen Servern auszutauschen. Den Unterschied zu einem förderierten Server liegt dann im Empfangen von öffentlichen Nachrichten (5.6 Public Addressing | Shared Inbox Delivery) und dem Weiterleiten (7.1.2 Forwarding from Inbox) von auf dieser Domäne nicht zustellbaren Empfängern. Im Endeffekt ist die Frage ob der Server Teil des Client-zu-Server Protokolls eine Teilmenge des Server-zu-Server Protokolls ist???}
 \section{Server-zu-Server Kommunikation}
 	\begin{figure}[h]
 		\centering

@@ -17,8 +17,7 @@
 
 %% Available languages: english,ngerman
 %% Available modes: draft,final (see README)
-\documentclass[ngerman,draft]{vsysthesis}
-
+\documentclass[english,draft]{vsysthesis}
 % Use space between paragraphs
 %\KOMAoption{parskip}{half+}
 
@@ -30,8 +29,7 @@
 \author{Armin Kunkel}
 
 %% Title (and possibly subtitle) of the thesis
-\title{Analyse einer Referenzimplementierung des ActivityPub Standards\\
-mit Blick auf die Sicherheit}
+\title{\iflanguage{english}{Analysis of a Reference Implementation of the ActivityPub Standard \\ with a view on security}{Analyse einer Referenzimplementierung des ActivityPub Standards mit Blick auf die Sicherheit}}
 
 %% Type of the thesis
 \thesistype{Bachelor Thesis}
@@ -54,7 +52,11 @@ mit Blick auf die Sicherheit}
 
 
 %% Please enter the start end end time of your thesis
-\editingtime{01. Dezember 2018}{31. März 2019}
+\editingtime{
+	\iflanguage{english}{01. December 2018}{01. Dezember 2018}
+}{
+	\iflanguage{english}{31. March 2019}{31. M\"{a}rz 2019}
+}
 
 \settitle
 
@@ -76,6 +78,9 @@ mit Blick auf die Sicherheit}
 %% Use biber instead of BibTeX, see README
 \usepackage[citestyle=numeric,style=numeric,backend=biber]{biblatex}
 \addbibresource{thesis.bib}
+
+%% Package for switching between languages
+\usepackage{iflang}
 
 %% --------------------------------
 %% | Listings                     |
@@ -124,7 +129,6 @@ mit Blick auf die Sicherheit}
 \makeglossaries
 %% Load glossary definitions from file
 \loadglsentries{glossentries.tex}
-
 %% ====================================
 %% ====================================
 %% ||                                ||
@@ -160,15 +164,14 @@ mit Blick auf die Sicherheit}
 %% The text is included from the following files:
 %% - chapters/abstract
 
-%%\includeabstract
+\includeabstract
 
 %% ------------------------
 %% |   Table of Contents  |
 %% ------------------------
 \tableofcontents
-
 \listoffigures
-%%\listoftables
+\listoftables
 
 %% ------------------------
 %% | Glossary/Acronyms    |

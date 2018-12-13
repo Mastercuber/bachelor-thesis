@@ -101,10 +101,10 @@
 \setkomafont{title}{\huge\sffamily\bfseries}
 \setkomafont{subtitle}{\normalfont\large}
 
-\uppertitleback{Hochschule Karlsruhe Technik und Wirtschaft\\ Fakult\"at f\"ur Informatik und Wirtschaftsinformatik\\ Moltkestr.\ 30\\ 76133 Karlsruhe}
+\uppertitleback{\iflanguage{english}{University of Applied Sciences\\ Faculty for Computer Science and Business Information Systems\\ Moltkestr.\ 30\\ 76133 Karlsruhe}{Hochschule Karlsruhe Technik und Wirtschaft\\ Fakult\"at f\"ur Informatik und Wirtschaftsinformatik\\ Moltkestr.\ 30\\ 76133 Karlsruhe}}
 
 %% variables for title page
-\newcommand{\theinstitute}{\iflanguage{english}{Fachrichtung Verteilte Systeme (VSYS)}{Subject Area Distributed Systems (VSYS)}}
+\newcommand{\theinstitute}{\iflanguage{english}{Subject Area Distributed Systems (DSYS)}{Fachrichtung Verteilte Systeme (VSYS)}}
 \newcommand{\thethesistype}{}
 \newcommand{\thereviewerone}{Prof.\ Dr.\ rer.\ nat.\ Christian Zirpins}
 \newcommand{\thereviewertwo}{}
@@ -114,7 +114,7 @@
 \newcommand{\theeditend}{}
 
 %% formatting commands for titlepage
-\newcommand{\thesistype}[1]{\subtitle{\vskip2em #1 \iflanguage{english}{von}{of}}%
+\newcommand{\thesistype}[1]{\subtitle{\vskip2em #1 \iflanguage{english}{of}{von}}%
 \renewcommand{\thethesistype}{#1}}
 \newcommand{\myinstitute}[1]{\renewcommand{\theinstitute}{#1}}
 \newcommand{\reviewerone}[1]{\renewcommand{\thereviewerone}{#1}}
@@ -132,19 +132,19 @@
 \newcommand{\settitle}{%
 \publishers{%
 \large
-\iflanguage{english}{an der Fakult\"at f\"ur Informatik und Wirtschaftsinformatik}%
-{at the Faculty of Computer Science and Business Information Systems}
+\iflanguage{english}{at the Faculty of Computer Science and Business Information Systems}%
+{an der Fakult\"at f\"ur Informatik und Wirtschaftsinformatik}
 \\
 \theinstitute\\[2em]
 \begin{tabular}{l l}
-  \iflanguage{english}{Erstgutachter}{Reviewer}: & \thereviewerone\\
+  \iflanguage{english}{Reviewer}{Erstgutachter}: & \thereviewerone\\
   %skip w/o second reviewer
   \ifthenelse{\equal{\thereviewertwo}{}}{}{%
   \iflanguage{english}{Second reviewer}{Zweitgutachter}: & \thereviewertwo\\
   }%
   %skip w/o external advisor
   \ifthenelse{\equal{\theadvisorone}{}}{}{%
-  \iflanguage{english}{Betreuer}{Advisor}: & \theadvisorone\\
+  \iflanguage{english}{Advisor}{Betreuer}: & \theadvisorone\\
   }%
   %skip w/o second external advisor
   \ifthenelse{\equal{\theadvisortwo}{}}{}{%
@@ -176,16 +176,16 @@
 
 %% In English theses, an additional German Abstract is needed.
 \newcommand{\includeabstract}{
-\iflanguage{english}{
-	% include only German abstract
-	\include{chapters/abstract_de}
-}{
-% include English and German abstracts
-\include{chapters/abstract_en}
-\begin{otherlanguage}{ngerman}
-\include{chapters/abstract_de}
-\end{otherlanguage}
-}
+	\iflanguage{english}{
+		% include English and German abstracts
+		\include{chapters/abstract_en}
+		\begin{otherlanguage}{ngerman}
+			\include{chapters/abstract_de}
+		\end{otherlanguage}
+	}{
+		% include only German abstract
+		\include{chapters/abstract_de}
+	}
 }
 
 %% ------------
@@ -206,6 +206,7 @@
 \RequirePackage{import}
 
 % languages
+\usepackage{csquotes}
 \RequirePackage{babel}
 
 % hyphenation for compound words

@@ -135,7 +135,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortlocale</bcf:key>
-      <bcf:value>english</bcf:value>
+      <bcf:value>ngerman</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortingtemplatename</bcf:key>
@@ -1995,9 +1995,6 @@
     <bcf:datasource type="file" datatype="bibtex">thesis.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">jsonLd</bcf:citekey>
-    <bcf:citekey order="2">activityPubActor</bcf:citekey>
-    <bcf:citekey order="3">activityStreamsCoreActor</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
