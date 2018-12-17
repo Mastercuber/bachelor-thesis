@@ -5,4 +5,6 @@
 *.synctex.gz
 *.toc
 *.ist
+*.bcf
+*.lot
 idea/
