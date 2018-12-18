@@ -135,7 +135,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortlocale</bcf:key>
-      <bcf:value>english</bcf:value>
+      <bcf:value>ngerman</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortingtemplatename</bcf:key>
@@ -1995,9 +1995,20 @@
     <bcf:datasource type="file" datatype="bibtex">thesis.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">jsonLd</bcf:citekey>
-    <bcf:citekey order="2">activityPubActor</bcf:citekey>
-    <bcf:citekey order="3">activityStreamsCoreActor</bcf:citekey>
+    <bcf:citekey order="1">wikipedia-dezentralisierung-politik</bcf:citekey>
+    <bcf:citekey order="2">wikipedia-dezentralisierung-energie</bcf:citekey>
+    <bcf:citekey order="3">wikipedia-dezentralisierung-informatik</bcf:citekey>
+    <bcf:citekey order="4">activityPub</bcf:citekey>
+    <bcf:citekey order="5">socialWg</bcf:citekey>
+    <bcf:citekey order="5">pushSocialWeb</bcf:citekey>
+    <bcf:citekey order="6">socialWg</bcf:citekey>
+    <bcf:citekey order="7">activityStreamsCore</bcf:citekey>
+    <bcf:citekey order="8">activityStreamsVocabulary</bcf:citekey>
+    <bcf:citekey order="9">social-wg-charter</bcf:citekey>
+    <bcf:citekey order="10">activityPub-acknowledgements</bcf:citekey>
+    <bcf:citekey order="11">jsonLd</bcf:citekey>
+    <bcf:citekey order="12">activityPubActor</bcf:citekey>
+    <bcf:citekey order="13">activityStreamsCoreActor</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

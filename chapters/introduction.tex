@@ -19,58 +19,56 @@
 }
 \label{ch:Introduction}
 \iflanguage{english}{
-	\todo{- Justification of this work}\\\\
-	Using of the positive and indirect network effect
-	What is Decentralization?
+	\todo{- Justification of this work}
+	Centralization of data and trust in individual instances is ubiquitous today. On the internet there are lots of social networks like Facebook, Twitter, Google+, Instagram or Pinterest which mostly keep the right to the data you get from their users and last but not least sell these data for e.g. advertising purposes. It is also easier for crackers to access the entire database, since centralized networks usually also have a central database or a central access point. When the access to this/these is reached, the whole database can be read out.\\
 	
-	Centralization of data and trust in individual instances is ubiquitous today. On the internet there are lots of social networks like Facebook, Twitter, Google+, Instagram or Pinterest which mostly keep the right to the data you get from their users and last but not least sell these data for e.g. advertising purposes. It is also easier for crackers to access the entire database, since centralized networks usually also have a central database or a central access point.
+	What does decentralized mean? In politics, decentralization \glqq means the transfer of central state tasks to subnational or subsidiary level(s) \grqq\cite{wikipedia-decentralization-politics}. In the energy industry, one speaks of a \glqq decentralized power generation\grqq if the power is also generated at the places where it is consumed. An example of this would be a hydroelectric power plant that supplies electricity to the surrounding villages or cities\cite{wikipedia-decentralization-energy}. Decentralization in computer science means the meshed networking of computers with each other\cite{wikipedia-decentralization-informatics}.\\
 	
-	What does decentralized mean? In politics, decentralisation means the transfer of central government tasks to subnational or subsidiary level(s). So the transfer of tasks to your responsible levels (county, municipality, etc.). In the energy industry, one speaks of decentralised electricity generation if the electricity is also generated at the places where it is consumed. An example of this would be a hydroelectric power plant that supplies electricity to the surrounding villages or towns.
+	The allocation of central government tasks to sub-national or subsidiary levels relieves the burden on the central government level and thus has more resources for other tasks. When hydropower plants are built close to villages and towns, there is no need to transport electricity, which reduces the loss of electricity when it is transported via the power grid. The decentralisation of social networks has several advantages. For example, it becomes possible to moderate the individual instances themselves and thus decentralise control or create content from one social network to another. With ActivityPub this is guaranteed by the promotion.\\
 	
-	\todo{- Purpose of this work}\\\\
-	What means secure?
-	Protection goals?
+	ActivityPub consists of two parts. The client-to-server protocol and the promoted server-to-server protocol. The ActivityPub W3C recommendation in early 2018 and the Social-Web-Working-Group of the W3C, as well as others, will advance the dissemination of the protocol, probably to take advantage of the network effect. The network effect is a term derived from economics. In terms of translation it means: "As soon as the critical mass of networks has been reached, the positive feedback effect occurs, so that the benefit for networks implementing the standard increases".\\
 	
-	To complete the work successfully should be an implementation of the distributed server-to-server. Protocol as a prototype and possibly a concept for the safe use of the protocol are available. In addition, the work should give an overview of the basics of the protocol and how the relevant components are to be understood.
+	\todo{- Purpose of this work}
+	In order to complete the work successfully, an implementation of the distributed server-to-server protocol as a prototype and possibly a concept for the secure use of the protocol should be available. In addition, the work should give an overview of the basics of the protocol and how the relevant components are to be understood. In this context \glqq secure\grqq means secure authentication of the client against the server and additionally the server among each other, as well as ensuring the manipulation-free transmission of the contents.\\
 	
-	\todo{-	Delineation of the topic and topic related definitions}\\\\
+	\todo{-	Delineation of the topic and topic related definitions}
 	
-	\todo{- History and level of research}\\\\
-	The ActivityPub Standard was recommended by the W3C on 23 January 2018 and developed by a working group of the W3C, the Social Web Working Group (SWWG). This working group was active from 21 July 2014 to 13 February 2018 and developed ActivityPub, Activity Streams Core, Activity Streams Vocab, etc.
+	\todo{- History and level of research}
+	The ActivityPub\cite{activityPub} standard was recommended by the W3C on 23 January 2018 and developed by a working group of the W3C, the Social Web Working Group (SWWG)\cite{socialWg,pushSocialWeb}. This group was active from July 21, 2014 to February 13, 2018\cite{socialWg} and developed among others ActivityPub, Activity Streams Core\cite{activityStreamsCore}, Activity Streams Vocab\cite{activityStreamsVocabulary}. The aim of the SWWG was to define new protocols, vocabularies and API's for the access to social contents of the so-called Open Web Platform\cite{social-wg-charter}.
+
 }{
-	- 	Rechtfertigung der Arbeit\\\\
-	Viele Portale berichten heutzutage davon, dass zentrale soziale Netzwerke dezentralisiert werden sollen.\todo{(Quellen!!!)} Außerdem liest man immer häufiger darüber, dass ActivityPub die \glqq Zukunft der dezentralen sozialen Netzwerke\grqq~sei. 
+	%	- 	Rechtfertigung der Arbeit
+	Zentralisierung von Daten und das Vertrauen auf einzelne Instanzen ist heutzutage allgegenwärtig. Im Internet gibt es haufenweise soziale Netzwerke wie Facebook, Twitter, Google+, Instagram oder Pinterest die zumeist das Recht an den Daten, die Sie von ihren Nutzer bekommen, behalten und nicht zuletzt diese Daten auch verkaufen für zB. Werbezwecke. Für Cracker ist es außerdem leichter an die gesamte Datenbank zu kommen, da bei zentralisierten Netzwerken meist auch eine zentrale Datenbank, bzw. ein zentraler Zugriffspunkt, vorhanden ist. Wenn der Zugriff auf diesen/diese erreicht ist kann die ganze Datenbank ausgelesen werden.\\
+		
+	Was bedeutet nun dezentral? In der Politik bedeutet Dezentralisierung \glqq die Übertragung zentralstaatlicher Aufgaben auf subnationale oder subsidiäre Ebene(n)\grqq\cite{wikipedia-dezentralisierung-politik}. In der Energiewirtschaft spricht man von einer \glqq dezentralen Stromerzeugung\grqq, wenn der Strom an den Stellen wo er verbraucht auch erzeugt wird. Ein Beispiel hierfür wäre ein Wasserkraftwerk, dass den Strom für die umgebenen Dörfer oder Städte liefert\cite{wikipedia-dezentralisierung-energie}. Dezentralisierung in der Informatik bedeutet das vermaschte Vernetzen von Computern untereinander\cite{wikipedia-dezentralisierung-informatik}.\\
+		
+	Durch die Verteilung der zentralstaatliche Aufgaben auf subnationale oder subsidiäre Ebene wird die zentralstaatliche Ebene entlastet und hat somit mehr Ressourcen für andere Aufgaben. Beim Errichten von Wasserkraftwerken nahe an Dörfern und Städten entfällt der Transport des Stroms und somit verringert sich der Verlust beim Transport über das Stromnetz. Das Dezentralisieren von sozialen Netzwerken bring verschiedene Vorteile mit sich. Es wird zum Beispiel möglich, die einzelnen Instanzen selbst zu moderieren und somit die Kontrolle zu dezentralisieren oder Inhalt aus einem sozialen Netzwerk heraus in einem anderen zu erstellen. Bei ActivityPub wird dies über die Förderierung gewährleistet.\\
+		
+	ActivityPub besteht aus zwei Teilen. Dem Client-zu-Server Protokoll und dem förderierten Server-zu-Server Protokoll. Durch die ActivityPub W3C Empfehlung Anfang 2018 und die Social-Web-Working-Group Arbeitsgruppe des W3C sowie weiteren, wird die Verbreitung des Protokolls vorangebracht, vermutlich um den Netzwerkeffekt nutzen zu können. Der Netzwerkeffekt ist ein aus der Volkswirtschaftslehre stammender Begriff. Auf Übertragen bedeutet er soviel wie: "Sobald die kritische Masse an Netzwerken erreicht wurde, tritt der positive Feedback-Effekt auf, sodass der Nutzen für Netzwerke, welche den Standard implementieren, steigt".\\
+	\todo{Bibliothek gehen(Quellen): Netzwerkeffekt, Dezentralisierung 3 mal }
+		
+	%	- 	Ziel der Arbeit
+	Um die Arbeit erfolgreich abzuschließen soll eine Implementierung des verteilten Server-zu-Server Protokolls als Prototyp und eventuell ein Konzept zum sicheren Einsatz des Protokolls vorliegen. Darüber hinaus soll die Arbeit einen Überblick über die Grundlagen des Protokolls geben und wie die relevanten Bestandteile zu verstehen sind. In diesem Zusammenhang bedeutet \glqq sicher\grqq, dass sichere Authentifizieren vom Client gegenüber dem Server und zusätzlich der Server untereinander, sowie das Sicherstellen der manipulationsfreien Übertragung der Inhalte.
+	% Schutzziele
+	%	- 	Abgrenzung des Themas und Themenbezogenen Definitionen
 	
-	Zentralisierung von Daten und das Vertrauen auf einzelne Instanzen ist heutzutage allgegenwärtig. Im Internet gibt es haufenweise soziale Netzwerke wie Facebook, Twitter, Google+, Instagram oder Pinterest die zumeist das Recht an den Daten, die Sie von ihren Nutzer bekommen, behalten und nicht zuletzt diese Daten auch verkaufen für zB. Werbezwecke. Für Cracker ist es außerdem leichter an die gesamte Datenbank zu kommen, da bei zentralisierten Netzwerken meist auch eine zentrale Datenbank, bzw. ein zentraler Zugriffspunkt, vorhanden ist.\\\\
-	
-	Was bedeutet nun dezentral? In der Politik bedeutet Dezentralisierung \glqq die Übertragung zentralstaatlicher Aufgaben auf subnationale oder subsidiäre Ebene(n)\grqq\cite{wikipedia-decentralization-politics}. Also das Übertragen von Aufgaben an Ihre zuständigen Ebenen (Landkreis, Kommune, etc.).\\
-	In der Energiewirtschaft spricht man von einer \glqq dezentralen Stromerzeugung\grqq, wenn der Strom an den Stellen wo er verbraucht auch erzeugt wird. Ein Beispiel hierfür währe ein Wasserkraftwerk, dass den Strom für die umgebenen Dörfer oder Städte liefert\cite{wikipedia-decentralization-power}.\\
-	
-	
-	Da die Dezentralisierung vorangebracht und ActivityPub immer häufiger eingesetzt werden soll, wird in dieser Arbeit ein Blick auf die Sicherheit des Protokolls gelegt.\\
-	
-	- 	Ziel der Arbeit\\\\
-	Um die Arbeit erfolgreich abzuschließen soll eine Implementierung des verteilten Server-zu-Server
-	Protokolls als Prototyp und eventuell ein Konzept zum sicheren Einsatz des Protokolls vorliegen. Darüber hinaus soll die Arbeit einen Überblick über die Grundlagen des Protokolls geben und wie die relevanten Bestandteile zu verstehen sind. \\\\
-	- 	Abgrenzung des Themas und Themenbezogenen Definitionen\\\\
-	
-	- 	Geschichte und Stand der Forschung:\\\\
-	Der ActivityPub\cite{activityPub} Standard wurde am 23 Januar 2018 von der W3C empfohlen und von einer Arbeitsgruppe des W3C, der Social Web Working Group(SWWG)\cite{socialWg,pushSocialWeb}, entwickelt. Diese Gruppe war vom 21. Juli 2014 bis zum 13 Februar 2018 aktiv\cite{socialWg} und entwickelte unter anderem ActivityPub, Activity Streams Core\cite{activityStreamsCore}, Activity Streams Vocab\cite{activityStreamsVocabulary}.
+		
+	%	- 	Geschichte und Stand der Forschung:
+	Der ActivityPub\cite{activityPub} Standard wurde am 23 Januar 2018 von der W3C empfohlen und von einer Arbeitsgruppe des W3C, der Social Web Working Group(SWWG)\cite{socialWg,pushSocialWeb}, entwickelt. Diese Gruppe war vom 21. Juli 2014 bis zum 13 Februar 2018 aktiv\cite{socialWg} und entwickelte unter anderem ActivityPub, Activity Streams Core\cite{activityStreamsCore}, Activity Streams Vocab\cite{activityStreamsVocabulary}. Ziel der SWWG war es neue Protokolle, Vokabulare und API's zu definieren für den Zugriff auf soziale Inhalte der sogennanten Open Web Platform\cite{social-wg-charter}.\\
 }
 
 \section{Motivation}
 \label{sec:Introduction:Motivation}
 \iflanguage{english}{
-	In order to counteract the centralization of data, it makes sense to decentralize the data. Mail servers, for example, are decentralized, so that not one mail server manages all e-mails, but each mail server manages the e-mails for its own domain. The Internet is also decentralized so as not to have a bottleneck on which all communication in the network depends. If the transport via an autonomous system does not work, another way is chosen.\\\\
+	With central social networks, e.g. Facebook, the company has control over the data. Through decentralization, the data remains with the individual instances of the social network. The databases in central networks can be distributed and the network can also be decentralized, but the data remains with the company. In addition, centralized social networks cannot easily share content with other social networks. With a protocol such as ActivityPub, this is distributed and access to content and exchange of activities across multiple social networks is possible.\\
 	
-	Protocols such as OStatus provide access to distributed social content and allow social content to be published. The standard recommended in March last year by the W3C called ActivityPub was developed by Christopher Lemmert Webber and Jessica Tallon among others on the basis of the knowledge in handling the OStatus protocol.\\\\
-	
-	ActivityPub is like OStatus a protocol for decentralized social networking and will be examined in this bachelor thesis.
+	Protocols such as \glqq Diaspora Federation and OStatus\grqq~provide access to decentralized social content and enable the publication of social content. The standard recommended in March last year by the W3C called \glqq ActivityPub\grqq~ was developed on the basis of knowledge in dealing with the OStatus and Pump.io protocol\cite{activityPub-acknowledgements}. ActivityPub is like \glqq OStatus\grqq~ a protocol for decentralized social networks and is examined in this Bachelor thesis.
 }{
-	Um der Zentralisierung von Daten entgegenzuwirken ist es sinnvoll die Daten zu dezentralisieren. Mail Server sind zum Beispiel dezentral ausgelegt, sodass nicht ein Mail Server alle E-Mails verwaltet sondern jeder Mail Server die Mails für die eigene Domain. \todo{(Richtig???)} Auch das Internet ist dezentral aufgebaut um nicht einen Flaschenhals zu haben, von dem die ganze Kommunikation im Netz abhängt. Wenn der Transport über ein Autonomes System nicht funktioniert wird ein anderer Weg gewählt.
+	Bei zentralen sozialen Netzwerken, z.B. Facebook, besitzt die Kontrolle über die Daten das Unternehmen. Durch die Dezentralisierung bleiben die Daten bei den einzelnen Instanzen des sozialen Netzwerkes. Die Datenbanken bei zentralen Netzwerken können zwar verteilt sein und auch das Netzwerk könnte dezentral angelegt sein, trotzdem bleiben die Daten bei einem Unternehmen. Außerdem können bei zentralen sozialen Netzwerken nicht ohne weiteres Inhalte mit anderen sozialen Netzwerken Ausgetauscht werden. Mit einem Protokoll wie ActivityPub wird das verteilen sowie der Zugriff auf Inhalte und der Austausch von Aktivitäten über mehrere soziale Netzwerke hinweg ermöglicht.\\
 	
-	\\\\Protokolle wie \glqq Diaspora Federation und OStatus\grqq~bieten den Zugriff auf dezentral gespeicherte soziale Inhalte und ermöglichen das veröffentlichen von sozialen Inhalten. Der im März letzten Jahres vom W3C empfohlene Standard namens \glqq ActivityPub\grqq~wurde unter anderem von Christopher Lemmert Webber und Jessica Tallon entwickelt auf der Basis des Wissens im Umgang mit dem Diaspora|OStatus Protokoll\todo{(Quelle angeben!!!)}.\\\\
-	ActivityPub ist wie \glqq OStatus\grqq~ein Protokoll für dezentrale soziale Netzwerke und wird in dieser Bachelor Arbeit untersucht.
+	%Der Grundgedanke des World Wide Web nach Tim Beners Lee war es ein offenes und freies Web zu schaffen um Wissen für die Allgemeinheit zugänglich zu machen. \todo{Quelle: Web-Report stelle suchen}
+	
+	Protokolle wie \glqq Diaspora Federation und OStatus\grqq~bieten den Zugriff auf dezentral gespeicherte soziale Inhalte und ermöglichen das veröffentlichen von sozialen Inhalten. Der im März letzten Jahres vom W3C empfohlene Standard namens \glqq ActivityPub\grqq~wurde auf Basis des Wissens im Umgang mit dem OStatus und Pump.io Protokoll entwickelt\cite{activityPub-acknowledgements}. ActivityPub ist wie \glqq OStatus\grqq~ein Protokoll für dezentrale soziale Netzwerke und wird in dieser Bachelor Arbeit untersucht.
 }
 
-\section{Unterschied zentraler sozialer zu dezentralen sozialen Netzwerken}
+%\section{Unterschied zentraler sozialer zu dezentralen sozialen Netzwerken}
