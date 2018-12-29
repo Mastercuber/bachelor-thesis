@@ -1,0 +1,19 @@
+	\subsection{Client Teil}
+	\label{client-to-server:client-part}
+		%%The client, represented as an actor, interacts with the server in two ways. First through sending a HTTP GET request with an Activity object to an actors inbox and through HTTP POST an Activity object to an actors outbox. An inbox and outbox must be a OrderedCollection.
+		\begin{itemize}
+			\item Auffinden der URL über das Aktoren Objekt
+			\item Serialisieren der Daten in eine Aktivität oder \gls{AS2} Objekt
+			\item Adressieren von Aktivitäten oder \gls{AS2} Objekten
+			\item Eine HTTP POST Anfrage mit \glqq Content-Type: application/ld+json: profile="https://w3.org/ns/activitystreams"\grqq~oder \glqq Content-Type: application/activity+json: profile="https://w3.org/ns/activitystreams"\grqq~an seine \glqq Outbox\grqq~absetzen können
+			\item Bei den Aktivitätstypen CREATE, UPDATE, DELETE, FOLLOW, ADD, REMOVE, LIKE, BLOCK, UNDO wird die \glqq object\grqq~Eigenschaft bereitgestellt
+			\item Die \glqq target\grqq~Eigenschaft wird bei den Aktivitätstypen ADD und REMOVE bereitgestellt
+			\item Anfragen müssen mit den Zugangsdaten des Nutzer, zu dem die \glqq Outbox\grqq~gehört, authentifiziert werden
+		\end{itemize}
+		Die beiden Eigenschaften \glqq target\grqq~und \glqq object\grqq~müssen bei verschiedensten Aktivitätstypen bereitgestellt werden. Zum Beispiel muss die \glqq target\grqq~Eigenschaft bei den Aktivitätstypen ADD und REMOVE angegeben werden.\\
+		
+		Der Client Teil des Client-zu-Server Protokolls beinhaltet die oben gelisteten Aufgaben.\\
+		
+		Wenn ein Nutzer z.B. ein \glqq Post\grqq~erstellt, wird der \glqq Post\grqq entweder zu einem \gls{AS2} Objekt oder direkt zu einer Aktivität serialisiert. Anschließend wird das serialisierte Objekt adressiert. Dies geschieht über das beschaffen der \glqq Inboxen\grqq~über die Aktoren Objekte der Empfänger. Sobald die Endpunkte bekannt sind, können diese in das \glqq to\grqq Feld in dem Objekt geschrieben werden. Zum Schluß wird eine authentifizierte HTTP POST Anfrage, wie in Element 4 der obigen Liste beschrieben, abgesetzt.
+
+	\subsection{Server Teil} 
