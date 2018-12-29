@@ -1,5 +1,6 @@
 *
 !*/
+chapters/*.aux
 !*.tex
 !*.cls
 !*.bib
@@ -8,3 +9,4 @@
 !logos/
 !resources/
 !README.md
+!client-server-backup
