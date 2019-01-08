@@ -29,8 +29,7 @@
 	
 	\todo{Sammlungen beschreiben!}
 	\todo{@Alle Wusste eben nicht wie ich das anders machen soll außer als Fußnote. Wie könnte ich ein "siehe Weblink" gestalten??? Weil alles hier nochmal aufzulisten wäre denke ich nicht gut..}
-	%% Use Case Diagram
-	\todo{@Robert Meinst du mit Übersichtsdiagramm, UseCase Diagramme mit z.B. Client to Server Interaktionen als Package und senden von Aktivitäten an die Outbox sowie empfangen von der Inbox als Usecases??? usw..}
+	%% Übersichtsdiagram
 }
 \section{ActivityPub Standard}
 	\iflanguage{english}{
@@ -38,28 +37,22 @@
 	}{
 		ActivityPub definiert zwei Protokollschichten, sowie Konzepte, Sammlungen und Interaktionen für dezentrale soziale Netzwerke. Eine Protokollschicht ist das Client-zu-Server Protokoll (Social API), um Clients den Zugriff auf einen Server zu ermöglichen sowie zum entgegennehmen von Anfragen. Die zweite Protokollschicht besteht aus dem förderierten Server-zu-Server Protkoll (Federation Protocol), welches den einzelnen Instanzen von dezentralen sozialen Netzwerken den Austausch von Inhalten untereinander gestattet. ActivityPub setzt auf bereits bestehende Empfehlungen des \gls{w3c} auf, welche teilweise auch von der \gls{swwg} entwickelt wurden wie zB. \gls{asc} und \gls{asv}.\\
 		
-		Auch andere Technologien wie \gls{JSON-LD} werden benutzt um die Erweiterbarkeit zu gewährleisten. Über neue Ontologien (Vokabulare) können weitere syntaktische Definitionen und semantische Beschreibungen zu den bestehenden hinzugefügt werden\cite{activityPubOverview}. Diese Vokabulare können im Kontext des \gls{JSON-LD} Objektes, angegeben werden. Bei ActivityPub wird das \gls{AS2} Vokabular verwendet welches durch \gls{asv} erweitert wird.
+		Auch andere Technologien wie \gls{JSON-LD} werden benutzt um die Erweiterbarkeit zu gewährleisten. Über neue Ontologien (Vokabulare) können weitere syntaktische Definitionen und semantische Beschreibungen zu den bestehenden hinzugefügt werden\cite{activityPub}. Diese Vokabulare können im Kontext des \gls{JSON-LD} Objektes, angegeben werden. Bei ActivityPub wird das \gls{AS2} Vokabular verwendet welches durch \gls{asv} erweitert wird.
 	}
 	\subsection{Bestandteile des Protokolls}
 		Das Client-zu-Server sowie förderierte Server-zu-Server Protokoll können unabhängig voneinander implementiert werden. Ersteres besteht aus einem Client und Server Teil.\\
 		
-		In ActivityPub werden Benutzer als \glqq Aktoren\grqq(actors) dargestellt. Diese können nicht nur Personen, sondern auch Applikationen, Organisationen, Gruppen und Services sein\cite{activityStreamsCoreActors}. Jedes Aktoren Objekt muss eine \glqq Inbox\grqq~und \glqq Outbox\grqq, welche geordnete Sammlungen sein müssen, sowie eine ID und ein Typ besitzen\cite{activityPubActor}. Die ID muss global einzigartig sein. Dies kann garantiert werden durch eine Domänen und Protokoll bezogene URI oder IRI wie zum Beispiel \glqq https://example.org/users/alice\grqq oder \glqq https://example.org/alice/posts/2\grqq. %http://fusion.cs.uni-jena.de/fusion/blog/2016/11/18/iri-uri-url-urn-and-their-differences/
-		Die Typ Eigenschaft kann variieren zwischen den fünf oben genannten.
-	
-		\lstinputlisting[caption={Beispiel Aktoren Objekt}, label=listing::actor, language=JavaScript]{resources/mastodon-macu.json}
+		In ActivityPub werden Benutzer als \glqq Aktoren\grqq(actors) dargestellt. Diese können nicht nur Personen, sondern auch Applikationen, Organisationen, Gruppen und Services sein\cite{activityStreamsCore}. Jedes Aktoren Objekt muss eine \glqq Inbox\grqq~und \glqq Outbox\grqq, welche geordnete Sammlungen sein müssen, sowie eine ID und ein Typ besitzen\cite{activityPub}. Die ID muss global einzigartig sein. Dies kann garantiert werden durch eine Domänen und Protokoll bezogene URI oder IRI wie zum Beispiel \glqq https://example.org/users/alice\grqq oder \glqq https://example.org/alice/áŷýà/2\grqq. %http://fusion.cs.uni-jena.de/fusion/blog/2016/11/18/iri-uri-url-urn-and-their-differences/
+		Der Typ eines Aktor (z.B. "type": "Create") kann variieren zwischen den fünf oben genannten.
+		
+		\lstinputlisting{resources/mastodon-macu.json}
 	
 	\subsection{Zugehörige Standards und Komponenten}
-		ActivityPub benutzt die ActivityStreams Daten Syntax und das Vokabular. Zusätzlich kann ein Sicherheitsvokabular benutzt werden. Am 22 April 2016 hat die \glqq W3C Community Group\grqq~ einen Entwurfsbericht herausgebracht. Durch diesen wird neue Syntax und Semantik definiert um Internet basierten Applikationen das Verschlüsseln, Entschlüsseln sowie digitale signieren und verifizieren von verlinkten Daten (Linked Data) zu ermöglichen. "Es enthält auch Vokabeln für die Erstellung und Verwaltung einer dezentralen Public-Key-Infrastruktur über das Internet." \cite{security-vocab-linked-data}. Ein Anwendungsfall ist das holen des öffentlichen Schlüssels eines Nutzers, über dessen Aktoren Objekt, um eine von Nutzer gesendete Nachricht zu verifizieren.
+		ActivityPub benutzt die ActivityStreams Daten Syntax und das Vokabular. Zusätzlich kann ein weiteres Sicherheitsvokabular\footnote{Eine Ontologie die Sicherheitsaspekte definiert wie öffentliche Schlüssel, Signaturen u.v.m.} benutzt werden um Definitionen zum Bereitstellen eines öffentlichen Schlüssels, Signaturen sowie Verschlüsselten Inhalten u.v.m. zu haben. Am 22 April 2016 hat die \glqq W3C Community Group\grqq~ einen Entwurfsbericht herausgebracht. Durch diesen wird neue Syntax und Semantik definiert um Internet basierten Applikationen das Verschlüsseln, Entschlüsseln sowie digitale signieren und verifizieren von verlinkten Daten (Linked Data) zu ermöglichen. Es enthält auch Vokabeln für die Erstellung und Verwaltung einer dezentralen Public-Key-Infrastruktur über das Internet\cite{security-vocab-linked-data}. Ein Anwendungsfall ist das holen des öffentlichen Schlüssels eines Nutzers, über dessen Aktoren Objekt, um eine von Nutzer gesendete Nachricht zu verifizieren.
 		
 		\gls{JSON-LD} ist eine Erweiterung des JSON Formates um verlinkte Daten zu Repräsentieren. JSON an sich, ist ein Format welches im Web häufig Anwendung findet um Daten auszutauschen. Im Kern sind \gls{AS2} auch \gls{JSON-LD} Objekte. Der \gls{AS2} Kontext definiert verschiedene Klassen und Eigenschaften, von denen nicht alle benutzt werden. Typische Klassen sind \glqq Activity\grqq, \glqq Link\grqq~und \glqq OrderedCollection\grqq. Ein Beispiel \gls{AS2} Objekt sieht wie folgt aus: 	
-		\lstinputlisting[caption={Beispiel \gls{AS2} Objekt}, label=listing::as2-object, language=JavaScript]{resources/example-as2-object.json}
+		\lstinputlisting[caption={Beispiel \gls{AS2} Objekt}, label=listing::as2-object, language=Javascript]{resources/example-as2-object.json}
 		
-		Über ein Profil ist es möglich, einem \glqq Media-Type\grqq~zusätzliche Semantik hinzuzufügen https://tools.ietf.org/html/rfc6906.\\
-		
-		Es ist auch möglich ein Profil anstatt eines Aktoren Objektes anzugeben.
-		%https://www.w3.org/TR/activitystreams-vocabulary/#dfn-profile 
-		
-		\todo{Die letzten beiden Absätze gehören zur Frage..\\Mir ist nicht ganz klar was mit dem Profil gemeint ist.. laut dem RFC am Ende des dritten Absatzes, wird das verwendet um neue Semantik hinzuzufügen.. Blos wird dafür doch schon der JSON-LD Context benutzt "@context": "https://www.w3.org/ns/activitystreams"?}
 \section{Client-zu-Server Kommunikation}
 	Der Client interagiert über zwei Schnittstellen mit dem Server. Er kann sich per HTTP GET Anfrage auf seine eigene \glqq Inbox\grqq~die neusten an ihn adressierten Inhalte holen und über eine HTTP POST Anfrage auf seine \glqq Outbox\grqq~neue Inhalte erstellen.
 	\begin{figure}[h]
@@ -91,7 +84,8 @@
 		\end{minipage}
 	\end{figure}
 	\todo{Bildquelle richtig angeben..}
-	Bei der Server-zu-Server Kommunikation bestehen die Hauptaufgaben im annehmen und zustellen von HTTP POST Anfragen auf die \glqq Inboxen\grqq~und \glqq Outboxen\grqq~der Nutzer und im Weiterleiten von Aktivitäten die der Server nicht zustellen kann. Empfängt dieser eine Aktivität welche nicht an die zugehörige Domäne gerichtet ist, wird die Aktivität an den zugehörigen Server gesendet. Dazu kommt das Bereitstellen der \glqq Outbox\grqq~Sammlungen.
+	Bei der Server-zu-Server Kommunikation bestehen die Hauptaufgaben im annehmen und zustellen von HTTP POST Anfragen auf die \glqq Inboxen\grqq~und \glqq Outboxen\grqq~der Nutzer.
+	%Empfängt dieser eine Aktivität welche nicht an die zugehörige Domäne gerichtet ist, wird die Aktivität an den zugehörigen Server gesendet. Dazu kommt das Bereitstellen der \glqq Outbox\grqq~Sammlungen.
 	
 \section{Authentifizierung und Datenintegrität}
 	Für die Authentifizierung und zum sichern der Datenintegrität definiert der Standard keine Mechanismen. Es gibt allerdings \glqq Best Practices\grqq~für die Umsetzung dieser Anforderungen.\\
