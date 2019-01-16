@@ -20,20 +20,37 @@
 \iflanguage{english}{
 	
 }{
-	\todo{Einordnung des Kapitels + Übersicht über Unterkapitel}
 	\todo{Allgemeine Grundlagen zu Sozialen Netzwerken/Social Media und deren Sicherheitsaspekte}
 	\todo{Welche Klassen von Anwendungen und Implementierungen gibt es allgemein bei sozialen Netzwerken? Einordnen von ActivityPub!!}
-	\todo{AP Beschreibung in hinteren Teil des Grundlagenkapitels oder zu Beginn des 3. Kapitels}
-	
-	Dieses Kapitel gibt einen Überblick über allgemeine Grundlagen von sozialen Netzwerken. Es wird grob erläutert für was soziale Netzwerke gedacht sind und der Unterschied zwischen zentralen und dezentralen sozialen Netzwerken herausgestellt.\\
-	Im Anschluss wird auf Sicherheitsaspekte eingegangen und Klassen von Anwendungen sowie Implementierungen erläutert. Zuletzt wird der ActivityPub Standard eingeordnet, Bestandteile des Protokolls beschrieben, die Funktionsweise der Client-zu-Server sowie Server-zu-Server Kommunikation und zugehörige Standards kurz erläutert.\\
-	
-	\glqq \gls{AS2}\grqq~beinhaltet Modelle für Aktoren, Aktivitäten, Intransitiven Aktivitäten, Objekte, Links, Sammlungen, Natürliche Sprachwerte (Strings) und für Internationalisierung. Das Kernvokabular von \gls{AS2} wird durch \gls{asv} erweitert. Dazu gehören verschiedene Aktivitätstypen wie z.B. \glqq Accept\grqq,\glqq Add\grqq,\glqq Remove\grqq,\glqq Delete\grqq~und \glqq Create\grqq\footnote{\href{https://www.w3.org/TR/activitystreams-vocabulary/}{activity-types https://www.w3.org/TR/activitystreams-vocabulary/}}, um Aktorentypen wie \glqq Person\grqq, \glqq Application\grqq~und \glqq Group\grqq\footnote{\href{https://www.w3.org/TR/activitystreams-vocabulary/}{actor-types https://www.w3.org/TR/activitystreams-vocabulary/}} sowie um verschiedenste Objekttypen wie \glqq Article\grqq, \glqq Event\grqq, \glqq Note\grqq~und \glqq Relationship\grqq\footnote{\href{https://www.w3.org/TR/activitystreams-vocabulary/}{object-types https://www.w3.org/TR/activitystreams-vocabulary/}}.\\
-	
-	\todo{Sammlungen beschreiben!}
-	\todo{@Alle Wusste eben nicht wie ich das anders machen soll außer als Fußnote. Wie könnte ich ein "siehe Weblink" gestalten??? Weil alles hier nochmal aufzulisten wäre denke ich nicht gut..}
-	%% Übersichtsdiagram
+	%\todo{AP Beschreibung in hinteren Teil des Grundlagenkapitels oder zu Beginn des 3. Kapitels}
+	%Klassen von Anwendungen sowie Implementierungen erläutert.
+	Dieses Kapitel gibt einen Überblick über allgemeine Grundlagen von sozialen Netzwerken. Es wird grob erläutert für was soziale Netzwerke gedacht sind, der Unterschied zwischen zentralen und dezentralen sozialen Netzwerken herausgestellt sowie auf Sicherheitsaspekte eingegangen.\\
+	Im Anschluss wird ein Kryptographie Unterkapitel eingeführt in dem die benötigten Verfahren für die sichere Umsetzung erläutert werden. Begonnen wird mit einer kurzen Einführung in Kryptographie und darauf folgend kurz das \gls{rsa} Verfahren sowie eine allgemeine Beschreibung von Signatur Algorithmen gegeben.\\ 
+	Zuletzt wird der ActivityPub Standard eingeführt sowie eingeordnet, Bestandteile des Protokolls beschrieben, die Funktionsweise der Client-zu-Server sowie Server-zu-Server Kommunikation und zugehörige Standards kurz erläutert.
 }
+\section{Allgemeine Grundlagen sozialer Netzwerke}
+	\subsection{Unterschied zentraler zu dezentralen sozialen Netzwerken}
+	\subsection{Sicherheitsaspekte sozialer Netzwerke}
+
+\section{Kryptographie}
+	\glqq Unter dem Begriff Kryptographie ist die Wissenschaft vom geheimen Schreiben zu verstehen\grqq.\footnote{(Wätjen, 2018, S.1)} Man spricht von symmetrischer Verschlüsselung wenn eine Nachricht im Klartext vom Sender mit einem geheimen Schlüssel, welcher beiden Parteien bekannt ist, verschlüsselt und vom Empfänger, mit demselben Schlüssel, entschlüsselt wird.\footnote{(vgl. Wätjen, 2018, S.1)}\\
+	\begin{figure}[h]
+		\begin{minipage}{\textwidth}
+			\centering
+			\includegraphics[scale=0.5]{figures/ver-und-entschluesseln.png}
+			\quelle{(Wätjen, 2018, S.1)}
+			\label{ver-und-entschluesselung}
+			\caption{Symmetrische Ver- und Entschlüsselung}
+		\end{minipage}
+	\end{figure}	
+	\subsection{RSA}
+		Von asymmetrischer Verschlüsselung ist die Rede, wenn die Teilnehmer anstatt einen gemeinsamen Schlüssel zu haben, der im vor hinein ausgetauscht werden muss, jeder ein Schlüsselpaar (öffentlicher und privater Schlüssel) besitzt. Das \gls{rsa} Verfahren ist ein solches asymmetrisches Verschlüsselungsverfahren welches von den drei namens gebenden Mathematikern 1977 entwickelt wurde. Das \gls{rsa} Verfahren ist wohl das am häufigsten verwendete Public-Key-Kryptosystem.\\
+		\textbf{Beispiel 1.} Die Gesprächspartner Alice und Bob, welche beide ein Schlüsselpaar besitzen, miteinander kommunizieren. Alice verschlüsselt einen Nachrichtentext mit dem öffentlichen Schlüssel von Bob und sendet die verschlüsselte Nachricht an Bob. Dieser kann seinerseits mit seinem privaten Schlüssel die Nachricht entschlüsseln.\footnote{(vgl. Wätjen, 2018, S.73 f.)}\\
+	\subsection{Signaturen}
+		Für die Sicherstellung der Authentizität können sogenannte Signaturen verwendet werden. Das oben kurz erläuterte Verfahren kann nicht nur zum Ver- und Entschlüsseln von Nachrichten benutzt werden, sondern auch zum signieren.\\
+		Dabei wird statt des öffentlichen Schlüssels, der private Schlüssel benutzt um eine, in diesem Fall, Signatur zu erzeugen. Diese kann dann mit dem öffentlichen Schlüssel des zugehörigen privaten Schlüssels verifiziert werden.\\
+		\textbf{Beispiel 2.} Bob möchte eine Nachricht an Alice schicken und sichergehen, dass diese auf dem Weg nicht verändert wurde. Er verwendet seinen privaten Schlüssel und wendet diesen auf eine Nachricht an um eine Signatur zu erzeugen. Beides übermittelt er an Alice. Mit dem öffentlichen Schlüssel von Bob kann die fehlerfreie Übertragung der Nachricht verifiziert werden.
+		
 \section{ActivityPub Standard}
 	\iflanguage{english}{
 		
@@ -50,59 +67,27 @@
 		
 		\lstinputlisting{resources/mastodon-macu.json}
 	
+	\subsection{Authentifizierung und Datenintegrität}
+		Für die Authentifizierung und zum sichern der Datenintegrität definiert der Standard keine Mechanismen. Es gibt allerdings \glqq Best Practices\grqq~für die Umsetzung dieser Anforderungen.\\
+		
+		Zum einen werden bei der Client-zu-Server Authentifizierung \glqq OAuth 2.0\grqq~Tokens benutzt, zum anderen auf der Server Seite \glqq HTTP\grqq~oder \glqq Linked Data Signatures\grqq zur Sicherstellung der Datenintegrität.\\
+		\todo{OAuth 2.0}
+		
+		
+		\todo{Datenintegrität}
+		\glqq Die Datenintegrität umfasst Maßnahmen damit geschützte Daten während der Verarbeitung oder Übertragung nicht durch unautorisierte Personen entfernt oder verändert werden können. Sie stellt die Konsistenz, die Richtigkeit und Vertrauenswürdigkeit der Daten während deren gesamten Lebensdauer sicher und sorgt dafür, dass die relevanten Daten eines Datenstroms rekonstruierbar sind.\grqq\footnote{\cite{data-integrity}}
+		
+		\todo{HTTP Signaturen}
+		Um sicherzustellen das HTTP Anfragen beim Transport nicht verändert wurden, können HTTP Signaturen verwendet werden. Bei diesen wird ein kryptografischer Algorithmus benutzt um \\
+		
+		\todo{Linked Data Signaturen}
+		Wenn ein Objekt nicht nur vom Client zum Server gesendet, sondern auch zwischen Servern untereinander weitergeleitet werden soll wird zum Sicherstellen der Datenintegrität ein anderes Verfahren benötigt als HTTP Signaturen. Die \glqq Best Practices\grqq~empfehlen für solche Fälle \glqq Linked Data Signatures\grqq. Der größte Unterschied zwischen HTTP Signaturen und \glqq Linked Data Signatures\grqq~besteht darin, welche Daten zum Erstellen der Signatur verwendet werden. Bei HTTP Signaturen sind es die Kopfzeilen. Mit \glqq Linked Data Signatures\grqq~kann auch das Objekt selbst, also der Payload einer HTTP Anfrage, anstatt nur die Kopfzeilen, zum signieren verwendet werden.
+	
 	\subsection{Zugehörige Standards und Komponenten}
 		ActivityPub benutzt die ActivityStreams Daten Syntax und das Vokabular. Zusätzlich kann ein weiteres Sicherheitsvokabular\footnote{Eine Ontologie die Sicherheitsaspekte definiert wie öffentliche Schlüssel, Signaturen u.v.m.} benutzt werden um Definitionen zum Bereitstellen eines öffentlichen Schlüssels, Signaturen sowie Verschlüsselten Inhalten u.v.m. zu haben. Am 22 April 2016 hat die \glqq W3C Community Group\grqq~ einen Entwurfsbericht herausgebracht. Durch diesen wird neue Syntax und Semantik definiert um Internet basierten Applikationen das Verschlüsseln, Entschlüsseln sowie digitale signieren und verifizieren von verlinkten Daten (Linked Data) zu ermöglichen. Es enthält auch Vokabeln für die Erstellung und Verwaltung einer dezentralen Public-Key-Infrastruktur über das Internet\cite{security-vocab-linked-data}. Ein Anwendungsfall ist das holen des öffentlichen Schlüssels eines Nutzers, über dessen Aktoren Objekt, um eine von Nutzer gesendete Nachricht zu verifizieren.
 		
 		\gls{JSON-LD} ist eine Erweiterung des JSON Formates um verlinkte Daten zu Repräsentieren. JSON an sich, ist ein Format welches im Web häufig Anwendung findet um Daten auszutauschen. Im Kern sind \gls{AS2} auch \gls{JSON-LD} Objekte. Der \gls{AS2} Kontext definiert verschiedene Klassen und Eigenschaften, von denen nicht alle benutzt werden. Typische Klassen sind \glqq Activity\grqq, \glqq Link\grqq~und \glqq OrderedCollection\grqq. Ein Beispiel \gls{AS2} Objekt sieht wie folgt aus: 	
 		\lstinputlisting[caption={Beispiel \gls{AS2} Objekt}, label=listing::as2-object, language=Javascript]{resources/example-as2-object.json}
-		
-\section{Client-zu-Server Kommunikation}
-	Der Client interagiert über zwei Schnittstellen mit dem Server. Er kann sich per HTTP GET Anfrage auf seine eigene \glqq Inbox\grqq~die neusten an ihn adressierten Inhalte holen und über eine HTTP POST Anfrage auf seine \glqq Outbox\grqq~neue Inhalte erstellen.
-	\begin{figure}[h]
-		\begin{minipage}{\textwidth}
-			\centering
-			\includegraphics[scale=0.6]{figures/inbox-outbox.png}
-			\quelle{ActivityPub 2018 - Overview}
-			\label{Client zu Server Interaktionen}
-			\caption{Interaktionen des Client mit dem Server}
-		\end{minipage}
-	\end{figure}\\
-	\todo{Bildquelle richtig angeben..}
-	Um neue Aktivitäten an seine Folgenden, direkt an einzelne Personen, sichtbar innerhalb der Domain oder unangemeldet für alle zugänglich zu veröffentlichen, kann der Client eine HTTP POST Anfrage an seine \glqq Outbox\grqq~senden mit einer Aktivität oder einem \gls{AS2} Objekt als Inhalt. Der Client muss mehrere Aufgaben, wie in \ref{client-to-server:client-part} beschrieben, übernehmen.\\
-	\todo{Referenz anpassen, sobald der Teil geschrieben wurde}
-	
-	Zusammengefasst muss sich der Client um das Entdecken von Endpunkten - Inbox/Outbox - über Aktorenobjekte, das Addressieren von Aktivitäten und Serialisieren von Daten zu Aktivitäten oder \gls{AS2} Objekten sowie um das setzen der entsprechenden Kopfzeilen (Mittlerer Teil der obigen Auflistung) und Absenden der HTTP POST Anfrage kümmern. Außerdem muss bei HTTP GET Anfragen an den Server die \glqq ACCEPT: application/ld+json\grqq~Kopfzeile gesetzt sein.\\
-	\todo{Abbildung erstellen}
-	
-	Zu den Aufgaben des Serverteils gehören das Annehmen von HTTP POST Anfragen auf die \glqq Outbox\grqq~eines Nutzers und das verifizieren ob der Nutzer berechtigt ist diese Anfrage zu tätigen. Weiter werden die \glqq Inbox\grqq~Endpunkte bereitgestellt um authentifizierten Nutzern den Zugriff auf die neusten Inhalte zu geben. Der Server Teil des Client-zu-Server Protokolls bezieht sich nur auf eine Domäne. Für das verteilen von Aktivitäten an andere Server muss zusätzlich das förderierte Server-zu-Server Protokoll implementiert werden.
-
-\section{Server-zu-Server Kommunikation}
-	\begin{figure}[h]
-		\begin{minipage}{\textwidth}
-			\centering
-			\includegraphics[scale=0.55]{figures/client-server-federated.png}
-			\quelle{ActivityPub 2018 - Overview}
-			\label{Client zu Server und Server zu Server Interaktionen}
-			\caption{Schnittstellen des ActivityPub Protokolls}
-		\end{minipage}
-	\end{figure}
-	\todo{Bildquelle richtig angeben..}
-	Bei der Server-zu-Server Kommunikation bestehen die Hauptaufgaben im annehmen und zustellen von HTTP POST Anfragen auf die \glqq Inboxen\grqq~und \glqq Outboxen\grqq~der Nutzer.
-	%Empfängt dieser eine Aktivität welche nicht an die zugehörige Domäne gerichtet ist, wird die Aktivität an den zugehörigen Server gesendet. Dazu kommt das Bereitstellen der \glqq Outbox\grqq~Sammlungen.
-	
-\section{Authentifizierung und Datenintegrität}
-	Für die Authentifizierung und zum sichern der Datenintegrität definiert der Standard keine Mechanismen. Es gibt allerdings \glqq Best Practices\grqq~für die Umsetzung dieser Anforderungen.\\
-	
-	Zum einen werden bei der Client-zu-Server Authentifizierung \glqq OAuth 2.0\grqq~Tokens benutzt, zum anderen auf der Server Seite \glqq HTTP\grqq~oder \glqq Linked Data Signatures\grqq zur Sicherstellung der Datenintegrität.\\
-	
-	\todo{Datenintegrität}
-	\glqq Die Datenintegrität umfasst Maßnahmen damit geschützte Daten während der Verarbeitung oder Übertragung nicht durch unautorisierte Personen entfernt oder verändert werden können. Sie stellt die Konsistenz, die Richtigkeit und Vertrauenswürdigkeit der Daten während deren gesamten Lebensdauer sicher und sorgt dafür, dass die relevanten Daten eines Datenstroms rekonstruierbar sind.\grqq\footnote{\cite{data-integrity}}
-	\todo{OAuth 2.0}
-	
-	\todo{HTTP Signaturen}
-	Um sicherzustellen das HTTP Anfragen beim Transport nicht verändert wurden, können HTTP Signaturen verwendet werden. Bei diesen wird ein kryptografischer Algorithmus benutzt um \\
-	\todo{Linked Data Signaturen}
-	Wenn ein Objekt nicht nur vom Client zum Server gesendet, sondern auch zwischen Servern untereinander weitergeleitet werden soll wird zum Sicherstellen der Datenintegrität ein anderes Verfahren benötigt als HTTP Signaturen. Die \glqq Best Practices\grqq~empfehlen für solche Fälle \glqq Linked Data Signatures\grqq. Der größte Unterschied zwischen HTTP Signaturen und \glqq Linked Data Signatures\grqq~besteht darin, welche Daten zum Erstellen der Signatur verwendet werden. Bei HTTP Signaturen sind es die Kopfzeilen. Mit \glqq Linked Data Signatures\grqq~kann auch das Objekt selbst, also der Payload einer HTTP Anfrage, anstatt nur die Kopfzeilen, zum signieren verwendet werden.
 
 \section{Fediverse}
 	Als erstes soll der Begriff \glqq förderiertes Netzwerk\grqq erklärt werden.\\
