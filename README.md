@@ -46,6 +46,7 @@ Here I, and others from the *Open App Ecosystem*, have collected some informatio
 
 ### Information related to the Fediverse
 * An high [OVERVIEW of the Fediverse](https://fediverse.party/en/fediverse/), used protocols, networks and used programming languages  
+* [OVERVIEW of projects](https://fediverse.party/en/miscellaneous/) in the Fediverse
 * Another [OVERVIEW of the Fediverse](https://ethercalc.org/fediverse-stacks) in table form, with "What it's for", "Alternative to", "Front-end/Back-end stack" and links to the code  
 * [List of network nodes](https://the-federation.info/) in the Fediverse  
 * [Fediverse Report 2018](https://fediverse.network/reports/2018)  
