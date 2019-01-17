@@ -1,151 +1,67 @@
-(English Version below.)
+Here I, and others from the *Open App Ecosystem*, have collected some information related to **ActivityPub**:  
 
-Dies ist die Vorlage für Abschlussarbeiten im Fachgebiet VSYS (Verteilte Systeme)
-der Fakultät IWI an der Hochschule Karlsruhe
+* The [Recommendation](https://www.w3.org/TR/activitypub/)  
+* W3C Launches Push for [Social Web Application Interoperability](https://www.w3.org/blog/news/archives/3958)  
+* The [Social Web Working Group](https://www.w3.org/wiki/Socialwg)(OVERVIEW) pulished in the period of June 2014 to December 2017 7 Recommendations and some notes  
+* The [Charter](https://www.w3.org/2013/socialweb/social-wg-charter) of the Social Web Working Group  
+* [Current status](https://www.w3.org/standards/techs/socialweb#w3c_all) of the social Web(Like an OVERVIEW of the protocols etc.)  
+* The core types like Activity, Actor, Collection etc. are defined in the [ActivityStreams 2.0 core](https://www.w3.org/TR/activitystreams-core/)  
+* And the [ActivityStreams 2.0 Vocabulary](https://www.w3.org/TR/activitystreams-vocabulary/) extends the core functionality  
+* The ActivityStreams Objects are acutally [JSON Linked Data](https://www.w3.org/TR/json-ld/) Documents  
+* For signing the object itself instead of using [HTTP Signatures](https://w3c-dvcg.github.io/ld-signatures/) for Server-to-Server communication  
+* [Repositories](https://github.com/cwebber?utf8=%E2%9C%93&tab=repositories&q=json+OR+signatures&type=&language=) related to jsonld and ldsignatures  
+* [Other repositories](https://www.diigo.com/profile/oceatoon/?query=%23json-ld) and information related to jsonld  
+* A little OVERVIEW of what exactly is defined in the [ActivityStreams Namespace](https://www.w3.org/ns/activitystreams)  
+* [Security Context](https://web-payments.org/vocabs/security) for adding a public key pem etc.  
+* [Outbox Collection](https://octodon.social/users/cwebber/outbox?page=true) of cwebber  
+* If you send a HTTP GET request to https://octodon.social/users/cwebber with a ACCEPT Header of "application/activity+json" then you can see the Actor Object of cwebber  
+* [Blog Post](https://schub.io/blog/2018/02/01/activitypub-one-protocol-to-rule-them-all.html) from Dennis Schubert (diaspora*); also about the topic why they, till now, not want to implement ActivityPub  
 
-Vielen Dank an Erik Burger (burger@kit.edu) für die Originalversion des
-Lehrstuhls Software Design and Quality (SDQ) am Institut für Datenorganisation
-und Programmstrukturen (IPD) des Karlsruher Instituts für Technologie (KIT).
+### Regarding to the implementation of ActivityPub
+* https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/  
+* https://blog.joinmastodon.org/2018/06/how-to-implement-a-basic-activitypub-server/  
+* A [NodeJS minimal ActivityPub federated Server](https://github.com/dariusk/express-activitypub)...  
+* .. and a [blog post](https://hacks.mozilla.org/2018/11/decentralizing-social-interactions-with-activitypub/) from the author of the above minimal server  
+* [Link collection](https://github.com/w3c/activitypub)  
+* A go implementation [Tutorial](https://go-fed.org/tutorial)  
+* Also a link to the [Federative protocol implementations](https://github.com/go-fed/https://github.com/go-fed/) in golang github organization    
+* An WIP [generic federated server implementation](http://commonspub.org/) of the ActivityPub Standard in elixier  
 
-Version
-=======
-Version: 0.2
+### Some resources related to Webfinger (Discovery of "Profiles")
+* insight in the [discovery mechanism](https://diaspora.github.io/diaspora_federation/discovery/webfinger.html) of diaspora federation protocol  
+* [Webfinger online client](http://silverbucket.github.io/webfinger.js/demo/) (eg. try cwebber@octodon.social)  
+* [Webfinger npm client](https://www.npmjs.com/package/webfinger.js)  
+* The [.well-known directory](https://serverfault.com/questions/795467/for-what-is-the-well-known-folder) is a location for site-wide meta data  
+* https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml
 
-Verwendung
-==========
-Das vorliegende Paket dient als Vorlage für eine Abschlussarbeit
-(Diplom/Bachelor/Master). Sie können dazu die bestehende Hauptdatei thesis.tex
-und die einzelnen Kapiteldateien im Verzeichnis sections/ anpassen, indem
-Sie den Beispieltext entfernen und durch eigene Inhalte entfernen.
-Bitte ändern Sie keine Layout-Parameter wie Schriftgröße, Ränder, Zeilenabstände
-u.ä. an der Datei, damit die Ausarbeitungen in einem einheitlichen Format
-erscheinen.
+### Different Ontologies/Vocabularies
+* The fundamental difference between an ontology and a conventional representational vocabulary is the level of abstraction and relationships among concept. (https://surface.syr.edu/istpub/38/ page 3)  
+* When I understand it right, a vocabulary has less semantic relations than an ontology.  
+* [Wikipedia Ontology definition](https://en.wikipedia.org/wiki/Ontology_(information_science))  
+* [W3C definition of a vocabulary](https://www.w3.org/standards/semanticweb/ontology)  
+* The W3C [Linked Data Platform](https://www.w3.org/ns/ldp) (LDP) Vocabulary  
+* With https://schema.org/ the AS2 Vocabulary can be extended  
+* A [ontology/vocabulary](https://github.com/pixelhumain/buildingCommons) developed by the Communecter Community  
+* A [ontology/vocabulary](https://valueflows.gitbooks.io/valueflows/content/) for the distributed economic networks of the next economy  
 
-Sprache
--------
-Die Sprache des Dokuments ist standardmäßig auf Englisch eingestellt.
-Dies kann in der \documentclass-Anweisung am Anfang von thesis.tex auf Deutsch
-umgestellt werden.
+### Information related to the Fediverse
+* The main entry point: https://fediverse.party
+* An high [OVERVIEW of the Fediverse](https://fediverse.party/en/fediverse/), used protocols, networks and used programming languages  
+* [OVERVIEW of projects](https://fediverse.party/en/miscellaneous/) in the Fediverse
+* Another [OVERVIEW of the Fediverse](https://ethercalc.org/fediverse-stacks) in table form, with "What it's for", "Alternative to", "Front-end/Back-end stack" and links to the code  
+* [List of network nodes](https://the-federation.info/) in the Fediverse  
+* [Fediverse Report 2018](https://fediverse.network/reports/2018)  
 
-Draft-Modus
------------
-Standardmäßig ist der draft-Modus aktiv. Dieser kann ebenfalls in der
-\documentclass-Anweisung am Anfang von thesis.tex auf "final" umgestellt werden,
-um eine abgabefertige Version zu erzeugen. Im Draft-Modus werden
-todo-Notizen sowie Platzhalter für fehlende Abbildungen angezeigt, in der
-Final-Version jedoch ausgeblendet.
+### Visualizations of the Fediverse  
+* https://fediverse.space/
+* https://kumu.io/wakest/fediverse
 
-Dateistruktur
-============
-thesis.tex
-----------
-Dies ist die Hauptdatei des LaTeX-Dokuments. Bitte tragen Sie dort Ihre
-Daten ein. Benennen Sie dann die Datei am besten um, damit sie später von
-Ihrem Betreuer von anderen leicht unterschieden werden kann
-(z.B. in thesis_hans_franz.tex).
-
-thesis.bib
-----------
-Dies ist eine BibTeX-Datei, in der Sie Ihre Literatur-Referenzen sammeln
-können. Wir empfehlen die Verwendung von biblatex und biber statt BibTeX.
-Dies ist in der Ausarbeitungsvorlage bereits so voreingestellt.
-
-vsysthesis.cls
--------------
-Dies ist die Vorlage, die die Stil-Informationen für das Dokument enthält.
-Im Sinne eines einheitlichen Ausarbeitungsstils soll diese Datei nicht
-verändert werden.
-
-logos/
-------
-In diesem Verzeichnis befinden das HSKA-und das IWI-Logo als PDF und EPS.
-Die Logos können durch eigene ersetzt werden, falls die Abschlussarbeit
-an einem anderen Bereich angefertigt wird.
-
-sections/
----------
-In diesem Verzeichnis können Sie ihre Inhaltskapitel als einzelne .tex-Dateien
-anlegen. Wir empfehlen Ihnen das Aufteilen der Dateien nach Kapiteln (oder
-sogar nach Unterkapiteln).
-
-README
-------
-Dieser Text.
-
-glossentries.tex
-----------------
-Datei mit Einträgen für ein optionales Glossar und Abkürzungsverzeichnis.
-
-
-English Version
-===============
-This is a template for student's theses in the subject area of distributed
-systems (vsys) of the Faculty of Computer Science and Business Information
-Systems at Karlsruhe University of Applied Sciences.
-
-Many thanks to Erik Burger for the original version at the chair of Software
-Design and Quality (SDQ) at the Institute of Program Structures and Data
-Organization (IPD) at Karlsruhe Institute of Technology (KIT).
-
-Version
-=======
-Version: 0.1
-
-Usage
-=====
-This package is used as a template for student theses
-(diploma/bachelor/master). To use it, adapt the main file thesis.tex
-and the files for the chapters in the directory sections/ by removing
-the example text and replacing it with your own content.
-Please do not change any layout parameters such as font size, margins,
-line spacing etc., so that the theses appear in a uniform way.
-
-Language
---------
-The standard language of this document is English. You can change the
-language in the \documentclass command at the beginning of thesis.tex.
-German and English are available.
-
-Draft mode
-----------
-The draft mode is activated by standard and can be switched to "final"
-in the \documentclass command at the beginning of thesis.tex.
-In draft mode, todo-notes and placeholders for missing graphics are displayed,
-while they are omitted in the final mode.
-
-File structure
-==============
-thesis.tex
-----------
-This is the main file of your LaTeX document. Please insert your data there.
-It is recommended to rename the file so that your advisor can distinguish
-different theses (e.g., in thesis_hans_franz.tex).
-
-thesis.bib
-----------
-You can use this BibTeX file to collect your literature.
-We recommend using biblatex and biber instead of BibTeX.
-The template is already configured in this way.
-
-vsysthesis.cls
--------------
-This is the style template for the document. Please do not modify this file,
-so that all theses appear in the same style.
-
-logos/
-------
-This directory contains the HSKA and IWI logos in PDF and EPS.
-If the thesis is written at another unit, you can replace the logo by a custom one.
-
-sections/
----------
-This directory contains your content chapters, split in single .tex files.
-We recommend splitting your chapters or even sections into single files.
-
-README
-------
-This text.
-
-glossentries.tex
-----------------
-File containing entries for an optional glossary and acronym list.
+### Other related Information  
+* Description, Characteristics and Examples of the [Open App Ecosystem](http://wiki.p2pfoundation.net/Open_App_Ecosystem)  
+* [Dokieli](https://dokie.li/) is a clientside editor for decentralised article publishing, annotations and social interactions  
+* [Dokieli Github Repo](https://github.com/linkeddata/dokieli)
+* [Nextcloud](https://github.com/nextcloud/social), a safe home for all your data, becomes part of the Fediverse  
+* [Federated WordPress blogging](https://github.com/pterotype-project/pterotype) via ActivityPub  
+* [Bridge](https://github.com/snarfed/bridgy-fed) between IndiWeb and federated social Networks(Fediverse)  
+* [Differences between IRI URI URL URN](http://fusion.cs.uni-jena.de/fusion/blog/2016/11/18/iri-uri-url-urn-and-their-differences/) (GERMAN)  
+* End-to-End Encrypted & Decentralized [Messaging Service](https://github.com/fedimos) for the Fediverse  
