@@ -22,7 +22,7 @@ Here I, and others from the *Open App Ecosystem*, have collected some informatio
 * https://blog.joinmastodon.org/2018/06/how-to-implement-a-basic-activitypub-server/  
 * A [NodeJS minimal ActivityPub federated Server](https://github.com/dariusk/express-activitypub)...  
 * .. and a [blog post](https://hacks.mozilla.org/2018/11/decentralizing-social-interactions-with-activitypub/) from the author of the above minimal server  
-* [Link collection](htthttps://github.com/w3c/activitypubps://github.com/w3c/activitypub)  
+* [Link collection](https://github.com/w3c/activitypub)  
 * A go implementation [Tutorial](https://go-fed.org/tutorial)  
 * Also a link to the [Federative protocol implementations](https://github.com/go-fed/https://github.com/go-fed/) in golang github organization    
 * An WIP [generic federated server implementation](http://commonspub.org/) of the ActivityPub Standard in elixier  
