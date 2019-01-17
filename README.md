@@ -17,7 +17,7 @@ Here I, and others from the *Open App Ecosystem*, have collected some informatio
 * If you send a HTTP GET request to https://octodon.social/users/cwebber with a ACCEPT Header of "application/activity+json" then you can see the Actor Object of cwebber  
 * [Blog Post](https://schub.io/blog/2018/02/01/activitypub-one-protocol-to-rule-them-all.html) from Dennis Schubert (diaspora*); also about the topic why they, till now, not want to implement ActivityPub  
 
-###Regarding to the implementation of ActivityPub
+### Regarding to the implementation of ActivityPub
 * https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/  
 * https://blog.joinmastodon.org/2018/06/how-to-implement-a-basic-activitypub-server/  
 * A [NodeJS minimal ActivityPub federated Server](https://github.com/dariusk/express-activitypub)...  
@@ -27,14 +27,14 @@ Here I, and others from the *Open App Ecosystem*, have collected some informatio
 * Also a link to the [Federative protocol implementations](https://github.com/go-fed/https://github.com/go-fed/) in golang github organization    
 * An WIP [generic federated server implementation](http://commonspub.org/) of the ActivityPub Standard in elixier  
 
-###Some resources related to Webfinger (Discovery of "Profiles")
+### Some resources related to Webfinger (Discovery of "Profiles")
 * insight in the [discovery mechanism](https://diaspora.github.io/diaspora_federation/discovery/webfinger.html) of diaspora federation protocol  
 * [Webfinger online client](http://silverbucket.github.io/webfinger.js/demo/) (eg. try cwebber@octodon.social)  
 * [Webfinger npm client](https://www.npmjs.com/package/webfinger.js)  
 * The [.well-known directory](https://serverfault.com/questions/795467/for-what-is-the-well-known-folder) is a location for site-wide meta data  
 * https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml
 
-###Different Ontologies/Vocabularies
+### Different Ontologies/Vocabularies
 * The fundamental difference between an ontology and a conventional representational vocabulary is the level of abstraction and relationships among concept. (https://surface.syr.edu/istpub/38/ page 3)  
 * When I understand it right, a vocabulary has less semantic relations than an ontology.  
 * [Wikipedia Ontology definition](https://en.wikipedia.org/wiki/Ontology_(information_science))  
@@ -44,17 +44,17 @@ Here I, and others from the *Open App Ecosystem*, have collected some informatio
 * A [ontology/vocabulary](https://github.com/pixelhumain/buildingCommons) developed by the Communecter Community  
 * A [ontology/vocabulary](https://valueflows.gitbooks.io/valueflows/content/) for the distributed economic networks of the next economy  
 
-###Information related to the Fediverse
+### Information related to the Fediverse
 * An high [OVERVIEW of the Fediverse](https://fediverse.party/en/fediverse/), used protocols, networks and used programming languages  
 * Another [OVERVIEW of the Fediverse](https://ethercalc.org/fediverse-stacks) in table form, with "What it's for", "Alternative to", "Front-end/Back-end stack" and links to the code  
 * [List of network nodes](https://the-federation.info/) in the Fediverse  
 * [Fediverse Report 2018](https://fediverse.network/reports/2018)  
 
-###Visualizations of the Fediverse  
+### Visualizations of the Fediverse  
 * https://fediverse.space/
 * https://kumu.io/wakest/fediverse
 
-###Other related Information  
+### Other related Information  
 * Description, Characteristics and Examples of the [Open App Ecosystem](http://wiki.p2pfoundation.net/Open_App_Ecosystem)  
 * [Dokieli](https://dokie.li/) is a clientside editor for decentralised article publishing, annotations and social interactions  
 * [Dokieli Github Repo](https://github.com/linkeddata/dokieli)
@@ -63,5 +63,3 @@ Here I, and others from the *Open App Ecosystem*, have collected some informatio
 * [Bridge](https://github.com/snarfed/bridgy-fed) between IndiWeb and federated social Networks(Fediverse)  
 * [Differences between IRI URI URL URN](http://fusion.cs.uni-jena.de/fusion/blog/2016/11/18/iri-uri-url-urn-and-their-differences/) (GERMAN)  
 * End-to-End Encrypted & Decentralized [Messaging Service](https://github.com/fedimos) for the Fediverse  
-
-Another interesting ressource is the **Web Report** from Tim Berners-Lee
