@@ -33,7 +33,7 @@
 	\subsection{Sicherheitsaspekte sozialer Netzwerke}
 
 \section{Kryptographie}
-	\glqq Unter dem Begriff Kryptographie ist die Wissenschaft vom geheimen Schreiben zu verstehen\grqq.\footnote{(Wätjen, 2018, S.1)} Man spricht von symmetrischer Verschlüsselung wenn eine Nachricht im Klartext vom Sender mit einem geheimen Schlüssel, welcher beiden Parteien bekannt ist, verschlüsselt und vom Empfänger, mit demselben Schlüssel, entschlüsselt wird.\footnote{(vgl. Wätjen, 2018, S.1)}\\
+	\glqq Unter dem Begriff Kryptographie ist die Wissenschaft vom geheimen Schreiben zu verstehen\grqq.\footnote{Dietmar Wätjen, 2018, S.1} Man spricht von symmetrischer Verschlüsselung wenn eine Nachricht im Klartext vom Sender mit einem geheimen Schlüssel, welcher beiden Parteien bekannt ist, verschlüsselt und vom Empfänger, mit demselben Schlüssel, entschlüsselt wird.\footnote{Vgl. Dietmar Wätjen, 2018, S.1}\\
 	\begin{figure}[h]
 		\begin{minipage}{\textwidth}
 			\centering
@@ -45,7 +45,7 @@
 	\end{figure}	
 	\subsection{RSA}
 		Von asymmetrischer Verschlüsselung ist die Rede, wenn die Teilnehmer anstatt einen gemeinsamen Schlüssel zu haben, der im vor hinein ausgetauscht werden muss, jeder ein Schlüsselpaar (öffentlicher und privater Schlüssel) besitzt. Das \gls{rsa} Verfahren ist ein solches asymmetrisches Verschlüsselungsverfahren welches von den drei namens gebenden Mathematikern 1977 entwickelt wurde. Das \gls{rsa} Verfahren ist wohl das am häufigsten verwendete Public-Key-Kryptosystem.\\
-		\textbf{Beispiel 1.} Die Gesprächspartner Alice und Bob, welche beide ein Schlüsselpaar besitzen, miteinander kommunizieren. Alice verschlüsselt einen Nachrichtentext mit dem öffentlichen Schlüssel von Bob und sendet die verschlüsselte Nachricht an Bob. Dieser kann seinerseits mit seinem privaten Schlüssel die Nachricht entschlüsseln.\footnote{(vgl. Wätjen, 2018, S.73 f.)}\\
+		\textbf{Beispiel 1.} Die Gesprächspartner Alice und Bob, welche beide ein Schlüsselpaar besitzen, miteinander kommunizieren. Alice verschlüsselt einen Nachrichtentext mit dem öffentlichen Schlüssel von Bob und sendet die verschlüsselte Nachricht an Bob. Dieser kann seinerseits mit seinem privaten Schlüssel die Nachricht entschlüsseln.\footnote{Vgl. Dietmar Wätjen, 2018, S.73 f.}\\
 	\subsection{Signaturen}
 		Für die Sicherstellung der Authentizität können sogenannte Signaturen verwendet werden. Das oben kurz erläuterte Verfahren kann nicht nur zum Ver- und Entschlüsseln von Nachrichten benutzt werden, sondern auch zum signieren.\\
 		Dabei wird statt des öffentlichen Schlüssels, der private Schlüssel benutzt um eine, in diesem Fall, Signatur zu erzeugen. Diese kann dann mit dem öffentlichen Schlüssel des zugehörigen privaten Schlüssels verifiziert werden.\\
@@ -62,7 +62,7 @@
 	\subsection{Bestandteile des Protokolls}
 		Das Client-zu-Server sowie förderierte Server-zu-Server Protokoll können unabhängig voneinander implementiert werden. Ersteres besteht aus einem Client und Server Teil.\\
 		
-		In ActivityPub werden Benutzer als \glqq Aktoren\grqq(actors) dargestellt. Diese können nicht nur Personen, sondern auch Applikationen, Organisationen, Gruppen und Services sein\cite{activityStreamsCore}. Jedes Aktoren Objekt muss eine \glqq Inbox\grqq~und \glqq Outbox\grqq, welche geordnete Sammlungen sein müssen, sowie eine ID und ein Typ besitzen\cite{activityPub}. Die ID muss global einzigartig sein. Dies kann garantiert werden durch eine Domänen und Protokoll bezogene URI oder IRI wie zum Beispiel \glqq https://example.org/users/alice\grqq oder \glqq https://example.org/alice/áŷýà/2\grqq. %http://fusion.cs.uni-jena.de/fusion/blog/2016/11/18/iri-uri-url-urn-and-their-differences/
+		In ActivityPub werden Benutzer als \glqq Aktoren\grqq(actors) dargestellt. Diese können nicht nur Personen, sondern auch Applikationen, Organisationen, Gruppen und Services sein\cite{activityStreamsCore}. Jedes Aktoren Objekt muss eine \glqq Inbox\grqq~und \glqq Outbox\grqq, welche geordnete Sammlungen sein müssen, sowie eine ID und ein Typ besitzen\cite{activityPub}. Die ID muss global einzigartig sein. Dies kann garantiert werden durch eine Domänen und Protokoll bezogene URI oder IRI wie zum Beispiel \glqq https://example.org/users/alice\grqq oder \glqq https://example.org/users/alice/áŷýà/2\grqq. %http://fusion.cs.uni-jena.de/fusion/blog/2016/11/18/iri-uri-url-urn-and-their-differences/
 		Der Typ eines Aktor (z.B. "type": "Create") kann variieren zwischen den fünf oben genannten.
 		
 		\lstinputlisting{resources/mastodon-macu.json}
@@ -90,7 +90,13 @@
 		\lstinputlisting[caption={Beispiel \gls{AS2} Objekt}, label=listing::as2-object, language=Javascript]{resources/example-as2-object.json}
 
 \section{Fediverse}
-	Als erstes soll der Begriff \glqq förderiertes Netzwerk\grqq erklärt werden.\\
-	Unter einer Förderation versteht man den Verbund von etwas. Deutschland ist z. B. ein förderierter Bundesstaat, welcher 16 Bundesländern verbindet. Ein förderiertes Netzwerk besteht aus mehreren Netzwerken, ist somit also ein Netzwerkverbund.\\
+	Als erstes soll der Begriff \glqq förderiertes Netzwerk\grqq~von Förderation hergeleitet werden.\\
 	
-	\glqq Fediverse\grqq~ist ein Kofferwort aus \glqq Federated\grqq und \glqq Universe\grqq. 
+	Unter einer Förderation versteht man den Verbund von etwas. Deutschland ist z. B. ein förderierter Bundesstaat, welcher 16 Bundesländern verbindet. Ein Verbund von Netzwerken wird demnach als Netzwerkverbund, oder auch \glqq förderiertes Netzwerk\grqq,~bezeichnet.\\
+	
+	\glqq Fediverse\grqq~ist ein Kofferwort aus \glqq Federated\grqq~und \glqq Universe\grqq. Historisch gesehen beinhaltete der Begriff nur Microblogging Plattformen die das OStatus Protokoll unterstützen. Mehr zu OStatus \textbf{S. \ref{subsec:ostatus}}. Mittlerweile beinhaltet das Fediverse mehr als nur Microblogging Plattformen wie Mastodon\footnote{\url{https://mastodon.social/about}} sondern auch soziale Netzwerke (z. B. GNU Social\footnote{\url{https://gnu.io/social/}}), sowie \glqq Video hosting\grqq~(PeerTube\footnote{\url{https://joinpeertube.org/en/}}),\glqq Content publishing\grqq~Plattformen, wie Wordpress, und viele weitere.\cite{fediverse}\\
+	
+	Im \glqq Fediverse\grqq~dreht sich alles um freie (Open Source) Software anstelle von kommerziellen Produkten. Zudem kann ausgesucht werden welchem Administrator man die Kontrolle über seine Daten geben möchte, anstatt auf eine einzelne Instanz vertrauen zu müssen.\cite{fediverse}\\
+	\todo{indirektes online Zitat!!!}
+	
+	Laut dem Fediverse Netzwerkreport 2018, welcher online zur Verfügung steht, hat sich die Gesamtanzahl der erreichbaren Instanzen von 2.756 auf 4.340 erhöht. Dies entspricht einem Wachstum von 58\%. Die Nutzeranzahl ist von 1.786.036 auf 2.474.601 gestiegen (39\%). Weitere Details sind im Netzwerk Report nachzulesen. Es ist hinzuzufügen das der Netzwerkreport unvollständig ist und Fehler beinhalten kann.\cite{fediverse-report}\\
