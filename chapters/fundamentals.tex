@@ -15,61 +15,117 @@
 %% | Derived from sdqthesis by Erik Burger burger@kit.edu |
 %% --------------------------------------------------------
 
-\chapter{Grundlagen zur sicheren Umsetzung dezentraler sozialer Netzwerke}
-\label{ch:fundamentals}
-\iflanguage{english}{
-	
-}{
-	\todo{Allgemeine Grundlagen zu Sozialen Netzwerken/Social Media und deren Sicherheitsaspekte}
-	\todo{Welche Klassen von Anwendungen und Implementierungen gibt es allgemein bei sozialen Netzwerken? Einordnen von ActivityPub!!}
-	%\todo{AP Beschreibung in hinteren Teil des Grundlagenkapitels oder zu Beginn des 3. Kapitels}
-	%Klassen von Anwendungen sowie Implementierungen erläutert.
-	Dieses Kapitel gibt einen Überblick über allgemeine Grundlagen von sozialen Netzwerken. Es wird grob erläutert für was soziale Netzwerke gedacht sind, der Unterschied zwischen zentralen und dezentralen sozialen Netzwerken herausgestellt sowie auf Sicherheitsaspekte eingegangen.\\
-	Im Anschluss wird ein Kryptographie Unterkapitel eingeführt in dem die benötigten Verfahren für die sichere Umsetzung erläutert werden. Begonnen wird mit einer kurzen Einführung in Kryptographie und darauf folgend kurz das \gls{rsa} Verfahren sowie eine allgemeine Beschreibung von Signatur Algorithmen gegeben.\\ 
-	Zuletzt wird der ActivityPub Standard eingeführt sowie eingeordnet, Bestandteile des Protokolls beschrieben, die Funktionsweise der Client-zu-Server sowie Server-zu-Server Kommunikation und zugehörige Standards kurz erläutert.
+\chapter{
+	\iflanguage{english}{Basics for the secure implementation of decentralised social networks}{Grundlagen zur sicheren Umsetzung dezentraler sozialer Netzwerke}
 }
-\section{Allgemeine Grundlagen sozialer Netzwerke}
-	\subsection{Unterschied zentraler zu dezentralen sozialen Netzwerken}
-	\subsection{Sicherheitsaspekte sozialer Netzwerke}
+\label{ch:fundamentals}
+	\iflanguage{english}{
+		This chapter gives an overview of general basics of social networks. It roughly explains what social networks are meant for, highlights the difference between centralized and decentralized social networks, and discusses security aspects.\\
+		A cryptography subchapter is then introduced in which the procedures required for secure implementation are explained. It starts with a short introduction to cryptography and then briefly the \gls{rsa} procedure and a general description of signature algorithms.\\ 
+		Finally the ActivityPub standard is introduced and classified, components of the protocol are described, the functionality of the client-to-server as well as server-to-server communication and associated standards are briefly explained.
+		
+	}{
+		\todo{Allgemeine Grundlagen zu Sozialen Netzwerken/Social Media und deren Sicherheitsaspekte}
+		\todo{Welche Klassen von Anwendungen und Implementierungen gibt es allgemein bei sozialen Netzwerken? Einordnen von ActivityPub!!}
+		%\todo{AP Beschreibung in hinteren Teil des Grundlagenkapitels oder zu Beginn des 3. Kapitels}
+		%Klassen von Anwendungen sowie Implementierungen erläutert.
+		Dieses Kapitel gibt einen Überblick über allgemeine Grundlagen von sozialen Netzwerken. Es wird grob erläutert für was soziale Netzwerke gedacht sind, der Unterschied zwischen zentralen und dezentralen sozialen Netzwerken herausgestellt sowie auf Sicherheitsaspekte eingegangen.\\
+		Im Anschluss wird ein Kryptographie Unterkapitel eingeführt in dem die benötigten Verfahren für die sichere Umsetzung erläutert werden. Begonnen wird mit einer kurzen Einführung in Kryptographie und darauf folgend kurz das \gls{rsa} Verfahren sowie eine allgemeine Beschreibung von Signatur Algorithmen gegeben.\\ 
+		Zuletzt wird der ActivityPub Standard eingeführt sowie eingeordnet, Bestandteile des Protokolls beschrieben, die Funktionsweise der Client-zu-Server sowie Server-zu-Server Kommunikation und zugehörige Standards kurz erläutert.
+	}
+	\section{
+		\iflanguage{english}{General principles of social networks}{Allgemeine Grundlagen sozialer Netzwerke}
+	}
+		\subsection{
+			\iflanguage{english}{Difference between centralised and decentralised social networks}{Unterschied zentraler zu dezentralen sozialen Netzwerken}
+		}
+		\subsection{
+			\iflanguage{english}{Security aspects of social networks}{Sicherheitsaspekte sozialer Netzwerke}
+		}
 
-\section{Kryptographie}
-	\glqq Unter dem Begriff Kryptographie ist die Wissenschaft vom geheimen Schreiben zu verstehen\grqq.\footnote{Dietmar Wätjen, 2018, S.1} Man spricht von symmetrischer Verschlüsselung wenn eine Nachricht im Klartext vom Sender mit einem geheimen Schlüssel, welcher beiden Parteien bekannt ist, verschlüsselt und vom Empfänger, mit demselben Schlüssel, entschlüsselt wird.\footnote{Vgl. Dietmar Wätjen, 2018, S.1}\\
-	\begin{figure}[h]
-		\begin{minipage}{\textwidth}
-			\centering
-			\includegraphics[scale=0.5]{figures/ver-und-entschluesseln.png}
-			\quelle{(Wätjen, 2018, S.1)}
-			\label{ver-und-entschluesselung}
-			\caption{Symmetrische Ver- und Entschlüsselung}
-		\end{minipage}
-	\end{figure}	
-	\subsection{RSA}
+	\section{
+		\iflanguage{english}{cryptography}{Kryptographie}
+	}
+	\iflanguage{english}{
+		\glqq The term cryptography refers to the science of secret writing\grqq.\footnote{Dietmar Wätjen, 2018, p.1} One speaks of symmetric encryption when a message is encrypted in plain text by the sender with a secret key known to both parties and decrypted by the recipient with the same key.\footnote{Cf. Dietmar Wätjen, 2018, p.1}\\
+		\begin{figure}[h]
+			\begin{minipage}{\textwidth}
+				\centering
+				\includegraphics[scale=0.5]{figures/ver-und-entschluesseln.png}
+				\quelle{(Wätjen, 2018, S.1)}
+				\label{ver-und-entschluesselung}
+				\caption{Symmetric en- and decryption}
+			\end{minipage}
+		\end{figure}
+		\subsection{RSA}
+		Asymmetric encryption is the term used when, instead of having a common key that has to be exchanged in advance, the participants each have a pair of keys (public and private keys). The \gls{rsa} method is one such asymmetric encryption method developed by the three mathematicians named after it in 1977. The \gls{rsa} method is probably the most commonly used public-key cryptosystem.\\
+		\textbf{Example 1.} The interlocutors Alice and Bob, who both have a key pair, communicate with each other. Alice encrypts a message text with Bob's public key and sends the encrypted message to Bob. The latter in turn can decrypt the message with his private key.\footnote{Cf. Dietmar Wätjen, 2018, p.73 f.}\\
+		\subsection{Signatures}
+		So-called signatures can be used to ensure authenticity. The procedure briefly described above can not only be used to encrypt and decrypt messages, but also to sign them.\\
+		Instead of the public key, the private key is used to generate a signature, in this case. This can then be verified with the public key of the corresponding private key.\\
+		\textbf{Example 2.} Bob wants to send a message to Alice and make sure it hasn't been changed along the way. He uses his private key and applies it to a message to generate a signature. Both he transmits to Alice. Bob's public key can be used to verify that the message has been transmitted correctly.
+	}{
+		\glqq Unter dem Begriff Kryptographie ist die Wissenschaft vom geheimen Schreiben zu verstehen\grqq.\footnote{Dietmar Wätjen, 2018, S.1} Man spricht von symmetrischer Verschlüsselung wenn eine Nachricht im Klartext vom Sender mit einem geheimen Schlüssel, welcher beiden Parteien bekannt ist, verschlüsselt und vom Empfänger, mit demselben Schlüssel, entschlüsselt wird.\footnote{Vgl. Dietmar Wätjen, 2018, S.1}\\
+		\begin{figure}[h]
+			\begin{minipage}{\textwidth}
+				\centering
+				\includegraphics[scale=0.5]{figures/ver-und-entschluesseln.png}
+				\quelle{(Wätjen, 2018, S.1)}
+				\label{ver-und-entschluesselung}
+				\caption{Symmetrische Ver- und Entschlüsselung}
+			\end{minipage}
+		\end{figure}	
+		\subsection{RSA}
 		Von asymmetrischer Verschlüsselung ist die Rede, wenn die Teilnehmer anstatt einen gemeinsamen Schlüssel zu haben, der im vor hinein ausgetauscht werden muss, jeder ein Schlüsselpaar (öffentlicher und privater Schlüssel) besitzt. Das \gls{rsa} Verfahren ist ein solches asymmetrisches Verschlüsselungsverfahren welches von den drei namens gebenden Mathematikern 1977 entwickelt wurde. Das \gls{rsa} Verfahren ist wohl das am häufigsten verwendete Public-Key-Kryptosystem.\\
 		\textbf{Beispiel 1.} Die Gesprächspartner Alice und Bob, welche beide ein Schlüsselpaar besitzen, miteinander kommunizieren. Alice verschlüsselt einen Nachrichtentext mit dem öffentlichen Schlüssel von Bob und sendet die verschlüsselte Nachricht an Bob. Dieser kann seinerseits mit seinem privaten Schlüssel die Nachricht entschlüsseln.\footnote{Vgl. Dietmar Wätjen, 2018, S.73 f.}\\
-	\subsection{Signaturen}
+		\subsection{Signaturen}
 		Für die Sicherstellung der Authentizität können sogenannte Signaturen verwendet werden. Das oben kurz erläuterte Verfahren kann nicht nur zum Ver- und Entschlüsseln von Nachrichten benutzt werden, sondern auch zum signieren.\\
 		Dabei wird statt des öffentlichen Schlüssels, der private Schlüssel benutzt um eine, in diesem Fall, Signatur zu erzeugen. Diese kann dann mit dem öffentlichen Schlüssel des zugehörigen privaten Schlüssels verifiziert werden.\\
 		\textbf{Beispiel 2.} Bob möchte eine Nachricht an Alice schicken und sichergehen, dass diese auf dem Weg nicht verändert wurde. Er verwendet seinen privaten Schlüssel und wendet diesen auf eine Nachricht an um eine Signatur zu erzeugen. Beides übermittelt er an Alice. Mit dem öffentlichen Schlüssel von Bob kann die fehlerfreie Übertragung der Nachricht verifiziert werden.
-		
-\section{ActivityPub Standard}
+	}
+			
+	\section{ActivityPub Standard}
 	\iflanguage{english}{
+		ActivityPub defines two protocol layers, as well as concepts, collections and interactions for decentralized social networks. A protocol layer is the client-to-server protocol (Social API) to enable clients to access a server and receive requests. The second protocol layer consists of the promoted server-to-server protocol (Federation Protocol), which allows the individual instances of decentralized social networks to exchange content with each other. ActivityPub is based on already existing recommendations of the \gls{w3c}, which were partly also developed by the \gls{swwg} like e.g. \gls{asc} and \gls{asv}.\\
 		
+		Other technologies such as \gls{JSON-LD} are also used to ensure extensibility. New ontologies (vocabularies) can be used to add syntactic definitions and semantic descriptions to the existing ones\cite{activityPub}. These vocabularies can be specified in the context of the \gls{JSON-LD} object. ActivityPub uses the \gls{AS2} vocabulary which is extended by \gls{asv}.
 	}{
 		ActivityPub definiert zwei Protokollschichten, sowie Konzepte, Sammlungen und Interaktionen für dezentrale soziale Netzwerke. Eine Protokollschicht ist das Client-zu-Server Protokoll (Social API), um Clients den Zugriff auf einen Server zu ermöglichen sowie zum entgegennehmen von Anfragen. Die zweite Protokollschicht besteht aus dem förderierten Server-zu-Server Protkoll (Federation Protocol), welches den einzelnen Instanzen von dezentralen sozialen Netzwerken den Austausch von Inhalten untereinander gestattet. ActivityPub setzt auf bereits bestehende Empfehlungen des \gls{w3c} auf, welche teilweise auch von der \gls{swwg} entwickelt wurden wie zB. \gls{asc} und \gls{asv}.\\
 		
 		Auch andere Technologien wie \gls{JSON-LD} werden benutzt um die Erweiterbarkeit zu gewährleisten. Über neue Ontologien (Vokabulare) können weitere syntaktische Definitionen und semantische Beschreibungen zu den bestehenden hinzugefügt werden\cite{activityPub}. Diese Vokabulare können im Kontext des \gls{JSON-LD} Objektes, angegeben werden. Bei ActivityPub wird das \gls{AS2} Vokabular verwendet welches durch \gls{asv} erweitert wird.
 	}
-	\subsection{Bestandteile des Protokolls}
+	\subsection{
+		\iflanguage{english}{Elements of the protocol}{Bestandteile des Protokolls}
+	}
+	\iflanguage{english}{
+		The client-to-server and promoted server-to-server protocol can be implemented independently. The former consists of a client and server part.\\
+		
+		In ActivityPub users are represented as \glqq actuators\grqq(actors). These can be not only individuals, but also applications, organizations, groups and services\cite{activityStreamsCore}. Each actuator object must have a \glqq Inbox\grqq~and \glqq Outbox\grqq, which must be ordered collections, as well as an ID and a type\cite{activityPub}. The ID must be globally unique. This can be guaranteed by a domain and protocol related URI or IRI such as \glqq https://example.org/users/alice\grqq or \glqq https://example.org/users/alice/áŷýà/2\grqq.
+		
+		The type of an actuator (e. g. "type": "Create") can vary between the five mentioned above.
+		\lstinputlisting{resources/mastodon-macu.json}
+	}{
 		Das Client-zu-Server sowie förderierte Server-zu-Server Protokoll können unabhängig voneinander implementiert werden. Ersteres besteht aus einem Client und Server Teil.\\
 		
 		In ActivityPub werden Benutzer als \glqq Aktoren\grqq(actors) dargestellt. Diese können nicht nur Personen, sondern auch Applikationen, Organisationen, Gruppen und Services sein\cite{activityStreamsCore}. Jedes Aktoren Objekt muss eine \glqq Inbox\grqq~und \glqq Outbox\grqq, welche geordnete Sammlungen sein müssen, sowie eine ID und ein Typ besitzen\cite{activityPub}. Die ID muss global einzigartig sein. Dies kann garantiert werden durch eine Domänen und Protokoll bezogene URI oder IRI wie zum Beispiel \glqq https://example.org/users/alice\grqq oder \glqq https://example.org/users/alice/áŷýà/2\grqq. %http://fusion.cs.uni-jena.de/fusion/blog/2016/11/18/iri-uri-url-urn-and-their-differences/
-		Der Typ eines Aktor (z.B. "type": "Create") kann variieren zwischen den fünf oben genannten.
+		Der Typ eines Aktor (z. B. "type": "Create") kann variieren zwischen den fünf oben genannten.
+		\todo{Was bedeutet global einzigartig}
+		\lstinputlisting{resources/mastodon-macu.json}	
+	}
+	\subsection{
+		\iflanguage{english}{Authentication and data integrity}{Authentifizierung und Datenintegrität}
+	}
+	\iflanguage{english}{
+		The standard does not define any mechanisms for authentication and for ensuring data integrity. However, there are \glqq Best Practices\grqq~ for the implementation of these requirements.\\
 		
-		\lstinputlisting{resources/mastodon-macu.json}
-	
-	\subsection{Authentifizierung und Datenintegrität}
+		On the one hand, client to server authentication uses \glqq OAuth 2.0\grqq~Tokens, on the other hand, on the server side, \glqq HTTP\grqq~ or \glqq Linked Data Signatures\grqq to ensure data integrity.\\
+		
+		\glqq Data integrity includes measures to ensure that proprietary data cannot be removed or altered by unauthorized persons during processing or transmission. It ensures the consistency, accuracy and trustworthiness of the data throughout its lifetime and ensures that the relevant data of a data stream can be reconstructed.\grqq\footnote{\cite{data-integrity}}
+		
+		If an object is not only to be sent from the client to the server, but also forwarded between servers, a procedure other than HTTP signatures is required to ensure data integrity. The \glqq Best Practices\grqq~ recommend for such cases \glqq Linked Data Signatures\grqq. The biggest difference between HTTP signatures and \glqq Linked Data Signatures\grqq~ is what data is used to create the signature. For HTTP signatures, these are the headers. With \glqq Linked Data Signatures\grqq~, the object itself, i.e. the payload of an HTTP request, can also be used for signing instead of just the headers.
+	}{
 		Für die Authentifizierung und zum sichern der Datenintegrität definiert der Standard keine Mechanismen. Es gibt allerdings \glqq Best Practices\grqq~für die Umsetzung dieser Anforderungen.\\
-		
+	
 		Zum einen werden bei der Client-zu-Server Authentifizierung \glqq OAuth 2.0\grqq~Tokens benutzt, zum anderen auf der Server Seite \glqq HTTP\grqq~oder \glqq Linked Data Signatures\grqq zur Sicherstellung der Datenintegrität.\\
 		\todo{OAuth 2.0}
 		
@@ -77,26 +133,48 @@
 		\todo{Datenintegrität}
 		\glqq Die Datenintegrität umfasst Maßnahmen damit geschützte Daten während der Verarbeitung oder Übertragung nicht durch unautorisierte Personen entfernt oder verändert werden können. Sie stellt die Konsistenz, die Richtigkeit und Vertrauenswürdigkeit der Daten während deren gesamten Lebensdauer sicher und sorgt dafür, dass die relevanten Daten eines Datenstroms rekonstruierbar sind.\grqq\footnote{\cite{data-integrity}}
 		
-		\todo{HTTP Signaturen}
+		\todo{HTTP Signaturen, fehlt in Englischer Übersetzung}
 		Um sicherzustellen das HTTP Anfragen beim Transport nicht verändert wurden, können HTTP Signaturen verwendet werden. Bei diesen wird ein kryptografischer Algorithmus benutzt um \\
 		
 		\todo{Linked Data Signaturen}
-		Wenn ein Objekt nicht nur vom Client zum Server gesendet, sondern auch zwischen Servern untereinander weitergeleitet werden soll wird zum Sicherstellen der Datenintegrität ein anderes Verfahren benötigt als HTTP Signaturen. Die \glqq Best Practices\grqq~empfehlen für solche Fälle \glqq Linked Data Signatures\grqq. Der größte Unterschied zwischen HTTP Signaturen und \glqq Linked Data Signatures\grqq~besteht darin, welche Daten zum Erstellen der Signatur verwendet werden. Bei HTTP Signaturen sind es die Kopfzeilen. Mit \glqq Linked Data Signatures\grqq~kann auch das Objekt selbst, also der Payload einer HTTP Anfrage, anstatt nur die Kopfzeilen, zum signieren verwendet werden.
+		Wenn ein Objekt nicht nur vom Client zum Server gesendet, sondern auch zwischen Servern untereinander weitergeleitet werden soll wird zum Sicherstellen der Datenintegrität ein anderes Verfahren benötigt als HTTP Signaturen. Die \glqq Best Practices\grqq~empfehlen für solche Fälle \glqq Linked Data Signatures\grqq. Der größte Unterschied zwischen HTTP Signaturen und \glqq Linked Data Signatures\grqq~besteht darin, welche Daten zum Erstellen der Signatur verwendet werden. Bei HTTP Signaturen sind es die Kopfzeilen. Mit \glqq Linked Data Signatures\grqq~kann auch das Objekt selbst, also der Payload einer HTTP Anfrage, anstatt nur die Kopfzeilen, zum signieren verwendet werden.	
+	}
 	
-	\subsection{Zugehörige Standards und Komponenten}
+	\subsection{
+		\iflanguage{english}{Related standards and components}{Zugehörige Standards und Komponenten}
+	}
+	\iflanguage{english}{
+		ActivityPub uses the ActivityStreams data syntax and vocabulary. In addition, another security vocabulary\footnote{An ontology that defines security aspects such as public keys, signatures, and more} can be used to have definitions for providing a public key, signatures, encrypted content, and more. On April 22, 2016, the \glqq W3C Community Group\grqq~ published a draft report. It defines new syntax and semantics to enable Internet-based applications to encrypt, decrypt, digitally sign and verify linked data. It also contains vocabulary for creating and managing a decentralized public key infrastructure over the Internet\cite{security-vocab-linked-data}. A use case is retrieving a user's public key, using its object actuators to verify a message sent by users.
+		
+		\gls{JSON-LD} is an extension of the JSON format to represent linked data. JSON itself is a format that is often used on the web to exchange data. In essence, \gls{AS2} are also \gls{JSON-LD} objects. The \gls{AS2} context defines different classes and properties, not all of which are used. Typical classes are \glqq Activity\grqq, \glqq Link\grqq~and \glqq OrderedCollection\grqq. An example \gls{AS2} object looks like this: 	
+		\lstinputlisting[caption={Example \gls{AS2} Object}, label=listing::as2-object, language=Javascript]{resources/example-as2-object.json}
+	}{
 		ActivityPub benutzt die ActivityStreams Daten Syntax und das Vokabular. Zusätzlich kann ein weiteres Sicherheitsvokabular\footnote{Eine Ontologie die Sicherheitsaspekte definiert wie öffentliche Schlüssel, Signaturen u.v.m.} benutzt werden um Definitionen zum Bereitstellen eines öffentlichen Schlüssels, Signaturen sowie Verschlüsselten Inhalten u.v.m. zu haben. Am 22 April 2016 hat die \glqq W3C Community Group\grqq~ einen Entwurfsbericht herausgebracht. Durch diesen wird neue Syntax und Semantik definiert um Internet basierten Applikationen das Verschlüsseln, Entschlüsseln sowie digitale signieren und verifizieren von verlinkten Daten (Linked Data) zu ermöglichen. Es enthält auch Vokabeln für die Erstellung und Verwaltung einer dezentralen Public-Key-Infrastruktur über das Internet\cite{security-vocab-linked-data}. Ein Anwendungsfall ist das holen des öffentlichen Schlüssels eines Nutzers, über dessen Aktoren Objekt, um eine von Nutzer gesendete Nachricht zu verifizieren.
 		
 		\gls{JSON-LD} ist eine Erweiterung des JSON Formates um verlinkte Daten zu Repräsentieren. JSON an sich, ist ein Format welches im Web häufig Anwendung findet um Daten auszutauschen. Im Kern sind \gls{AS2} auch \gls{JSON-LD} Objekte. Der \gls{AS2} Kontext definiert verschiedene Klassen und Eigenschaften, von denen nicht alle benutzt werden. Typische Klassen sind \glqq Activity\grqq, \glqq Link\grqq~und \glqq OrderedCollection\grqq. Ein Beispiel \gls{AS2} Objekt sieht wie folgt aus: 	
 		\lstinputlisting[caption={Beispiel \gls{AS2} Objekt}, label=listing::as2-object, language=Javascript]{resources/example-as2-object.json}
+	}
 
 \section{Fediverse}
-	Als erstes soll der Begriff \glqq förderiertes Netzwerk\grqq~von Förderation hergeleitet werden.\\
-	
-	Unter einer Förderation versteht man den Verbund von etwas. Deutschland ist z. B. ein förderierter Bundesstaat, welcher 16 Bundesländern verbindet. Ein Verbund von Netzwerken wird demnach als Netzwerkverbund, oder auch \glqq förderiertes Netzwerk\grqq,~bezeichnet.\\
-	
-	\glqq Fediverse\grqq~ist ein Kofferwort aus \glqq Federated\grqq~und \glqq Universe\grqq. Historisch gesehen beinhaltete der Begriff nur Microblogging Plattformen die das OStatus Protokoll unterstützen. Mehr zu OStatus \textbf{S. \ref{subsec:ostatus}}. Mittlerweile beinhaltet das Fediverse mehr als nur Microblogging Plattformen wie Mastodon\footnote{\url{https://mastodon.social/about}} sondern auch soziale Netzwerke (z. B. GNU Social\footnote{\url{https://gnu.io/social/}}), sowie \glqq Video hosting\grqq~(PeerTube\footnote{\url{https://joinpeertube.org/en/}}),\glqq Content publishing\grqq~Plattformen, wie Wordpress, und viele weitere.\cite{fediverse}\\
-	
-	Im \glqq Fediverse\grqq~dreht sich alles um freie (Open Source) Software anstelle von kommerziellen Produkten. Zudem kann ausgesucht werden welchem Administrator man die Kontrolle über seine Daten geben möchte, anstatt auf eine einzelne Instanz vertrauen zu müssen.\cite{fediverse}\\
-	\todo{indirektes online Zitat!!!}
-	
-	Laut dem Fediverse Netzwerkreport 2018, welcher online zur Verfügung steht, hat sich die Gesamtanzahl der erreichbaren Instanzen von 2.756 auf 4.340 erhöht. Dies entspricht einem Wachstum von 58\%. Die Nutzeranzahl ist von 1.786.036 auf 2.474.601 gestiegen (39\%). Weitere Details sind im Netzwerk Report nachzulesen. Es ist hinzuzufügen das der Netzwerkreport unvollständig ist und Fehler beinhalten kann.\cite{fediverse-report}\\
+	\iflanguage{english}{
+		A network of networks is therefore referred to as a network interconnection, or \glqq federated network\grqq.\\
+		
+		A promotion is the association of something. Germany, for example, is a subsidised federal state linking 16 federal states. A network of networks is therefore referred to as a network interconnection, or \glqq federated network\grqq.\\
+		
+		\glqq Fediverse\grqq~is a suitcase word from \glqq Federated\grqq~and \glqq Universe\grqq. Historically, the term has only included microblogging platforms that support the OStatus protocol. More about OStatus \textbf{S. \ref{subsec:ostatus}}. Meanwhile the Fediverse contains more than just microblogging platforms like Mastodon\footnote{\url{https://mastodon.social/about}} but also social networks (e.g. GNU Social\footnote{\url{https://gnu.io/social/}}), as well as \glqq Video hosting\grqq~(PeerTube\footnote{\url{https://joinpeertube.org/en/}}),\glqq Content publishing\grqq~ Platforms, like Wordpress, and many more.\cite{fediverse}
+		
+		The \glqq Fediverse\grqq~is all about free (open source) software instead of commercial products. You can also choose which administrator you want to give control over your data instead of relying on a single instance.\cite{fediverse}\\
+		
+		According to the Fediverse Network Report 2018, which is available online, the total number of reachable instances has increased from 2,756 to 4,340. This corresponds to growth of 58\%. The number of users rose from 1,786,036 to 2,474,601 (39\%). Further details can be found in the Network Report. It should be added that the network report is incomplete and may contain bugs.\cite{fediverse-report}\\
+	}{
+		Als erstes soll der Begriff \glqq förderiertes Netzwerk\grqq~von Förderation hergeleitet werden.\\
+		
+		Unter einer Förderation versteht man den Verbund von etwas. Deutschland ist z. B. ein förderierter Bundesstaat, welcher 16 Bundesländern verbindet. Ein Verbund von Netzwerken wird demnach als Netzwerkverbund, oder auch \glqq förderiertes Netzwerk\grqq,~bezeichnet.\\
+		
+		\glqq Fediverse\grqq~ist ein Kofferwort aus \glqq Federated\grqq~und \glqq Universe\grqq. Historisch gesehen beinhaltete der Begriff nur Microblogging Plattformen die das OStatus Protokoll unterstützen. Mehr zu OStatus \textbf{S. \ref{subsec:ostatus}}. Mittlerweile beinhaltet das Fediverse mehr als nur Microblogging Plattformen wie Mastodon\footnote{\url{https://mastodon.social/about}} sondern auch soziale Netzwerke (z. B. GNU Social\footnote{\url{https://gnu.io/social/}}), sowie \glqq Video hosting\grqq~(PeerTube\footnote{\url{https://joinpeertube.org/en/}}),\glqq Content publishing\grqq~Plattformen, wie Wordpress, und viele weitere.\cite{fediverse}\\
+		
+		Im \glqq Fediverse\grqq~dreht sich alles um freie (Open Source) Software anstelle von kommerziellen Produkten. Zudem kann ausgesucht werden welchem Administrator man die Kontrolle über seine Daten geben möchte, anstatt auf eine einzelne Instanz vertrauen zu müssen.\cite{fediverse}\\
+		\todo{indirektes online Zitat!!!}
+		
+		Laut dem Fediverse Netzwerkreport 2018, welcher online zur Verfügung steht, hat sich die Gesamtanzahl der erreichbaren Instanzen von 2.756 auf 4.340 erhöht. Dies entspricht einem Wachstum von 58\%. Die Nutzeranzahl ist von 1.786.036 auf 2.474.601 gestiegen (39\%). Weitere Details sind im Netzwerk Report nachzulesen. Es ist hinzuzufügen das der Netzwerkreport unvollständig ist und Fehler beinhalten kann.\cite{fediverse-report}\\	
+	}
