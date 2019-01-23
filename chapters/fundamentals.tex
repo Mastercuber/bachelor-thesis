@@ -36,13 +36,13 @@
 	\section{
 		\iflanguage{english}{General principles of social networks}{Allgemeine Grundlagen sozialer Netzwerke}
 	}
+	
 		\subsection{
 			\iflanguage{english}{Difference between centralised and decentralised social networks}{Unterschied zentraler zu dezentralen sozialen Netzwerken}
 		}
 		\subsection{
 			\iflanguage{english}{Security aspects of social networks}{Sicherheitsaspekte sozialer Netzwerke}
 		}
-
 	\section{
 		\iflanguage{english}{cryptography}{Kryptographie}
 	}
@@ -65,7 +65,7 @@
 		Instead of the public key, the private key is used to generate a signature, in this case. This can then be verified with the public key of the corresponding private key.\\
 		\textbf{Example 2.} Bob wants to send a message to Alice and make sure it hasn't been changed along the way. He uses his private key and applies it to a message to generate a signature. Both he transmits to Alice. Bob's public key can be used to verify that the message has been transmitted correctly.
 	}{
-		\glqq Unter dem Begriff Kryptographie ist die Wissenschaft vom geheimen Schreiben zu verstehen\grqq.\footnote{Dietmar Wätjen, 2018, S.1} Man spricht von symmetrischer Verschlüsselung wenn eine Nachricht im Klartext vom Sender mit einem geheimen Schlüssel, welcher beiden Parteien bekannt ist, verschlüsselt und vom Empfänger, mit demselben Schlüssel, entschlüsselt wird.\footnote{Vgl. Dietmar Wätjen, 2018, S.1}\\
+		\glqq Unter dem Begriff Kryptographie ist die Wissenschaft vom geheimen Schreiben zu verstehen\grqq\footnote{Dietmar Wätjen, 2018, S.1}. Man spricht von symmetrischer Verschlüsselung wenn eine Nachricht im Klartext vom Sender mit einem geheimen Schlüssel, welcher beiden Parteien bekannt ist, verschlüsselt und vom Empfänger, mit demselben Schlüssel, entschlüsselt wird\footnote{Vgl. Dietmar Wätjen, 2018, S.1}.\\
 		\begin{figure}[h]
 			\begin{minipage}{\textwidth}
 				\centering
@@ -74,10 +74,11 @@
 				\label{ver-und-entschluesselung}
 				\caption{Symmetrische Ver- und Entschlüsselung}
 			\end{minipage}
-		\end{figure}	
+		\end{figure}\\
+		Von asymmetrischer Verschlüsselung ist die Rede, wenn die Teilnehmer anstatt einen gemeinsamen Schlüssel zu haben, der im vor hinein ausgetauscht werden muss, jeder ein Schlüsselpaar (öffentlicher und privater Schlüssel) besitzt.
 		\subsection{RSA}
-		Von asymmetrischer Verschlüsselung ist die Rede, wenn die Teilnehmer anstatt einen gemeinsamen Schlüssel zu haben, der im vor hinein ausgetauscht werden muss, jeder ein Schlüsselpaar (öffentlicher und privater Schlüssel) besitzt. Das \gls{rsa} Verfahren ist ein solches asymmetrisches Verschlüsselungsverfahren welches von den drei namens gebenden Mathematikern 1977 entwickelt wurde. Das \gls{rsa} Verfahren ist wohl das am häufigsten verwendete Public-Key-Kryptosystem.\\
-		\textbf{Beispiel 1.} Die Gesprächspartner Alice und Bob, welche beide ein Schlüsselpaar besitzen, miteinander kommunizieren. Alice verschlüsselt einen Nachrichtentext mit dem öffentlichen Schlüssel von Bob und sendet die verschlüsselte Nachricht an Bob. Dieser kann seinerseits mit seinem privaten Schlüssel die Nachricht entschlüsseln.\footnote{Vgl. Dietmar Wätjen, 2018, S.73 f.}\\
+		Das \gls{rsa} Verfahren ist ein solches asymmetrisches Verschlüsselungsverfahren welches von den drei namens gebenden Mathematikern 1977 entwickelt wurde. Das \gls{rsa} Verfahren ist wohl das am häufigsten verwendete Public-Key-Kryptosystem.\\
+		\textbf{Beispiel 1.} Die Gesprächspartner Alice und Bob, welche beide ein Schlüsselpaar besitzen, miteinander kommunizieren. Alice verschlüsselt einen Nachrichtentext mit dem öffentlichen Schlüssel von Bob und sendet die verschlüsselte Nachricht an Bob. Dieser kann seinerseits mit seinem privaten Schlüssel die Nachricht entschlüsseln\footnote{Vgl. Dietmar Wätjen, 2018, S.73 f.}.\\
 		\subsection{Signaturen}
 		Für die Sicherstellung der Authentizität können sogenannte Signaturen verwendet werden. Das oben kurz erläuterte Verfahren kann nicht nur zum Ver- und Entschlüsseln von Nachrichten benutzt werden, sondern auch zum signieren.\\
 		Dabei wird statt des öffentlichen Schlüssels, der private Schlüssel benutzt um eine, in diesem Fall, Signatur zu erzeugen. Diese kann dann mit dem öffentlichen Schlüssel des zugehörigen privaten Schlüssels verifiziert werden.\\
@@ -86,13 +87,21 @@
 			
 	\section{ActivityPub Standard}
 	\iflanguage{english}{
-		ActivityPub defines two protocol layers, as well as concepts, collections and interactions for decentralized social networks. A protocol layer is the client-to-server protocol (Social API) to enable clients to access a server and receive requests. The second protocol layer consists of the promoted server-to-server protocol (Federation Protocol), which allows the individual instances of decentralized social networks to exchange content with each other. ActivityPub is based on already existing recommendations of the \gls{w3c}, which were partly also developed by the \gls{swwg} like e.g. \gls{asc} and \gls{asv}.\\
+		The ActivityPub Standard was developed on 23 January 2018 by the \gls{w3c} recommended\cite{activityPub} and by a working group of the \gls{w3c}, the \gls{swwg}\cite{socialWg,pushSocialWeb}. This group was active from July 21, 2014 until February 13, 2018\cite{socialWg} and developed ActivityPub, \gls{asc}\cite{activityStreamsCore} and \gls{asv}\cite{activityStreamsVocabulary} among others. The \gls{swwg} was a working group of the \gls{w3c} with the aim to define new protocols, vocabularies and \gls{api}'s for the access to social content of the so-called \gls{owp}\cite{social-wg-charter}.\\
 		
-		Other technologies such as \gls{JSON-LD} are also used to ensure extensibility. New ontologies (vocabularies) can be used to add syntactic definitions and semantic descriptions to the existing ones\cite{activityPub}. These vocabularies can be specified in the context of the \gls{JSON-LD} object. ActivityPub uses the \gls{AS2} vocabulary which is extended by \gls{asv}.
+		ActivityPub defines two protocol layers, as well as concepts, collections and interactions for decentralized social networks. A protocol layer is the client-to-server protocol (Social API) used to allow clients to access a server and receive requests from the client\cite{activityPub}.\\ 
+		
+		The second protocol layer consists of the promoted server-to-server protocol (Federation Protocol), which allows the individual instances of decentralized social networks to exchange content with each other. ActivityPub is based on already existing recommendations of the \gls{w3c}, which were partly also developed by the \gls{swwg} like e.g. \gls{asc} and \gls{asv}\cite{activityPub}.\\
+		
+		Other technologies such as \gls{JSON-LD} are also used to ensure extensibility. New ontologies and vocabularies can be used to add more syntactic definitions and semantic descriptions to the existing ones\cite{activityPub}. These vocabularies can be specified in the context of the \gls{JSON-LD} object. ActivityPub uses the \gls{AS2} vocabulary which is extended by \gls{asv}.
 	}{
-		ActivityPub definiert zwei Protokollschichten, sowie Konzepte, Sammlungen und Interaktionen für dezentrale soziale Netzwerke. Eine Protokollschicht ist das Client-zu-Server Protokoll (Social API), um Clients den Zugriff auf einen Server zu ermöglichen sowie zum entgegennehmen von Anfragen. Die zweite Protokollschicht besteht aus dem förderierten Server-zu-Server Protkoll (Federation Protocol), welches den einzelnen Instanzen von dezentralen sozialen Netzwerken den Austausch von Inhalten untereinander gestattet. ActivityPub setzt auf bereits bestehende Empfehlungen des \gls{w3c} auf, welche teilweise auch von der \gls{swwg} entwickelt wurden wie zB. \gls{asc} und \gls{asv}.\\
+		Der ActivityPub Standard wurde am 23 Januar 2018 von der \gls{w3c} empfohlen\cite{activityPub} und von einer Arbeitsgruppe des \gls{w3c}, der \gls{swwg}\cite{socialWg,pushSocialWeb}, entwickelt. Diese Gruppe war vom 21. Juli 2014 bis zum 13 Februar 2018 aktiv\cite{socialWg} und entwickelte unter anderem ActivityPub, \gls{asc}\cite{activityStreamsCore} und \gls{asv}\cite{activityStreamsVocabulary}. Die \gls{swwg} war eine Arbeitsgruppe des \gls{w3c} mit dem Ziel neue Protokolle, Vokabulare und \gls{api}'s zu definieren für den Zugriff auf soziale Inhalte der sogenannten \gls{owp}\cite{social-wg-charter}.\\
 		
-		Auch andere Technologien wie \gls{JSON-LD} werden benutzt um die Erweiterbarkeit zu gewährleisten. Über neue Ontologien (Vokabulare) können weitere syntaktische Definitionen und semantische Beschreibungen zu den bestehenden hinzugefügt werden\cite{activityPub}. Diese Vokabulare können im Kontext des \gls{JSON-LD} Objektes, angegeben werden. Bei ActivityPub wird das \gls{AS2} Vokabular verwendet welches durch \gls{asv} erweitert wird.
+		ActivityPub definiert zwei Protokollschichten, sowie Konzepte, Sammlungen und Interaktionen für dezentrale soziale Netzwerke. Eine Protokollschicht ist das Client-zu-Server Protokoll (Social API), um Clients den Zugriff auf einen Server zu ermöglichen sowie zum entgegennehmen von Anfragen die vom Client abgesetzt wurden\cite{activityPub}.\\ 
+		
+		Die zweite Protokollschicht besteht aus dem förderierten Server-zu-Server Protokoll (Federation Protocol), welches den einzelnen Instanzen von dezentralen sozialen Netzwerken den Austausch von Inhalten untereinander gestattet. ActivityPub setzt auf bereits bestehende Empfehlungen des \gls{w3c} auf, welche teilweise auch von der \gls{swwg} entwickelt wurden wie zB. \gls{asc} und \gls{asv}\cite{activityPub}.\\
+		
+		Auch andere Technologien wie \gls{JSON-LD} werden benutzt um die Erweiterbarkeit zu gewährleisten. Über neue Ontologien und Vokabulare können weitere syntaktische Definitionen und semantische Beschreibungen zu den bestehenden hinzugefügt werden\cite{activityPub}. Diese Vokabulare können im Kontext des \gls{JSON-LD} Objektes, angegeben werden. Bei ActivityPub wird das \gls{AS2} Vokabular verwendet welches durch \gls{asv} erweitert wird.
 	}
 	\subsection{
 		\iflanguage{english}{Elements of the protocol}{Bestandteile des Protokolls}
