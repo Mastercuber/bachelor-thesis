@@ -20,7 +20,7 @@
 \documentclass[ngerman,draft]{vsysthesis}
 % Use space between paragraphs
 %\KOMAoption{parskip}{half+}
-
+\usepackage{acronym}
 %% ---------------------------------
 %% | Information about the thesis  |
 %% ---------------------------------
@@ -170,8 +170,8 @@
 %% |   Table of Contents  |
 %% ------------------------
 \tableofcontents
-%%\listoffigures
-%%\listoftables
+\listoffigures
+\listoftables
 
 %% ------------------------
 %% | Glossary/Acronyms    |
@@ -182,6 +182,8 @@
 
 % print acronyms (optional)
 \printglossary[style=long,type=\acronymtype]
+
+\include{chapters/glossary}
 
 %% -----------------
 %% |   Main part   |
