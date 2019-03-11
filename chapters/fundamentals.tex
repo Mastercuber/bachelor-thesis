@@ -97,11 +97,21 @@
 	}{
 		Der ActivityPub Standard wurde am 23 Januar 2018 von der \gls{w3c} empfohlen\cite{activityPub} und von einer Arbeitsgruppe des \gls{w3c}, der \gls{swwg}\cite{socialWg,pushSocialWeb}, entwickelt. Diese Gruppe war vom 21. Juli 2014 bis zum 13 Februar 2018 aktiv\cite{socialWg} und entwickelte unter anderem ActivityPub, \gls{asc}\cite{activityStreamsCore} und \gls{asv}\cite{activityStreamsVocabulary}. Die \gls{swwg} war eine Arbeitsgruppe des \gls{w3c} mit dem Ziel neue Protokolle, Vokabulare und \gls{api}'s zu definieren für den Zugriff auf soziale Inhalte der sogenannten \gls{owp}\cite{social-wg-charter}.\\
 		
-		ActivityPub definiert zwei Protokollschichten, sowie Konzepte, Sammlungen und Interaktionen für dezentrale soziale Netzwerke. Eine Protokollschicht ist das Client-zu-Server Protokoll (Social API), um Clients den Zugriff auf einen Server zu ermöglichen sowie zum entgegennehmen von Anfragen die vom Client abgesetzt wurden\cite{activityPub}.\\ 
+		ActivityPub definiert zwei Protokollschichten, sowie Konzepte, Sammlungen und Interaktionen für dezentrale soziale Netzwerke. Eine Protokollschicht ist das Client-zu-Server Protokoll (Social API), um Clients den Zugriff auf die neusten an sie gesendeten Inhalte zu ermöglichen sowie zum entgegennehmen von Anfragen die vom Client abgesetzt wurden\cite{activityPub}.\\ 
 		
-		Die zweite Protokollschicht besteht aus dem förderierten Server-zu-Server Protokoll (Federation Protocol), welches den einzelnen Instanzen von dezentralen sozialen Netzwerken den Austausch von Inhalten untereinander gestattet. ActivityPub setzt auf bereits bestehende Empfehlungen des \gls{w3c} auf, welche teilweise auch von der \gls{swwg} entwickelt wurden wie zB. \gls{asc} und \gls{asv}\cite{activityPub}.\\
+		\begin{figure}[h]
+			\begin{minipage}{\textwidth}
+				\centering
+				\includegraphics[scale=0.55]{figures/client-server-federated.png}
+				\quelle{ActivityPub 2018 - Overview}
+				\label{Client zu Server und Server zu Server Interaktionen}
+				\caption{Schnittstellen des ActivityPub Protokolls}
+			\end{minipage}
+		\end{figure}
 		
-		Auch andere Technologien wie \gls{JSON-LD} werden benutzt um die Erweiterbarkeit zu gewährleisten. Über neue Ontologien und Vokabulare können weitere syntaktische Definitionen und semantische Beschreibungen zu den bestehenden hinzugefügt werden\cite{activityPub}. Diese Vokabulare können im Kontext des \gls{JSON-LD} Objektes, angegeben werden. Bei ActivityPub wird das \gls{AS2} Vokabular verwendet welches durch \gls{asv} erweitert wird.
+		Die zweite Protokollschicht besteht aus dem förderierten Server-zu-Server Protokoll (Federation Protocol), welches den einzelnen Instanzen von dezentralen sozialen Netzwerken den Austausch von Inhalten untereinander gestattet. ActivityPub setzt auf bereits bestehende Empfehlungen des \gls{w3c} auf, welche teilweise auch von der \gls{swwg} entwickelt wurden wie zB. \gls{asc} und \gls{asv}\cite{activityPub}. Die zwei Protokollschichten können unabhängig voneinander implementiert werden.\\
+		
+		Auch andere Technologien wie \gls{JSON-LD} werden genutzt um u. A. die Erweiterbarkeit zu gewährleisten. Über neue Ontologien und Vokabulare können weitere syntaktische Definitionen und semantische Beschreibungen zu den bestehenden hinzugefügt werden\cite{activityPub}. Diese Vokabulare können im Kontext des \gls{JSON-LD} Objektes, angegeben werden. Bei ActivityPub wird das \gls{AS2} Vokabular verwendet welches durch \gls{asv} erweitert wird.
 	}
 	\subsection{
 		\iflanguage{english}{Elements of the protocol}{Bestandteile des Protokolls}
@@ -113,13 +123,32 @@
 		
 		The type of an actuator (e. g. "type": "Create") can vary between the five mentioned above.
 		\lstinputlisting{resources/mastodon-macu.json}
-	}{
-		Das Client-zu-Server sowie förderierte Server-zu-Server Protokoll können unabhängig voneinander implementiert werden. Ersteres besteht aus einem Client und Server Teil.\\
+	}{	
+		Die Hauptbestandteile des ActivityPub Standards sind die folgenden:
+		\begin{itemize}
+			\item Aktoren
+			\item Objekte
+			\item Sammlungen
+			\item Aktivitäten
+		\end{itemize}
+		In ActivityPub werden Benutzer als \glqq Aktoren\grqq(actors) dargestellt. Diese können nicht nur Personen, sondern auch Applikationen, Organisationen, Gruppen und Services sein\cite{activityStreamsCore}. Jedes Aktoren Objekt muss eine \glqq Inbox\grqq~und \glqq Outbox\grqq, welche geordnete Sammlungen sein müssen, sowie eine ID und ein Typ besitzen\cite{activityPub}. Die ID muss global einzigartig sein. Dies kann garantiert werden durch eine Domänen und Protokoll bezogene URI oder IRI wie z. B. \glqq https://example.org/users/alice\grqq oder \glqq https://example.org/users/álìcê\grqq. Der Typ eines Aktor (z. B. "type": "Person") kann variieren zwischen den fünf oben genannten.
+		\lstinputlisting{resources/mastodon-macu.json}
+	}
+	\subsection{
+		\iflanguage{english}{Related standards and components}{Zugehörige Standards und Komponenten}
+	}
+	\iflanguage{english}{
+		ActivityPub uses the ActivityStreams data syntax and vocabulary. In addition, another security vocabulary\footnote{An ontology that defines security aspects such as public keys, signatures, and more} can be used to have definitions for providing a public key, signatures, encrypted content, and more. On April 22, 2016, the \glqq W3C Community Group\grqq~ published a draft report. It defines new syntax and semantics to enable Internet-based applications to encrypt, decrypt, digitally sign and verify linked data. It also contains vocabulary for creating and managing a decentralized public key infrastructure over the Internet\cite{security-vocab-linked-data}. A use case is retrieving a user's public key, using its object actuators to verify a message sent by users.
 		
-		In ActivityPub werden Benutzer als \glqq Aktoren\grqq(actors) dargestellt. Diese können nicht nur Personen, sondern auch Applikationen, Organisationen, Gruppen und Services sein\cite{activityStreamsCore}. Jedes Aktoren Objekt muss eine \glqq Inbox\grqq~und \glqq Outbox\grqq, welche geordnete Sammlungen sein müssen, sowie eine ID und ein Typ besitzen\cite{activityPub}. Die ID muss global einzigartig sein. Dies kann garantiert werden durch eine Domänen und Protokoll bezogene URI oder IRI wie zum Beispiel \glqq https://example.org/users/alice\grqq oder \glqq https://example.org/users/alice/áŷýà/2\grqq. %http://fusion.cs.uni-jena.de/fusion/blog/2016/11/18/iri-uri-url-urn-and-their-differences/
-		Der Typ eines Aktor (z. B. "type": "Create") kann variieren zwischen den fünf oben genannten.
-		\todo{Was bedeutet global einzigartig}
-		\lstinputlisting{resources/mastodon-macu.json}	
+		\gls{JSON-LD} is an extension of the JSON format to represent linked data. JSON itself is a format that is often used on the web to exchange data. In essence, \gls{AS2} are also \gls{JSON-LD} objects. The \gls{AS2} context defines different classes and properties, not all of which are used. Typical classes are \glqq Activity\grqq, \glqq Link\grqq~and \glqq OrderedCollection\grqq. An example \gls{AS2} object looks like this: 	
+		\lstinputlisting[caption={Example \gls{AS2} Object}, label=listing::as2-object, language=Javascript]{resources/example-as2-object.json}
+	}{
+		ActivityPub benutzt die ActivityStreams Daten Syntax und das Vokabular. Zusätzlich kann ein weiteres Sicherheitsvokabular\footnote{Eine Ontologie die Sicherheitsaspekte definiert wie öffentliche Schlüssel, Signaturen u.v.m.} benutzt werden um Definitionen zum Bereitstellen eines öffentlichen Schlüssels, Signaturen sowie Verschlüsselten Inhalten u.v.m. zu haben. Am 22 April 2016 hat die \glqq W3C Community Group\grqq~ einen Entwurfsbericht herausgebracht. Durch diesen wird neue Syntax und Semantik definiert um Internet basierten Applikationen das Verschlüsseln, Entschlüsseln sowie digitale Signieren und Verifizieren von verlinkten Daten (Linked Data) zu ermöglichen. Es enthält auch Vokabeln für die Erstellung und Verwaltung einer dezentralen Public-Key-Infrastruktur über das Internet\cite{security-vocab-linked-data}. Ein Anwendungsfall ist das holen des öffentlichen Schlüssels eines Nutzers, über dessen Aktoren Objekt, um eine von Nutzer gesendete Nachricht zu verifizieren.\\
+		
+		\glqq \gls{AS2}\grqq~beinhaltet Modelle für Aktoren, Aktivitäten, Intransitiven Aktivitäten, Objekte, Links, Sammlungen, Natürliche Sprachwerte (Strings) und für Internationalisierung. Das Kernvokabular von \gls{AS2} wird durch \gls{asv} erweitert. Dazu gehören verschiedene Aktivitätstypen wie z.B. \glqq Accept\grqq,\glqq Add\grqq,\glqq Remove\grqq,\glqq Delete\grqq~und \glqq Create\grqq\footnote{\href{https://www.w3.org/TR/activitystreams-vocabulary/}{activity-types https://www.w3.org/TR/activitystreams-vocabulary/}}, um Aktorentypen wie \glqq Person\grqq, \glqq Application\grqq~und \glqq Group\grqq\footnote{\href{https://www.w3.org/TR/activitystreams-vocabulary/}{actor-types https://www.w3.org/TR/activitystreams-vocabulary/}} sowie um verschiedenste Objekttypen wie \glqq Article\grqq, \glqq Event\grqq, \glqq Note\grqq~und \glqq Relationship\grqq\footnote{\href{https://www.w3.org/TR/activitystreams-vocabulary/}{object-types https://www.w3.org/TR/activitystreams-vocabulary/}}.\\
+		
+		\gls{JSON-LD} ist eine Erweiterung des JSON Formates um verlinkte Daten zu Repräsentieren. JSON an sich, ist ein Format welches im Web häufig Anwendung findet um Daten auszutauschen. Im Kern sind \gls{AS2} auch \gls{JSON-LD} Objekte. Der \gls{AS2} Kontext definiert verschiedene Klassen und Eigenschaften, von denen nicht alle benutzt werden. Typische Klassen sind \glqq Activity\grqq, \glqq Link\grqq~und \glqq OrderedCollection\grqq. Ein Beispiel \gls{AS2} Objekt sieht wie folgt aus: 	
+		\lstinputlisting[caption={Beispiel \gls{AS2} Objekt}, label=listing::as2-object, language=Javascript]{resources/example-as2-object.json}
 	}
 	\subsection{
 		\iflanguage{english}{Authentication and data integrity}{Authentifizierung und Datenintegrität}
@@ -135,33 +164,15 @@
 	}{
 		Für die Authentifizierung und zum sichern der Datenintegrität definiert der Standard keine Mechanismen. Es gibt allerdings \glqq Best Practices\grqq~für die Umsetzung dieser Anforderungen.\\
 	
-		Zum einen werden bei der Client-zu-Server Authentifizierung \glqq OAuth 2.0\grqq~Tokens benutzt, zum anderen auf der Server Seite \glqq HTTP\grqq~oder \glqq Linked Data Signatures\grqq zur Sicherstellung der Datenintegrität.\\
-		\todo{OAuth 2.0}
+		Zum einen werden bei der Client-zu-Server Authentifizierung \glqq OAuth 2.0 Bearer Tokens\grqq~benutzt, zum anderen auf der Server Seite \glqq HTTP\grqq~oder \glqq Linked Data Signatures\grqq zur Sicherstellung der Datenintegrität.\\
+
+		Bei\glqq OAuth 2.0 Bearer Tokens\grqq~handelt es sich um eine Methode um auf geschützte Ressourcen zugreifen zu können\cite{oauth2}. ActivityPub nutzt diese für jegliche Interaktionen mit dem Server.\\
 		
+		\glqq Die Datenintegrität umfasst Maßnahmen damit geschützte Daten während der Verarbeitung oder Übertragung nicht durch unautorisierte Personen entfernt oder verändert werden können. Sie stellt die Konsistenz, die Richtigkeit und Vertrauenswürdigkeit der Daten während deren gesamten Lebensdauer sicher und sorgt dafür, dass die relevanten Daten eines Datenstroms rekonstruierbar sind\grqq\cite{data-integrity}.\\
 		
-		\todo{Datenintegrität}
-		\glqq Die Datenintegrität umfasst Maßnahmen damit geschützte Daten während der Verarbeitung oder Übertragung nicht durch unautorisierte Personen entfernt oder verändert werden können. Sie stellt die Konsistenz, die Richtigkeit und Vertrauenswürdigkeit der Daten während deren gesamten Lebensdauer sicher und sorgt dafür, dass die relevanten Daten eines Datenstroms rekonstruierbar sind.\grqq\footnote{\cite{data-integrity}}
+		Um sicherzustellen das HTTP Anfragen beim Transport nicht verändert wurden, können HTTP Signaturen verwendet werden. Diesen verwenden einen kryptografischen Algorithmus um aus ausgewählten Kopfzeilen einer HTTP Anfrage einen kryptischen Zeichenfolge zu generieren. Auf der Empfängerseite kann die Zeichenfolge mit mitgelieferten und auch nachschlagbaren Information verifiziert werden.\\
 		
-		\todo{HTTP Signaturen, fehlt in Englischer Übersetzung}
-		Um sicherzustellen das HTTP Anfragen beim Transport nicht verändert wurden, können HTTP Signaturen verwendet werden. Bei diesen wird ein kryptografischer Algorithmus benutzt um \\
-		
-		\todo{Linked Data Signaturen}
 		Wenn ein Objekt nicht nur vom Client zum Server gesendet, sondern auch zwischen Servern untereinander weitergeleitet werden soll wird zum Sicherstellen der Datenintegrität ein anderes Verfahren benötigt als HTTP Signaturen. Die \glqq Best Practices\grqq~empfehlen für solche Fälle \glqq Linked Data Signatures\grqq. Der größte Unterschied zwischen HTTP Signaturen und \glqq Linked Data Signatures\grqq~besteht darin, welche Daten zum Erstellen der Signatur verwendet werden. Bei HTTP Signaturen sind es die Kopfzeilen. Mit \glqq Linked Data Signatures\grqq~kann auch das Objekt selbst, also der Payload einer HTTP Anfrage, anstatt nur die Kopfzeilen, zum signieren verwendet werden.	
-	}
-	
-	\subsection{
-		\iflanguage{english}{Related standards and components}{Zugehörige Standards und Komponenten}
-	}
-	\iflanguage{english}{
-		ActivityPub uses the ActivityStreams data syntax and vocabulary. In addition, another security vocabulary\footnote{An ontology that defines security aspects such as public keys, signatures, and more} can be used to have definitions for providing a public key, signatures, encrypted content, and more. On April 22, 2016, the \glqq W3C Community Group\grqq~ published a draft report. It defines new syntax and semantics to enable Internet-based applications to encrypt, decrypt, digitally sign and verify linked data. It also contains vocabulary for creating and managing a decentralized public key infrastructure over the Internet\cite{security-vocab-linked-data}. A use case is retrieving a user's public key, using its object actuators to verify a message sent by users.
-		
-		\gls{JSON-LD} is an extension of the JSON format to represent linked data. JSON itself is a format that is often used on the web to exchange data. In essence, \gls{AS2} are also \gls{JSON-LD} objects. The \gls{AS2} context defines different classes and properties, not all of which are used. Typical classes are \glqq Activity\grqq, \glqq Link\grqq~and \glqq OrderedCollection\grqq. An example \gls{AS2} object looks like this: 	
-		\lstinputlisting[caption={Example \gls{AS2} Object}, label=listing::as2-object, language=Javascript]{resources/example-as2-object.json}
-	}{
-		ActivityPub benutzt die ActivityStreams Daten Syntax und das Vokabular. Zusätzlich kann ein weiteres Sicherheitsvokabular\footnote{Eine Ontologie die Sicherheitsaspekte definiert wie öffentliche Schlüssel, Signaturen u.v.m.} benutzt werden um Definitionen zum Bereitstellen eines öffentlichen Schlüssels, Signaturen sowie Verschlüsselten Inhalten u.v.m. zu haben. Am 22 April 2016 hat die \glqq W3C Community Group\grqq~ einen Entwurfsbericht herausgebracht. Durch diesen wird neue Syntax und Semantik definiert um Internet basierten Applikationen das Verschlüsseln, Entschlüsseln sowie digitale signieren und verifizieren von verlinkten Daten (Linked Data) zu ermöglichen. Es enthält auch Vokabeln für die Erstellung und Verwaltung einer dezentralen Public-Key-Infrastruktur über das Internet\cite{security-vocab-linked-data}. Ein Anwendungsfall ist das holen des öffentlichen Schlüssels eines Nutzers, über dessen Aktoren Objekt, um eine von Nutzer gesendete Nachricht zu verifizieren.
-		
-		\gls{JSON-LD} ist eine Erweiterung des JSON Formates um verlinkte Daten zu Repräsentieren. JSON an sich, ist ein Format welches im Web häufig Anwendung findet um Daten auszutauschen. Im Kern sind \gls{AS2} auch \gls{JSON-LD} Objekte. Der \gls{AS2} Kontext definiert verschiedene Klassen und Eigenschaften, von denen nicht alle benutzt werden. Typische Klassen sind \glqq Activity\grqq, \glqq Link\grqq~und \glqq OrderedCollection\grqq. Ein Beispiel \gls{AS2} Objekt sieht wie folgt aus: 	
-		\lstinputlisting[caption={Beispiel \gls{AS2} Objekt}, label=listing::as2-object, language=Javascript]{resources/example-as2-object.json}
 	}
 
 \section{Fediverse}
@@ -170,7 +181,7 @@
 		
 		A promotion is the association of something. Germany, for example, is a subsidised federal state linking 16 federal states. A network of networks is therefore referred to as a network interconnection, or \glqq federated network\grqq.\\
 		
-		\glqq Fediverse\grqq~is a suitcase word from \glqq Federated\grqq~and \glqq Universe\grqq. Historically, the term has only included microblogging platforms that support the OStatus protocol. More about OStatus \textbf{S. \ref{subsec:ostatus}}. Meanwhile the Fediverse contains more than just microblogging platforms like Mastodon\footnote{\url{https://mastodon.social/about}} but also social networks (e.g. GNU Social\footnote{\url{https://gnu.io/social/}}), as well as \glqq Video hosting\grqq~(PeerTube\footnote{\url{https://joinpeertube.org/en/}}),\glqq Content publishing\grqq~ Platforms, like Wordpress, and many more.\cite{fediverse}
+		\glqq Fediverse\grqq~is a suitcase word from \glqq Federated\grqq~and \glqq Universe\grqq. Historically, the term has only included microblogging platforms that support the OStatus protocol. More about OStatus \textbf{S. \ref{sub:ostatus}}. Meanwhile the Fediverse contains more than just microblogging platforms like Mastodon\footnote{\url{https://mastodon.social/about}} but also social networks (e.g. GNU Social\footnote{\url{https://gnu.io/social/}}), as well as \glqq Video hosting\grqq~(PeerTube\footnote{\url{https://joinpeertube.org/en/}}),\glqq Content publishing\grqq~ Platforms, like Wordpress, and many more.\cite{fediverse}
 		
 		The \glqq Fediverse\grqq~is all about free (open source) software instead of commercial products. You can also choose which administrator you want to give control over your data instead of relying on a single instance.\cite{fediverse}\\
 		
@@ -180,7 +191,7 @@
 		
 		Unter einer Förderation versteht man den Verbund von etwas. Deutschland ist z. B. ein förderierter Bundesstaat, welcher 16 Bundesländern verbindet. Ein Verbund von Netzwerken wird demnach als Netzwerkverbund, oder auch \glqq förderiertes Netzwerk\grqq,~bezeichnet.\\
 		
-		\glqq Fediverse\grqq~ist ein Kofferwort aus \glqq Federated\grqq~und \glqq Universe\grqq. Historisch gesehen beinhaltete der Begriff nur Microblogging Plattformen die das OStatus Protokoll unterstützen. Mehr zu OStatus \textbf{S. \ref{subsec:ostatus}}. Mittlerweile beinhaltet das Fediverse mehr als nur Microblogging Plattformen wie Mastodon\footnote{\url{https://mastodon.social/about}} sondern auch soziale Netzwerke (z. B. GNU Social\footnote{\url{https://gnu.io/social/}}), sowie \glqq Video hosting\grqq~(PeerTube\footnote{\url{https://joinpeertube.org/en/}}),\glqq Content publishing\grqq~Plattformen, wie Wordpress, und viele weitere.\cite{fediverse}\\
+		\glqq Fediverse\grqq~ist ein Kofferwort aus \glqq Federated\grqq~und \glqq Universe\grqq. Historisch gesehen beinhaltete der Begriff nur Microblogging Plattformen die das OStatus Protokoll unterstützen. Mehr zu OStatus \textbf{S. \ref{sub:ostatus}}. Mittlerweile beinhaltet das Fediverse mehr als nur Microblogging Plattformen wie Mastodon\footnote{\url{https://mastodon.social/about}} oder GNU Social\footnote{\url{https://gnu.io/social/}} sondern auch soziale Netzwerke, sowie \glqq Video hosting\grqq~(PeerTube\footnote{\url{https://joinpeertube.org/en/}}),\glqq Content publishing\grqq~Plattformen, wie Wordpress, und viele weitere.\cite{fediverse}\\
 		
 		Im \glqq Fediverse\grqq~dreht sich alles um freie (Open Source) Software anstelle von kommerziellen Produkten. Zudem kann ausgesucht werden welchem Administrator man die Kontrolle über seine Daten geben möchte, anstatt auf eine einzelne Instanz vertrauen zu müssen.\cite{fediverse}\\
 		\todo{indirektes online Zitat!!!}

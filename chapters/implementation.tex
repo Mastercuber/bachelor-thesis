@@ -21,9 +21,31 @@ Die IDataSource Implementierung wird für das Unternehmen angefertigt in der die
 \begin{figure}[h]
 	\begin{minipage}{\textwidth}
 		\centering
-		\includegraphics[scale=0.5]{figures/klassendiagramm-activitypub.png}
+		\includegraphics[scale=0.6]{figures/klassendiagramm-activitypub.png}
 		\label{klassendiagramm-activitypub}
 		\caption{Hauptkomponenten des förderierten Servers}
 	\end{minipage}
 \end{figure}
+Obig abgebildetes Klassendiagramm zeigt die Hauptkomponenten des ActivityPub Services und die enthaltenen Methoden.\\
+In der Collections Klasse sind Weiterleitungen zu entsprechenden Methoden der Datenquelle; Sie dient ausschließlich der Lesbarkeit für den Entwickler.\\
+Bei der ActivityPub Klasse handelt es sich den Eingangspunkt der Express Router. Die entsprechenden Anfrage-Handler wandeln die Anfrage in einen Service Aufruf um. Diese Klasse enthält nicht nur Handler für eingehende, sondern auch Methoden zum senden von Anfragen.\\
+
+Um eine möglichst Modulare Implementierung zu gewährleisten wurden alle Datenbankspezifischen Methoden in das IDataSource Interface ausgelagert. Durch die Implementierung dieses Interfaces können Aktivitäten ActivityPub konform empfangen werden. Das senden wiederum muss jedes Backend selbst implementieren. Dafür stehen in der ActivityPub Klasse Methoden zum senden von Aktivitäten bereit. Durch einfaches importieren der ActivityPub Klasse erhält man eine Instanz. Darüber sind die Methoden verfügbar.\\
+
+Es ist auch möglich andere Datenquellen als die in der Bachelor Arbeit verwendete GraphQL Schnittstelle zu nutzen, wie z. B. MySQL oder MongoDB.\\
+
 \section{Server-zu-Server Protokoll}
+Der Funktionsumfang des förderierten Servers beschränkt sich auf den folgenden:
+\begin{itemize}
+	\item Empfangen von \textit{\textbf{Article}} und \textit{\textbf{Note}} Objekten am Geteilten- und Nutzernachrichteneingang (sharedInbox, Inbox)
+	\item Empfangen von \textit{\textbf{Like}} und \textit{\textbf{Follow}} Aktivitäten am Geteilten- und Nutzernachrichteneingang 
+	\item Empfangen von \textit{\textbf{Undo}} und \textit{\textbf{Delete}} Aktivitäten für \textit{\textbf{Articles}} und \textit{\textbf{Notes}} am Geteilten- und Nutzernachrichteneingang 
+	\item Bereitstellen eines \textit{\textbf{Webfinger}} und \textit{\textbf{Aktoren}} Objektes
+	\item Bereitstellen der \textit{\textbf{Followers}}, \textit{\textbf{Following}} und \textit{\textbf{Outbox}} Sammlungen
+\end{itemize}
+
+Artikel und Notizen werden bei der in dieser Arbeit angefertigten Implementierung gleich behandelt. Beim empfangen einer Create Aktivität die eine Notiz oder Artikel als Objekt Attribut hat, wird der Artikel über die IDataSource Implementierung erstellt und entsprechende Metadaten zum rekonstruieren der ID's gespeichert. Somit können empfangene Posts, welche an die Öffentlichkeit gerichtet sind, im Netzwerk angezeigt werden.\\
+
+Wie wird nun sichergestellt, dass ein Nutzer dazu berechtigt ist 
+
+Eingehende HTTP POST Anfragen werden auf eine vorhandene Signatur Kopfzeile geprüft. Wird diese nicht gefunden, wird die Anfrage verworfen. Ist sie vorhanden, wird die Signatur geprüft indem das Aktoren Objekt über die zugehörige keyId angefragt wird und die Signatur gegen den öffentlichen Schlüssel geprüft wird. Dies stellt sicher, das der Inhalt der Nachricht beim Transport nicht verändert wurde. Eine Authentifizierung des Clients wird nicht benötigt, da es sich um eine öffentliche Schnittstelle handelt.

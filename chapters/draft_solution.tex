@@ -20,10 +20,11 @@ Zu Beginn dieses Kapitels sollte sich die Frage gestellt werden wie die Architek
 
 Eine Trennung der ActivityPub Komponenten in einen eigenen Service würde für eine isolierbare Ausführung sorgen. Es
 \section{Entwurfsentscheidung}
+Für die Nachfolgende Architektur wurde sich in dieser Arbeit entschieden, da sie einen Modularen Charakter hat. Dies ist gegeben durch die Kapselung des Services in eine Express Middleware. Sowohl das alleinstehende betreiben des Services ist möglich als auch die Integration in einen bestehen Express Server.
 \section{Technische Architektur}
 	\begin{figure}[h]
 		\centering
-		\includegraphics[scale=0.5]{figures/technische-architektur-activitypub.png}
+		\includegraphics[scale=0.6]{figures/technische-architektur-activitypub.png}
 		\label{technische-architektur-activitypub}
 		\caption{Technische Architektur ActivityPub}
 	\end{figure}
@@ -36,7 +37,7 @@ Eine Trennung der ActivityPub Komponenten in einen eigenen Service würde für e
 	\begin{figure}[h]
 		\begin{minipage}{\textwidth}
 			\centering
-			\includegraphics[scale=0.5]{figures/Technische-Architektur-standalone.png}
+			\includegraphics[scale=0.6]{figures/Technische-Architektur-standalone.png}
 			\label{technische-architektur-standalone}
 			\caption{Technische Architektur als allein stehender Server}
 		\end{minipage}
