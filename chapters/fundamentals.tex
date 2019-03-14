@@ -29,12 +29,18 @@
 		\todo{Welche Klassen von Anwendungen und Implementierungen gibt es allgemein bei sozialen Netzwerken? Einordnen von ActivityPub!!}
 		%\todo{AP Beschreibung in hinteren Teil des Grundlagenkapitels oder zu Beginn des 3. Kapitels}
 		%Klassen von Anwendungen sowie Implementierungen erläutert.
-		Dieses Kapitel gibt einen Überblick über allgemeine Grundlagen von sozialen Netzwerken. Es wird grob erläutert für was soziale Netzwerke gedacht sind, der Unterschied zwischen zentralen und dezentralen sozialen Netzwerken herausgestellt sowie auf Sicherheitsaspekte eingegangen.\\
-		Im Anschluss wird ein Kryptographie Unterkapitel eingeführt in dem die benötigten Verfahren für die sichere Umsetzung erläutert werden. Begonnen wird mit einer kurzen Einführung in Kryptographie und darauf folgend kurz das \gls{rsa} Verfahren sowie eine allgemeine Beschreibung von Signatur Algorithmen gegeben.\\ 
-		Zuletzt wird der ActivityPub Standard eingeführt sowie eingeordnet, Bestandteile des Protokolls beschrieben, die Funktionsweise der Client-zu-Server sowie Server-zu-Server Kommunikation und zugehörige Standards kurz erläutert.
+		Dieses Kapitel gibt einen Überblick über allgemeine Grundlagen von sozialen Netzwerken. Es wird grob erläutert für was soziale Netzwerke gedacht sind; Der Unterschied zwischen zentralen, verteilen, dezentralen und förderierten sozialen Netzwerken herausgestellt sowie auf Sicherheitsaspekte eingegangen.\\
+		
+		Im Anschluss wird ein Kryptographie Unterkapitel eingeführt in dem die benötigten Verfahren für die sichere Umsetzung erläutert werden. Begonnen wird mit einer kurzen Einführung in Kryptographie. Darauf folgend wird kurz das RSA Verfahren sowie eine allgemeine Beschreibung von Signatur Algorithmen vorgenommen. HTTP Signaturen werden etwas ausführlicher beschrieben, da diese bei der Implementierung des Prototypen verwendet wurden.\\ 
+		
+		Darauf folgend wird der ActivityPub Standard eingeführt sowie eingeordnet, Bestandteile des Protokolls beschrieben, die Funktionsweise der Client-zu-Server sowie Server-zu-Server Kommunikation und zugehörige Standards kurz erläutert. Desweiteren wird auf die Authentifizierung und Datenintegrität bei ActivityPub eingegangen um damit folgende Fragen zu klären:
+		\begin{itemize}
+			\item Wie authentifiziert sich ein Benutzer gegenüber dem Server?
+			\item Wie stellt man sicher, dass die Übertragenen Daten unverändert angekommen sind?
+		\end{itemize}
 	}
 	\section{
-		\iflanguage{english}{General principles of social networks}{Allgemeine Grundlagen sozialer Netzwerke}
+		\iflanguage{english}{General principles of social networks}{Allgemeine Grundlagen sozialer Netzwerke}		
 	}
 	
 		\subsection{
@@ -59,10 +65,12 @@
 		\end{figure}
 		\subsection{RSA}
 		Asymmetric encryption is the term used when, instead of having a common key that has to be exchanged in advance, the participants each have a pair of keys (public and private keys). The \gls{rsa} method is one such asymmetric encryption method developed by the three mathematicians named after it in 1977. The \gls{rsa} method is probably the most commonly used public-key cryptosystem.\\
+		
 		\textbf{Example 1.} The interlocutors Alice and Bob, who both have a key pair, communicate with each other. Alice encrypts a message text with Bob's public key and sends the encrypted message to Bob. The latter in turn can decrypt the message with his private key.\footnote{Cf. Dietmar Wätjen, 2018, p.73 f.}\\
 		\subsection{Signatures}
 		So-called signatures can be used to ensure authenticity. The procedure briefly described above can not only be used to encrypt and decrypt messages, but also to sign them.\\
 		Instead of the public key, the private key is used to generate a signature, in this case. This can then be verified with the public key of the corresponding private key.\\
+		
 		\textbf{Example 2.} Bob wants to send a message to Alice and make sure it hasn't been changed along the way. He uses his private key and applies it to a message to generate a signature. Both he transmits to Alice. Bob's public key can be used to verify that the message has been transmitted correctly.
 	}{
 		\glqq Unter dem Begriff Kryptographie ist die Wissenschaft vom geheimen Schreiben zu verstehen\grqq\footnote{Dietmar Wätjen, 2018, S.1}. Man spricht von symmetrischer Verschlüsselung wenn eine Nachricht im Klartext vom Sender mit einem geheimen Schlüssel, welcher beiden Parteien bekannt ist, verschlüsselt und vom Empfänger, mit demselben Schlüssel, entschlüsselt wird\footnote{Vgl. Dietmar Wätjen, 2018, S.1}.\\
@@ -75,14 +83,35 @@
 				\caption{Symmetrische Ver- und Entschlüsselung}
 			\end{minipage}
 		\end{figure}\\
-		Von asymmetrischer Verschlüsselung ist die Rede, wenn die Teilnehmer anstatt einen gemeinsamen Schlüssel zu haben, der im vor hinein ausgetauscht werden muss, jeder ein Schlüsselpaar (öffentlicher und privater Schlüssel) besitzt.
+		Von asymmetrischer Verschlüsselung ist die Rede, wenn die Teilnehmer anstatt einen gemeinsamen Schlüssel zu haben, der im vor hinein ausgetauscht werden muss, jeder ein Schlüsselpaar, bestehend aus öffentlichem und privatem Schlüssel, besitzt.\\
+		
 		\subsection{RSA}
 		Das \gls{rsa} Verfahren ist ein solches asymmetrisches Verschlüsselungsverfahren welches von den drei namens gebenden Mathematikern 1977 entwickelt wurde. Das \gls{rsa} Verfahren ist wohl das am häufigsten verwendete Public-Key-Kryptosystem.\\
+		
 		\textbf{Beispiel 1.} Die Gesprächspartner Alice und Bob, welche beide ein Schlüsselpaar besitzen, miteinander kommunizieren. Alice verschlüsselt einen Nachrichtentext mit dem öffentlichen Schlüssel von Bob und sendet die verschlüsselte Nachricht an Bob. Dieser kann seinerseits mit seinem privaten Schlüssel die Nachricht entschlüsseln\footnote{Vgl. Dietmar Wätjen, 2018, S.73 f.}.\\
+
 		\subsection{Signaturen}
-		Für die Sicherstellung der Authentizität können sogenannte Signaturen verwendet werden. Das oben kurz erläuterte Verfahren kann nicht nur zum Ver- und Entschlüsseln von Nachrichten benutzt werden, sondern auch zum signieren.\\
-		Dabei wird statt des öffentlichen Schlüssels, der private Schlüssel benutzt um eine, in diesem Fall, Signatur zu erzeugen. Diese kann dann mit dem öffentlichen Schlüssel des zugehörigen privaten Schlüssels verifiziert werden.\\
-		\textbf{Beispiel 2.} Bob möchte eine Nachricht an Alice schicken und sichergehen, dass diese auf dem Weg nicht verändert wurde. Er verwendet seinen privaten Schlüssel und wendet diesen auf eine Nachricht an um eine Signatur zu erzeugen. Beides übermittelt er an Alice. Mit dem öffentlichen Schlüssel von Bob kann die fehlerfreie Übertragung der Nachricht verifiziert werden.
+		Für die Sicherstellung der Authentizität können sogenannte Signaturen verwendet werden. Das oben kurz erläuterte \gls{rsa} Verfahren kann nicht nur zum Ver- und Entschlüsseln von Nachrichten benutzt werden, sondern auch zum signieren.\\
+		Dabei wird statt des öffentlichen Schlüssels, der private Schlüssel benutzt um eine Signatur zu erzeugen. Diese kann dann mit dem öffentlichen Schlüssel des zugehörigen privaten Schlüssels verifiziert werden.\\
+		
+		Ein zugehöriges Beispiel wäre das folgende:\\
+		\textbf{Beispiel 2.} Bob möchte eine Nachricht an Alice schicken und sichergehen, dass diese auf dem Weg nicht verändert wurde. Er verwendet seinen privaten Schlüssel und wendet diesen auf eine Nachricht an um eine Signatur zu erzeugen. Beides übermittelt er an Alice. Mit dem öffentlichen Schlüssel von Bob kann die fehlerfreie Übertragung der Nachricht verifiziert werden.\\
+		
+		\subsection{HTTP Signaturen}
+		Eine \textit{HTTP Signatur} wird verwendet um die Authentizität sicherzustellen. Diese wird als Wert einer \glqq Signature\grqq~Kopfzeile eingetragen und besteht aus mehreren Teilen:
+		\begin{itemize}}
+			\item \textit{\textbf{keyId}}=keyId="https://example.org/activitypub/users/lea#main-key"
+			\item \textit{\textbf{algorithm}}="rsa-md4"
+			\item \textit{\textbf{headers}}="(request-target) date host content-type"
+			\item \textit{\textbf{signature}}="DHeEH0Okmtf1ec/lbM1/F5FiLVfQfbWuoFf9t/TzNZiZ7ak"
+		\end{itemize}
+		Über die \textit{keyId}, was eine Referenz auf einen Schlüssel darstellt, kann der öffentliche Schlüssel angefragt werden. Dies wird beim verifizieren einer Signatur benötigt um die Übertragenen Daten auf ihre Authentizität hin zu prüfen.\\
+		
+		Welcher Hashing-Algorithmus bei der Erstellung verwendet wurde, kann über das \textit{algorithm} Feld der Signatur nachgeschlagen werden. Zudem muss der Algorithmus bei Erstellung in dieses Feld zum Nachschlagen eingetragen werden.\\
+		
+		Um die eigentliche Signatur zu erzeugen werden die in \textit{headers} angegebenen Kopfzeilen der HTTP Anfrage verwendet. Somit kann eingeschränkt werden welche Metadaten in die Signierung einfließen.\\
+		
+		Die bei der Signierung mit gegebenem Hashing-Algorithmus und Kopfzeilen erzeugte Signatur wird in das \textit{signature} Feld der HTTP Signatur eingetragen sowie die HTTP Signatur an sich als \glqq Signature\grqq~Kopfzeile der HTTP Anfrage gesetzt.\cite{http-signature}\\
 	}
 			
 	\section{ActivityPub Standard}

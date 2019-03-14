@@ -66,6 +66,8 @@
 \addtokomafont{subsubsection}{\sbseries}
 \addtokomafont{paragraph}{\sbseries}
 
+% Requirements for microtype
+\RequirePackage{luatexbase}
 % microtype for nicer typography
 \RequirePackage[protrusion=true,expansion=true]{microtype}
 
