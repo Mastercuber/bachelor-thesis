@@ -16,8 +16,36 @@
 %% --------------------------------------------------------
 
 \chapter{Verwandte Protokolle}
-	\todo{Vergleich der Vor- und Nachteile der Protokolle}
-	\section{OStatus}
-	\label{sub:ostatus}
-	\section{Diaspora}
-	\label{sub:diaspora}
+	\iflanguage{english}{
+		A network of networks is therefore referred to as a network interconnection, or \glqq federated network\grqq.\\
+		
+		A promotion is the association of something. Germany, for example, is a subsidised federal state linking 16 federal states. A network of networks is therefore referred to as a network interconnection, or \glqq federated network\grqq.\\
+		
+		\glqq Fediverse\grqq~is a suitcase word from \glqq Federated\grqq~and \glqq Universe\grqq. Historically, the term has only included microblogging platforms that support the OStatus protocol. More about OStatus \textbf{S. \ref{sub:ostatus}}. Meanwhile the Fediverse contains more than just microblogging platforms like Mastodon\footnote{\url{https://mastodon.social/about}} but also social networks (e.g. GNU Social\footnote{\url{https://gnu.io/social/}}), as well as \glqq Video hosting\grqq~(PeerTube\footnote{\url{https://joinpeertube.org/en/}}),\glqq Content publishing\grqq~ Platforms, like Wordpress, and many more.\cite{fediverse}
+		
+		The \glqq Fediverse\grqq~is all about free (open source) software instead of commercial products. You can also choose which administrator you want to give control over your data instead of relying on a single instance.\cite{fediverse}\\
+		
+		According to the Fediverse Network Report 2018, which is available online, the total number of reachable instances has increased from 2,756 to 4,340. This corresponds to growth of 58\%. The number of users rose from 1,786,036 to 2,474,601 (39\%). Further details can be found in the Network Report. It should be added that the network report is incomplete and may contain bugs.\cite{fediverse-report}\\
+	}{
+		Zu Beginn dieses Kapitels wird das Wort Fediverse etwas näher definiert und erläutert worum es sich dabei handelt. Im Anschluss werden mehrere Protokolle die, sowie auch ActivityPub, zum Fediverse gehören vorgestellt.\\
+		
+		Als erstes soll der Begriff \glqq förderiertes Netzwerk\grqq~von Förderation hergeleitet werden. Unter einer Förderation versteht man den Verbund von etwas. Deutschland ist z. B. ein förderierter Bundesstaat, welcher 16 Bundesländern verbindet. Ein Verbund von Netzwerken wird demnach als Netzwerkverbund, oder auch \glqq förderiertes Netzwerk\grqq,~bezeichnet.\\
+		
+		\glqq Fediverse\grqq~ist ein Kofferwort aus \glqq Federated\grqq~und \glqq Universe\grqq. Historisch gesehen beinhaltete der Begriff nur Microblogging Plattformen die das OStatus Protokoll unterstützen. Mehr zu OStatus \textbf{S. \ref{sub:ostatus}}. Mittlerweile beinhaltet das Fediverse mehr als nur Microblogging Plattformen wie Mastodon\footnote{\url{https://mastodon.social/about}} und GNU Social\footnote{\url{https://gnu.io/social/}}, sondern auch soziale Netzwerke, sowie \glqq Video hosting\grqq~(PeerTube\footnote{\url{https://joinpeertube.org/en/}}),\glqq Content publishing\grqq~Plattformen, wie Wordpress, und viele weitere.\cite{fediverse}\\
+		
+		Im \glqq Fediverse\grqq~dreht sich alles um freie (Open Source) Software anstelle von kommerziellen Produkten. Zudem kann ausgesucht werden welchem Administrator man die Kontrolle über seine Daten geben möchte, anstatt auf eine einzelne Instanz vertrauen zu müssen.\cite{fediverse} Ein weiterer wichtiger Aspekt ist das verbünden von Netzwerken über Protokolle wie OStatus oder Pump.io. Somit kann ein verteiltes soziales Netzwerk durch die Implementierung eines dieser Protokolle zum förderierten sozialen Netzwerk werden.\\
+		\todo{indirektes online Zitat!!!}
+		
+		Laut dem Fediverse Netzwerkreport 2018, welcher online zur Verfügung steht, hat sich die Gesamtanzahl der erreichbaren Instanzen von 2.756 auf 4.340 erhöht. Dies entspricht einem Wachstum von 58\%. Die Nutzeranzahl ist von 1.786.036 auf 2.474.601 gestiegen (39\%). Weitere Details sind im Netzwerk Report nachzulesen. Es ist hinzuzufügen das der Netzwerkreport unvollständig ist und Fehler beinhalten kann.\cite{fediverse-report}\\	
+		
+			\todo{Vergleich der Vor- und Nachteile der Protokolle}
+		\section{OStatus}
+		\label{sub:ostatus}
+		Der OStatus Standard ist eine Sammlung von verschiedenen Protokollen wie Atom, Activity Streams, WebFinger und weiteren. Ausgelegt ist der Standard auf das empfangen und versenden von Status updates für förderierte Microblogging Dienste wie z. B. Mastodon und Friendica. Das Zusammenspiel mehrerer Protokolle ermöglicht den Austausch von Status updates in fast Echtzeit.
+		\section{Diaspora}
+		\label{sub:diaspora}
+		Diaspora ist ein freier Web Server mit einer integrierten Implementierung eines verteilten sozialen Netzwerkes. In diesem Netzwerk wird ein Knoten als Pod bezeichnet. Die einzelnen Pods sind das, was das Diaspora Netzwerk ausmacht. Durch die integrierte Funktionalität zum sozialen Netzwerken kann auf dem Web Server aufsetzend eine eigene Applikation entwickelt werden.
+		\section{Pump.io}
+		\label{sub:pumpio}
+		Der ActivityPub Standard wurde mit der gesammelten Erfahrung im Umgang mit dem Pump.io Protokoll entwickelt.
+	}
