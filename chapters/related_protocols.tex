@@ -16,8 +16,6 @@
 %% --------------------------------------------------------
 
 \chapter{Verwandte Protokolle}
-	Zu Beginn dieses Kapitels wird das Wort Fediverse etwas näher definiert und erläutert worum es sich dabei handelt. Im Anschluss werden mehrere Protokolle die, sowie auch ActivityPub, zum Fediverse gehören vorgestellt.\\
-	
 	\iflanguage{english}{
 		A network of networks is therefore referred to as a network interconnection, or \glqq federated network\grqq.\\
 		
@@ -29,6 +27,8 @@
 		
 		According to the Fediverse Network Report 2018, which is available online, the total number of reachable instances has increased from 2,756 to 4,340. This corresponds to growth of 58\%. The number of users rose from 1,786,036 to 2,474,601 (39\%). Further details can be found in the Network Report. It should be added that the network report is incomplete and may contain bugs.\cite{fediverse-report}\\
 	}{
+		Zu Beginn dieses Kapitels wird das Wort Fediverse etwas näher definiert und erläutert worum es sich dabei handelt. Im Anschluss werden mehrere Protokolle die, sowie auch ActivityPub, zum Fediverse gehören vorgestellt.\\
+		
 		Als erstes soll der Begriff \glqq förderiertes Netzwerk\grqq~von Förderation hergeleitet werden. Unter einer Förderation versteht man den Verbund von etwas. Deutschland ist z. B. ein förderierter Bundesstaat, welcher 16 Bundesländern verbindet. Ein Verbund von Netzwerken wird demnach als Netzwerkverbund, oder auch \glqq förderiertes Netzwerk\grqq,~bezeichnet.\\
 		
 		\glqq Fediverse\grqq~ist ein Kofferwort aus \glqq Federated\grqq~und \glqq Universe\grqq. Historisch gesehen beinhaltete der Begriff nur Microblogging Plattformen die das OStatus Protokoll unterstützen. Mehr zu OStatus \textbf{S. \ref{sub:ostatus}}. Mittlerweile beinhaltet das Fediverse mehr als nur Microblogging Plattformen wie Mastodon\footnote{\url{https://mastodon.social/about}} und GNU Social\footnote{\url{https://gnu.io/social/}}, sondern auch soziale Netzwerke, sowie \glqq Video hosting\grqq~(PeerTube\footnote{\url{https://joinpeertube.org/en/}}),\glqq Content publishing\grqq~Plattformen, wie Wordpress, und viele weitere.\cite{fediverse}\\
@@ -37,14 +37,15 @@
 		\todo{indirektes online Zitat!!!}
 		
 		Laut dem Fediverse Netzwerkreport 2018, welcher online zur Verfügung steht, hat sich die Gesamtanzahl der erreichbaren Instanzen von 2.756 auf 4.340 erhöht. Dies entspricht einem Wachstum von 58\%. Die Nutzeranzahl ist von 1.786.036 auf 2.474.601 gestiegen (39\%). Weitere Details sind im Netzwerk Report nachzulesen. Es ist hinzuzufügen das der Netzwerkreport unvollständig ist und Fehler beinhalten kann.\cite{fediverse-report}\\	
+		
+			\todo{Vergleich der Vor- und Nachteile der Protokolle}
+		\section{OStatus}
+		\label{sub:ostatus}
+		Der OStatus Standard ist eine Sammlung von verschiedenen Protokollen wie Atom, Activity Streams, WebFinger und weiteren. Ausgelegt ist der Standard auf das empfangen und versenden von Status updates für förderierte Microblogging Dienste wie z. B. Mastodon und Friendica. Das Zusammenspiel mehrerer Protokolle ermöglicht den Austausch von Status updates in fast Echtzeit.
+		\section{Diaspora}
+		\label{sub:diaspora}
+		Diaspora ist ein freier Web Server mit einer integrierten Implementierung eines verteilten sozialen Netzwerkes. In diesem Netzwerk wird ein Knoten als Pod bezeichnet. Die einzelnen Pods sind das, was das Diaspora Netzwerk ausmacht. Durch die integrierte Funktionalität zum sozialen Netzwerken kann auf dem Web Server aufsetzend eine eigene Applikation entwickelt werden.
+		\section{Pump.io}
+		\label{sub:pumpio}
+		Der ActivityPub Standard wurde mit der gesammelten Erfahrung im Umgang mit dem Pump.io Protokoll entwickelt.
 	}
-	\todo{Vergleich der Vor- und Nachteile der Protokolle}
-	\section{OStatus}
-	\label{sub:ostatus}
-	Der OStatus Standard ist eine Sammlung von verschiedenen Protokollen wie Atom, Activity Streams, WebFinger und weiteren. Ausgelegt ist der Standard auf das empfangen und versenden von Status updates für förderierte Microblogging Dienste wie z. B. Mastodon und Friendica. Das Zusammenspiel mehrerer Protokolle ermöglicht den Austausch von Status updates in fast Echtzeit.
-	\section{Diaspora}
-	\label{sub:diaspora}
-	Diaspora ist ein freier Web Server mit einer integrierten Implementierung eines verteilten sozialen Netzwerkes. In diesem Netzwerk wird ein Knoten als Pod bezeichnet. Die einzelnen Pods sind das, was das Diaspora Netzwerk ausmacht. Durch die integrierte Funktionalität zum sozialen Netzwerken kann auf dem Web Server aufsetzend eine eigene Applikation entwickelt werden.
-	\section{Pump.io}
-	\label{sub:pumpio}
-	Der ActivityPub Standard wurde mit der gesammelten Erfahrung im Umgang mit dem Pump.io Protokoll entwickelt.
