@@ -88,7 +88,6 @@
 %% | Listings                     |
 %% --------------------------------
 \usepackage{xcolor}
-\usepackage{bera}
 \usepackage{listings}
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -201,8 +200,6 @@
 	showtabs=false,
 	captionpos=b
 }
-% set text color back to black
-\color{black}\global\let\default@color\current@color
 
 %% --------------------------------
 %% | Glossaries                   |
@@ -220,6 +217,8 @@
 %% ====================================
 %% ====================================
 \begin{document}
+% set text color to black
+%\color{black}\global\let\default@color\current@color
 
 %% Set PDF metadata
 \setpdf
