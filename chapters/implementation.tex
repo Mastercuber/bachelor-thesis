@@ -55,3 +55,4 @@ Artikel und Notizen werden bei der in dieser Arbeit angefertigten Implementierun
 Wie wird nun sichergestellt, dass ein Nutzer dazu berechtigt ist 
 
 Eingehende HTTP POST Anfragen werden auf eine vorhandene Signatur Kopfzeile geprüft. Wird diese nicht gefunden, wird die Anfrage verworfen. Ist sie vorhanden, wird die Signatur geprüft indem das Aktoren Objekt über die zugehörige \textit{keyId} angefragt wird und die Signatur gegen den öffentlichen Schlüssel geprüft wird. Dies stellt sicher, das die Inhalte der Nachricht beim Transport nicht verändert wurde. Eine Authentifizierung des Clients wird nicht benötigt, da es sich um eine öffentliche Schnittstelle handelt.
+\todo{Acceptance Testing mit Cucumber und der Gherkin Language}
