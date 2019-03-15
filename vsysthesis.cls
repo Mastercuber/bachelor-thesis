@@ -219,9 +219,6 @@
 \RequirePackage{longtable}
 \RequirePackage{array}
 
-% Listings
-\usepackage{listings}
-
 % show graphics in draft mode
 \RequirePackage{graphicx}
 \setkeys{Gin}{draft=false}
