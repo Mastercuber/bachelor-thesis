@@ -16,7 +16,7 @@
 %% --------------------------------------------------------
 
 \chapter{Implementierung eines ActivityPub Prototyps}
-Die IDataSource Implementierung wird für das Unternehmen angefertigt in der die Bachelor Thesis bearbeitet wird. Im Falle man möchte den Service mit einer anderen Datenquelle versorgen, kann das IDataSource Interface implementiert und so angepasst werden, dass eine andere Datenbank Verwendung findet.\\
+Die Implementierung des IDataSource Interfaces wird für das Unternehmen angefertigt in der die Bachelor Thesis bearbeitet wird. Im Falle man möchte den Service mit einer anderen Datenquelle versorgen, kann das IDataSource Interface implementiert und so angepasst werden, dass eine andere Datenbank Verwendung findet.\\
 
 \begin{figure}[h]
 	\begin{minipage}{\textwidth}
@@ -26,4 +26,9 @@ Die IDataSource Implementierung wird für das Unternehmen angefertigt in der die
 		\caption{Hauptkomponenten des förderierten Servers}
 	\end{minipage}
 \end{figure}
+
+In der obigen Abbildung ist zu sehen, dass die \glqq Collections\grqq~Klasse Methoden enthält die zum Abruf von Sammlungen wie z. B. der \glqq Outbox Collection\grqq~benötigt werden. Sie dient lediglich der Weiterleitung von Aufrufen zur \glqq IDataSource\grqq~Klasse.\\
+
+Haupteinstieg für die Express Middleware ist eine an jede Anfrage gehängte Klasse namens ActivityPub. Diese enthält eine statische \glqq \textit{init}\grqq~Methode zum initialisieren des ActivityPub Service. Darin wird, bei der alleinstehenden Version, ein eigener Express Server gestartet; Bei der integrierten Version wird ein Server Objekt mit frei zugänglichem Express Server erwartet um die Router Middleware hinzuzufügen.\\
+
 \section{Server-zu-Server Protokoll}

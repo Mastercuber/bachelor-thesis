@@ -21,13 +21,13 @@ Zu Beginn dieses Kapitels sollte sich die Frage gestellt werden wie die Architek
 Eine Trennung der ActivityPub Komponenten in einen eigenen Service würde für eine isolierbare Ausführung sorgen. Es
 \section{Entwurfsentscheidung}
 \section{Technische Architektur}
+	Der technischen Architektur liegt das Express Middleware Framework zugrunde. Der ActivityPub Service wird als Express Middleware, sowie als allein stehender Express Web Server implementiert. Bei der letzteren Variante wird anstatt die Middleware in ein bestehenden Express Server zu integrieren, ein eigener Express Server gestartet.\\
 	\begin{figure}[h]
 		\centering
 		\includegraphics[scale=0.5]{figures/technische-architektur-activitypub.png}
 		\label{technische-architektur-activitypub}
 		\caption{Technische Architektur ActivityPub}
 	\end{figure}
-	Der technischen Architektur liegt das Express Middleware Framework zugrunde. Der ActivityPub Service wird als Express Middleware, sowie als allein stehender Express Web Server implementiert. Bei der letzteren Variante wird anstatt die Middleware in ein bestehenden Express Server zu integrieren, ein eigener Express Server gestartet.\\
 	
 	In der oben gezeigten Abbildung wurde der ActivityPub Service in einen bestehenden Express Server einer GraphQL API integriert.\\
 	
