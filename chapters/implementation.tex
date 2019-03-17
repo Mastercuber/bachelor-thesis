@@ -34,6 +34,13 @@ Um eine möglichst Modulare Implementierung zu gewährleisten wurden alle Datenb
 
 Es ist auch möglich andere Datenquellen als die in der Bachelor Arbeit verwendete GraphQL Schnittstelle zu nutzen, wie z. B. MySQL oder MongoDB.\\
 
+Getestet wird die Implementierung mit dem Cucumber Test-Framework, welches ein Werkzeug zum ausüben von \gls{bdd} ist. Die Tests selbst werden im Rahmen von Cucumber als sogenannte \glqq Feature\grqq's bezeichnet und haben die Dateiendung .feature. Geschrieben sind die Tests in der Gherkin Sprache welche eine Sammlung von Syntax ist um diese auf entsprechende Aktionen abzubilden. Es wurden bei der Gherkin Syntax extra leicht verständliche Schlüsselworte gewählt um die Tests auch für Benutzer, Produktbesitzer und weitere lesbar zu halten. Somit muss nur die Gherkin Sprache bekannt sein um die Features schreiben zu können. Das Verständnis beim lesen ergibt sich aus der Verwendung natürlicher Sprachkonstrukte als Schlüsselwörter.\\
+
+Unter \gls{tdd} versteht man eine Vorgehensweise beim Entwickeln von Software. Dabei werden zuerst fehlschlagende Tests geschrieben, um diese im zweiten Schritt durch eine Implementierung der Komponenten zur erfolgreichen Ausführung zu bringen. Im dritten Schritt werden die Tests angepasst und der Zyklus wiederholt sich.\\
+
+Bei der Softwareentwicklung mit dem \gls{bdd} Ansatz wird im Grunde genommen Wert auf eine hohe Kommunikation zwischen allen beteiligten im Entwicklungsprozess gelegt. Werkzeuge wie Cucumber fördern dabei die Lesbarkeit von Softwaretests und somit auch die Kommunikation zwischen Programmierern und weiteren. Zudem ist es für Neueinsteiger leichter einen Überblick über die Funktionalität des Systems zu bekommen.\\
+% https://docs.cucumber.io/bdd/overview/
+ 
 \section{Server-zu-Server Protokoll}
 Es wird eine Teilmenge der ActivityPub Funktionalität implementiert, die angepasst ist auf die Anforderungen der Firma in welcher diese Arbeit angefertigt wird. Dabei handelt es sich um folgende Aktivitäten des Standards: \textit{Create}, \textit{Update}, \textit{Delete}, \textit{Follow}, \textit{Undo}, \textit{Accept}, \textit{Reject}, \textit{Like}, \textit{Dislike}.\\
 

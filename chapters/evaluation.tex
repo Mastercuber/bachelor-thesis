@@ -19,7 +19,46 @@
 \label{ch:Evaluation}
 
 \section{Anwendungsbeispiel}
-
 \section{(Performanzmessungen)}
+Die Performanzmessung wurde in der NodeJs Laufzeitumgebung mit der Version 10.15.3 durchgeführt unter Zuhilfenahme der internen process.hrtime() Funktion. Diese wird vor und nach dem Erstellen sowie Verifizieren aufgerufen. Die Rückgabe des zweiten Aufrufs nach der jeweiligen Funktion enthält die Differenz zum ersten Aufruf in Nanosekunden.
+\begin{table}
+	\begin{tabularx}{\textwidth}{p{0.15\textwidth}|r|X|X|r}
+		& rsa-md4 & rsa-md5 & rsa-sha256 & rsa-sha512\\
+		\hline
+		Testlauf 1& 24.254 ms& 24.123 ms& 24.171 ms& 24.173 ms\\
+		Testlauf 2& 22.833 ms& 23.006 ms& 23.626 ms& 22.948 ms\\
+		Testlauf 3& 27.186 ms& 23.113 ms& 22.873 ms& 22.781 ms\\
+		Testlauf 4& 23.630 ms& 24.256 ms& 22.597 ms& 22.667 ms\\
+		Testlauf 5& 25.012 ms& 24.027 ms& 24.343 ms& 30.278 ms\\
+		Testlauf 6& 30.221 ms& 23.032 ms& 22.827 ms& 22.768 ms\\
+		Testlauf 7& 27.050 ms& 29.950 ms& 22.629 ms& 22.774 ms\\
+		Testlauf 8& 23.630 ms& 24.282 ms& 24.625 ms& 25.495 ms\\
+		Testlauf 9& 23.151 ms& 22.958 ms& 22.854 ms& 26.816 ms\\
+		Testlauf 10& 22.654 ms& 24.067 ms& 23.637 ms& 23.579 ms\\
+		\hline
+		Arithmetisches Mittel& 25,122 ms& 24,281 ms& 23,418 ms& 24,427 ms\\
+	\end{tabularx}\\
+	\caption{Testergebnisse der Signatur Erstellung}
+\end{table}
+Beim betrachten der arithmetischen Mittel fällt auf, dass die Werte sehr nahe beieinander liegen 
+\begin{table}
+	\begin{tabularx}{\textwidth}{p{0.15\textwidth}|r|X|X|r}
+		& rsa-md4 & rsa-md5 & rsa-sha256 & rsa-sha512\\
+		\hline
+		Testlauf 1& 107,177 ms& 128.993 ms& 121.406 ms& 114.669 ms\\
+		Testlauf 2& 43,660 ms& 51.178 ms& 35.524 ms& 39.633 ms\\
+		Testlauf 3& 32.101 ms& 32.691 ms& 30.461 ms& 32.293 ms\\
+		Testlauf 4& 36.096 ms& 30.279 ms& 32.018 ms& 43.842 ms\\
+		Testlauf 5& 31.869 ms& 34.882 ms& 30.877 ms& 26.555 ms\\
+		Testlauf 6& 39.218 ms& 67.507 ms& 38.734 ms& 31.330 ms\\
+		Testlauf 7& 40.996 ms& 39.646 ms& 45.433 ms& 27.290 ms\\
+		Testlauf 8& 25.977 ms& 39.302 ms& 26.778 ms& 53.478 ms\\
+		Testlauf 9& 23.641 ms& 37.833 ms& 30.485 ms& 36.284 ms\\
+		Testlauf 10& 31.097 ms& 52.725 ms& 28.943 ms& 28.634 ms\\
+		\hline
+		Arithmetisches Mittel& 41,183 ms& 51,503 ms& 42,065 ms& 43,400 ms\\
+	\end{tabularx}\\	
+	\caption{Testergebnisse der Signatur Verifikation}
+\end{table}
 
 \section{Disskusion von Vor- und Nachteilen der Lösung}
