@@ -267,3 +267,5 @@
 \renewcommand*{\glspostdescription}{}
 
 \newcommand*{\quelle}[1]{\par\raggedleft\footnotesize Quelle:~#1}
+
+\RequirePackage{float}
