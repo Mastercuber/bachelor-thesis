@@ -28,7 +28,7 @@
 	
 	Im Anschluss wird ein Kryptographie Unterkapitel eingeführt in dem die benötigten Verfahren für die sichere Umsetzung erläutert werden. Begonnen wird mit einer kurzen Einführung in Kryptographie. Darauf folgend wird kurz das RSA Verfahren sowie eine allgemeine Beschreibung von Signatur Algorithmen vorgenommen. HTTP Signaturen werden ausführlicher beschrieben, da diese bei der Implementierung des Prototypen verwendet wurden.\par 
 	
-	Darauf folgend wird der ActivityPub Standard eingeführt sowie eingeordnet, Bestandteile des Protokolls beschrieben, die Funktionsweise der Client-zu-Server sowie Server-zu-Server Kommunikation und zugehörige Standards kurz erläutert. Desweiteren wird auf die Authentifizierung und Datenintegrität bei ActivityPub eingegangen um damit folgende Fragen zu klären:
+	Darauf folgend wird der ActivityPub Standard eingeführt sowie eingeordnet, Bestandteile des Protokolls beschrieben, die Funktionsweise der Client-zu-Server sowie Server-zu-Server Kommunikation und zugehörige Standards kurz erläutert. Des weiteren wird auf die Authentifizierung und Datenintegrität bei ActivityPub eingegangen um damit folgende Fragen zu klären:
 	\begin{itemize}
 		\item Wie authentifiziert sich ein Benutzer gegenüber dem Server?
 		\item Wie stellt man sicher, dass die übertragenen Daten unverändert angekommen sind?
@@ -88,9 +88,18 @@ In den Sozialwissenschaften versteht man unter einem sozialen Netzwerk mehrere P
 	\subsection{
 		\iflanguage{english}{Security aspects of social networks}{Sicherheitsaspekte sozialer Netzwerke}
 	}
-	\todo{Authentifizierung Client gegenüber Server}
-	\todo{Sicherstellen der Datenintegrität}
-	\todo{Filterung auf Rechte (Nutzer bekommt nur das zu sehen, was er sehen darf)}\par
+	Zu den Sicherheitsaspekten, die ein soziales Netzwerk umsetzen sollte, gehören:
+	\begin{itemize}
+		\item Die Authentisierung der Nutzer gegenüber dem Server
+		\item Das Sicherstellen der Datenintegrität
+		\item Schutz der Datenbank vor unbefugtem Zugriff
+		\item Filterung (Nutzer bekommt nur das zu sehen, was er sehen darf)
+	\end{itemize}
+	Um die einzelnen Nutzer gegenüber dem Server zu authentisieren, können Technologien wie OAuth\footnote{siehe \url{https://tools.ietf.org/html/rfc6749}} oder JSON Web Token\footnote{siehe \url{https://tools.ietf.org/html/rfc7519}} verwendet werden. Dadurch ist sichergestellt, das nur derjenige mit korrekten Anmeldedaten das Profil benutzen kann. Außerdem weiß der Server dadurch wie er die Inhalte Filtern muss um dem Nutzer das für ihn erlaubte anzeigen zu können.\\
+	
+	Das Sicherstellen der manipulationsfreien Übertragung von Inhalten ist sowohl bei der Client zu Server, als auch bei der Server zu Server Kommunikation zu Empfehlen. Bei beiden Kommunikationsszenarien werden die Daten über das Internet übertragen und sind somit potentiell manipulierbar. Sichergestellt werden kann dies z. B. über HTTP-Signaturen s. \ref{subsec:http-signaturen}.\\
+	
+	Ein weiterer wichtiger Sicherheitsaspekt ist das Schützen der Datenbank vor unbefugtem Zugriff. Bei einem sozialen Netzwerk kann man die Datenbank durchaus als das Herzstück des Netzwerkes bezeichnen, da in dieser, gerade bei \glqq sozialen Netzwerken\grqq~eine riesige Menge an Daten liegen. Schaffen es Angreifer auf diese Zugriff zu bekommen und unbemerkt zu bleiben, kann die Datenbank in Ruhe analysiert oder womöglich die Inhalte auf einen eigenen Server transferiert werden. Durch das isolieren der Datenbank, restriktiven oder keinen direkten Zugriff durch Nutzer oder eine Mehrfaktor Authentisierung kann die Sicherheit der Datenbank erhöht werden.
 \section{
 	\iflanguage{english}{cryptography}{Kryptographie}
 }
@@ -121,6 +130,7 @@ In den Sozialwissenschaften versteht man unter einem sozialen Netzwerk mehrere P
 	Eine Hashfunktion ist eine Einwegfunktion welche auch zur Signierung verwendet werden kann. Bei solch einer Funktion wird ein Eingangswert auf eine kryptische Zeichenfolge abgebildet. Dies wird sehr oft bei Passwörtern verwendet um diese nicht Umkerbar aufzubewahren.\par
 
 	\subsection{HTTP Signaturen}
+	\label{subsec:http-signaturen}
 	Eine \textit{HTTP Signatur} wird verwendet um die Authentizität sicherzustellen. Diese wird als Wert einer \glqq Signature\grqq~Kopfzeile eingetragen und besteht aus mehreren Teilen:
 	\begin{itemize}
 		\item \textit{\textbf{keyId}}="https://example.org/activitypub/users/lea\#main-key"
@@ -205,13 +215,13 @@ In den Sozialwissenschaften versteht man unter einem sozialen Netzwerk mehrere P
 	% \lstinputlisting[caption={Beispiel \gls{AS2} Objekt}, label=listing::as2-object, language=JavaScript]{resources/example-as2-object.json}
 }
 \subsection{
-	\iflanguage{english}{Authentication and data integrity}{Authentifizierung und Datenintegrität}
+	\iflanguage{english}{Authentication and data integrity}{Authentisierung und Datenintegrität}
 }
 \iflanguage{english}{}{
-	Für die Authentifizierung und zum sichern der Datenintegrität definiert der Standard keine Mechanismen. Es gibt allerdings \glqq Best Practices\grqq~für die Umsetzung dieser Anforderungen.\par
+	Für die Authentisierung und zum sichern der Datenintegrität definiert der Standard keine Mechanismen. Es gibt allerdings \glqq Best Practices\grqq~für die Umsetzung dieser Anforderungen.\par
 
-	Zum einen werden bei der Client-zu-Server Authentifizierung \glqq OAuth 2.0 Bearer Tokens\grqq~benutzt, zum anderen auf der Server Seite \glqq HTTP\grqq~oder \glqq Linked Data Signatures\grqq zur Sicherstellung der Datenintegrität.\par
-
+	Zum einen werden bei der Client-zu-Server Authentisierung \glqq OAuth 2.0 Bearer Tokens\grqq~benutzt, zum anderen auf der Server Seite \glqq HTTP\grqq~oder \glqq Linked Data Signatures\grqq zur Sicherstellung der Datenintegrität.\par
+	\label{subsec:authentication:oauth2}
 	Bei\glqq OAuth 2.0 Bearer Tokens\grqq~handelt es sich um eine Methode um auf geschützte Ressourcen zugreifen zu können\cite{oauth2}. ActivityPub nutzt diese für jegliche Interaktionen mit dem Server.\par
 	
 	\glqq Die Datenintegrität umfasst Maßnahmen damit geschützte Daten während der Verarbeitung oder Übertragung nicht durch unautorisierte Personen entfernt oder verändert werden können. Sie stellt die Konsistenz, die Richtigkeit und Vertrauenswürdigkeit der Daten während deren gesamten Lebensdauer sicher und sorgt dafür, dass die relevanten Daten eines Datenstroms rekonstruierbar sind\grqq\cite{data-integrity}.\par
