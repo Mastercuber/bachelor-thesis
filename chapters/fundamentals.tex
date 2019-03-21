@@ -20,9 +20,7 @@
 }
 \label{ch:fundamentals}
 \iflanguage{english}{}{
-	\todo{Allgemeine Grundlagen zu Sozialen Netzwerken/Social Media und deren Sicherheitsaspekte}
 	\todo{Welche Klassen von Anwendungen und Implementierungen gibt es allgemein bei sozialen Netzwerken? Einordnen von ActivityPub!!}
-	%\todo{AP Beschreibung in hinteren Teil des Grundlagenkapitels oder zu Beginn des 3. Kapitels}
 	%Klassen von Anwendungen sowie Implementierungen erläutert.
 	Dieses Kapitel gibt einen Überblick über allgemeine Grundlagen von sozialen Netzwerken. Es wird grob erläutert für was soziale Netzwerke gedacht sind; Der Unterschied zwischen zentralen, verteilen, dezentralen und förderierten sozialen Netzwerken herausgestellt sowie auf Sicherheitsaspekte eingegangen.\par
 	
@@ -37,7 +35,7 @@
 \section{
 	\iflanguage{english}{General principles of social networks}{Allgemeine Grundlagen sozialer Netzwerke}		
 }
-In den Sozialwissenschaften versteht man unter einem sozialen Netzwerk mehrere Personen die miteinander wechselwirkend auf soziale weise interagieren. Die Informatik bildet soziale Netzwerke als Plattformen zum Aufbau und der Pflege von Beziehungen ab. Weiter gefasst können auch Mikroblogging-Dienste, Chat Software, Voice Chat-Programme u. s. w. zu sozialen Netzwerken gezählt werden, da auch die Möglichkeit geboten wird sozial miteinander zu interagieren\cite{wikipedia-social-network-sociology}.
+	In den Sozialwissenschaften versteht man unter einem sozialen Netzwerk mehrere Personen die miteinander wechselwirkend auf soziale weise interagieren. Die Informatik bildet soziale Netzwerke als Plattformen zum Aufbau und der Pflege von Beziehungen ab. Weiter gefasst können auch Mikroblogging-Dienste, Chat Software, Voice Chat-Programme u. s. w. zu sozialen Netzwerken gezählt werden, da auch die Möglichkeit geboten wird sozial miteinander zu interagieren\cite{wikipedia-social-network-sociology}.
 	\begin{figure}[h]
 		\begin{minipage}{\textwidth}
 			\centering
@@ -193,7 +191,7 @@ In den Sozialwissenschaften versteht man unter einem sozialen Netzwerk mehrere P
 \iflanguage{english}{}{
 	ActivityPub benutzt die ActivityStreams Daten Syntax und das Vokabular. Zusätzlich kann ein weiteres Sicherheitsvokabular\footnote{Eine Ontologie die Sicherheitsaspekte definiert wie öffentliche Schlüssel, Signaturen u.v.m.} benutzt werden um Definitionen zum Bereitstellen eines öffentlichen Schlüssels, Signaturen sowie Verschlüsselten Inhalten u.v.m. zu haben. Am 22 April 2016 hat die \glqq W3C Community Group\grqq~ einen Entwurfsbericht herausgebracht. Durch diesen wird neue Syntax und Semantik definiert um Internet basierten Applikationen das Verschlüsseln, Entschlüsseln sowie digitale Signieren und Verifizieren von verlinkten Daten (Linked Data) zu ermöglichen. Es enthält auch Vokabeln für die Erstellung und Verwaltung einer dezentralen Public-Key-Infrastruktur über das Internet\cite{security-vocab-linked-data}. Ein Anwendungsfall ist das holen des öffentlichen Schlüssels eines Nutzers, über dessen Aktoren Objekt, um eine von Nutzer gesendete Nachricht zu verifizieren.\par
 	
-	\glqq \gls{AS2}\grqq~beinhaltet Modelle für Aktoren, Aktivitäten, Intransitiven Aktivitäten, Objekte, Links, Sammlungen, Natürliche Sprachwerte (Strings) und für Internationalisierung. Das Kernvokabular von \gls{AS2} wird durch \gls{asv} erweitert. Dazu gehören verschiedene Aktivitätstypen wie z.B. \glqq Accept\grqq,\glqq Add\grqq,\glqq Remove\grqq,\glqq Delete\grqq~und \glqq Create\grqq\footnote{\href{https://www.w3.org/TR/activitystreams-vocabulary/}{activity-types https://www.w3.org/TR/activitystreams-vocabulary/}}, um Aktorentypen wie \glqq Person\grqq, \glqq Application\grqq~und \glqq Group\grqq\footnote{\href{https://www.w3.org/TR/activitystreams-vocabulary/}{actor-types https://www.w3.org/TR/activitystreams-vocabulary/}} sowie um verschiedenste Objekttypen wie \glqq Article\grqq, \glqq Event\grqq, \glqq Note\grqq~und \glqq Relationship\grqq\footnote{\href{https://www.w3.org/TR/activitystreams-vocabulary/}{object-types https://www.w3.org/TR/activitystreams-vocabulary/}}.\par
+	\glqq \gls{AS2}\grqq~beinhaltet Modelle für Aktoren, Aktivitäten, Intransitiven Aktivitäten, Objekte, Links, Sammlungen, Natürliche Sprachwerte (Strings) und für Internationalisierung. Das Kernvokabular von \gls{AS2} wird durch \gls{asv} erweitert. Dazu gehören verschiedene Aktivitätstypen wie z.B. \glqq Accept\grqq,\glqq Add\grqq,\glqq Remove\grqq,\glqq Delete\grqq~und \glqq Create\grqq\footnote{\url{https://www.w3.org/TR/activitystreams-vocabulary/}}, um Aktorentypen wie \glqq Person\grqq, \glqq Application\grqq~und \glqq Group\grqq\footnote{\url{https://www.w3.org/TR/activitystreams-vocabulary/}} sowie um verschiedenste Objekttypen wie \glqq Article\grqq, \glqq Event\grqq, \glqq Note\grqq~und \glqq Relationship\grqq\footnote{\url{https://www.w3.org/TR/activitystreams-vocabulary/}}.\par
 	
 	\gls{JSON-LD} ist eine Erweiterung des JSON Formates um verlinkte Daten zu Repräsentieren. JSON an sich, ist ein Format welches im Web häufig Anwendung findet um Daten auszutauschen. Im Kern sind \gls{AS2} auch \gls{JSON-LD} Objekte. Der \gls{AS2} Kontext definiert verschiedene Klassen und Eigenschaften, von denen nicht alle benutzt werden. Typische Klassen sind \glqq Activity\grqq, \glqq Link\grqq~und \glqq OrderedCollection\grqq. Ein Beispiel Notiz, sowie Artikel \gls{AS2} Objekt sieht wie folgt aus:\par
 	\begin{figure}[h]

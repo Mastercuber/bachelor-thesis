@@ -21,19 +21,31 @@
 		
 		Als erstes soll der Begriff \glqq förderiertes Netzwerk\grqq~von Förderation hergeleitet werden. Unter einer Förderation versteht man den Verbund von etwas. Deutschland ist z. B. ein förderierter Bundesstaat, welcher 16 Bundesländern verbindet. Ein Verbund von Netzwerken wird demnach als Netzwerkverbund, oder auch \glqq förderiertes Netzwerk\grqq, bezeichnet.\\
 		
-		\glqq Fediverse\grqq~ist ein Kofferwort aus \glqq Federated\grqq~und \glqq Universe\grqq. Historisch gesehen beinhaltete der Begriff nur Microblogging Plattformen die das OStatus Protokoll unterstützen. Mehr zu OStatus \textbf{S. \ref{sub:ostatus}}. Mittlerweile beinhaltet das Fediverse mehr als nur Microblogging Plattformen wie Mastodon\footnote{\url{https://mastodon.social/about}} und GNU Social\footnote{\url{https://gnu.io/social/}}, sondern auch soziale Netzwerke, sowie \glqq Video hosting\grqq~(PeerTube\footnote{\url{https://joinpeertube.org/en/}}),\glqq Content publishing\grqq~Plattformen, wie Wordpress, und viele weitere\cite{fediverse}.\\
+		\glqq Fediverse\grqq~ist ein Kofferwort aus \glqq Federated\grqq~und \glqq Universe\grqq. Historisch gesehen beinhaltete der Begriff nur Microblogging Plattformen die das OStatus Protokoll unterstützen. Mehr zu OStatus \textbf{s. \ref{sub:ostatus}}. Mittlerweile beinhaltet das Fediverse mehr als nur Microblogging Plattformen wie Mastodon\footnote{\url{https://mastodon.social/about}} und GNU Social\footnote{\url{https://gnu.io/social/}}, sondern auch soziale Netzwerke, sowie \glqq Video hosting\grqq~(PeerTube\footnote{\url{https://joinpeertube.org/en/}}),\glqq Content publishing\grqq~Plattformen, wie Wordpress, und viele weitere\cite{fediverse}.\\
 		
-		Im \glqq Fediverse\grqq~dreht sich alles um freie (Open Source) Software anstelle von kommerziellen Produkten. Zudem kann ausgesucht werden welchem Administrator man die Kontrolle über seine Daten geben möchte, anstatt auf eine einzelne Instanz vertrauen zu müssen\cite{fediverse}. Ein weiterer wichtiger Aspekt ist das verbünden von Netzwerken über Protokolle wie OStatus oder Pump.io. Somit kann ein verteiltes soziales Netzwerk durch die Implementierung eines dieser Protokolle zum förderierten sozialen Netzwerk werden.\\
+		Im \glqq Fediverse\grqq~dreht sich alles um freie (Open Source) Software anstelle von kommerziellen Produkten. Zudem kann ausgesucht werden welchem Administrator man die Kontrolle über seine Daten geben möchte, anstatt auf eine einzelne Instanz vertrauen zu müssen\cite{fediverse}. Ein weiterer wichtiger Aspekt ist das förderieren von Netzwerken über Protokolle wie OStatus oder Pump.io. Somit kann ein verteiltes soziales Netzwerk durch die Implementierung eines dieser Protokolle zum förderierten sozialen Netzwerk werden.\\
 		
 		Laut dem Fediverse Netzwerkreport 2018, welcher online zur Verfügung steht, hat sich die Gesamtanzahl der erreichbaren Instanzen von 2.756 auf 4.340 erhöht. Dies entspricht einem Wachstum von 58\%. Die Nutzeranzahl ist von 1.786.036 auf 2.474.601 gestiegen (39\%). Weitere Details sind im Netzwerk Report nachzulesen. Es ist hinzuzufügen das der Netzwerkreport unvollständig ist und Fehler beinhalten kann\cite{fediverse-report}.\\	
 	}
 \section{OStatus}
 \label{sub:ostatus}
-	Der OStatus Standard ist eine Sammlung von verschiedenen Protokollen wie Atom, Activity Streams, WebFinger und weiteren. Ausgelegt ist der Standard auf das empfangen und versenden von Status updates für förderierte Microblogging Dienste wie Mastodon und Friendica. Das Zusammenspiel mehrerer Protokolle ermöglicht den Austausch von Status updates in fast Echtzeit.\\
+	Der OStatus Standard ist eine Sammlung von verschiedenen Protokollen wie Atom, Activity Streams 2.0, WebFinger und weiteren. Ausgelegt ist der Standard auf das empfangen und versenden von Status Aktualisierungen für förderierte Microblogging Dienste wie Mastodon. Das Zusammenspiel mehrerer Protokolle ermöglicht den Austausch von Status Aktualisierungen in fast Echtzeit.\\
 \section{Diaspora}
 \label{sub:diaspora}
-	Diaspora ist ein freier Web Server mit einer integrierten Implementierung eines verteilten sozialen Netzwerkes. In diesem Netzwerk wird ein Knoten als Pod bezeichnet. Die einzelnen Pods sind das, was das Diaspora Netzwerk ausmacht. Durch die integrierte Funktionalität zum sozialen Netzwerken kann auf dem Web Server aufsetzend eine eigene Applikation entwickelt werden.\\
+	Diaspora ist ein freier Web Server mit einer integrierten Implementierung eines verteilten sozialen Netzwerkes. In diesem Netzwerk wird ein Knoten als Pod bezeichnet, wobei die Gesamtzahl aller Pod's das Diaspora Netzwerk ausmachen. Durch die integrierte Funktionalität zum sozialen Netzwerken kann auf dem Web Server aufsetzend eine eigene Applikation entwickelt werden. Diaspora entdeckt die Profile der Nutzer, wie auch OStatus, über den WebFinger Standard. Zudem wird WebSub verwendet um Echtzeitaktualisierungen zu verteilen. Dies verringert den Verbrauch von Ressourcen auf der Client Seite ausgelöst durch Polling\footnote{\url{https://diasporafoundation.org/about}}. Die Software ist in der Ruby Programmiersprache unter zu Hilfenahme des \glqq Ruby on Rails\grqq~Web Frameworks entwickelt worden. Folgende Modelle sind in dieser Software enthalten\footnote{\url{https://wiki.diasporafoundation.org/An_introduction_to_the_Diaspora_source}}:
+	\begin{itemize}
+		\item Benutzer
+		\item Personen
+		\item Profile
+		\item Kontakte
+		\item Anfragen
+		\item Aspekte
+		\item Inhalte
+		\item Kommentar
+		\item Widerruf
+	\end{itemize}
 \section{Pump.io}
 \label{sub:pumpio}
-	Der ActivityPub Standard wurde mit der gesammelten Erfahrung im Umgang mit dem Pump.io Protokoll entwickelt.\\
-\todo{Welche Erfahrungen wurden von wem gesammelt}
+	Der ActivityPub Standard wurde mit der gesammelten Erfahrung im Umgang mit dem Pump.io Protokoll entwickelt. Ähnlich dem in dieser Arbeit behandelten Standard werden beim Pump.io Protokoll auch Nutzernachrichteneingänge und Nutzernachrichtenausgänge bereitgestellt. Der Nachrichtenausgang endet hier anstatt auf das Postfix \glqq outbox\grqq, wie bei ActivityPub, auf \glqq feed\grqq. Außerdem nutzen beide das Activity Streams 2.0 Datenformat. Zur Authentisierungen des Clients gegenüber dem Server wird hier das OAuth 1.0 Protokoll verwendet\footnote{\url{https://tools.ietf.org/html/rfc5849}}. Die Nutzerprofile sowie Informationen über den Host werden über die \glqq Web Host Meta\grqq~Spezifikation entdeckt\footnote{Vgl. \url{https://tools.ietf.org/html/rfc6415}, 2011, Abstract}. Web Host Meta weist Ähnlichkeiten zu dem Webfinger Protokoll auf.\footnote{siehe \url{https://github.com/pump-io/pump.io/blob/master/API.md}}\\
+	
+	\todo{Webfinger, an richtiger Position, beschreiben.}
