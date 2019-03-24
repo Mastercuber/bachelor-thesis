@@ -17,7 +17,7 @@
 
 \chapter{Implementierung eines ActivityPub Prototyps}
 Die IDataSource Implementierung wird für das Unternehmen angefertigt in der die Bachelor Thesis bearbeitet wird. Im Falle man möchte den Service mit einer anderen Datenquelle versorgen, kann das IDataSource Interface implementiert und so angepasst werden, dass eine andere Datenbank Verwendung findet.\\
-\begin{figure}[H]
+\begin{figure}[h]
 	\begin{minipage}{\textwidth}
 		\centering
 		\includegraphics[scale=0.6]{figures/klassendiagramm-activitypub.png}
@@ -53,8 +53,10 @@ Der Funktionsumfang des förderierten Servers beschränkt sich auf den folgenden
 	\item Bereitstellen der \textit{\textbf{Followers}}, \textit{\textbf{Following}} und \textit{\textbf{Outbox}} Sammlungen
 \end{itemize}
 
-Artikel und Notizen werden bei der in dieser Arbeit angefertigten Implementierung gleich behandelt. Beim empfangen einer Create Aktivität die eine Notiz oder Artikel als Objekt Attribut hat, wird der Artikel über die IDataSource Implementierung erstellt und entsprechende Metadaten zum rekonstruieren der ID's gespeichert. Somit können empfangene \glqq Posts\grqq, welche an die Öffentlichkeit gerichtet sind, im Netzwerk angezeigt werden. Die Logik zum Empfangen von \glqq Posts\grqq~die an einzelne Nutzer gerichtet sind ist noch nicht vorhanden.\\
+Artikel und Notizen werden bei der in dieser Arbeit angefertigten Implementierung gleich behandelt. Beim empfangen einer Create Aktivität, die eine Notiz oder Artikel als Objekt Attribut hat, wird der Artikel über die IDataSource Implementierung erstellt und entsprechende Metadaten zum rekonstruieren der ID's gespeichert. Somit können empfangene \glqq Posts\grqq, welche an die Öffentlichkeit gerichtet sind, im Netzwerk angezeigt werden. Die Logik zum Empfangen von \glqq Posts\grqq~die an einzelne Nutzer gerichtet sind ist noch nicht vorhanden.\\
 
 Eingehende HTTP POST Anfragen werden auf eine vorhandene Signatur Kopfzeile geprüft. Wird diese nicht gefunden, wird die Anfrage verworfen. Ist sie vorhanden, wird die Signatur geprüft indem das Aktoren Objekt über die zugehörige \textit{keyId} angefragt wird und die Signatur gegen den öffentlichen Schlüssel geprüft wird. Dies stellt sicher, das die Inhalte der Nachricht beim Transport nicht verändert wurde und zudem das die Aktivität von dem Nutzer stammt, der den passenden privaten Schlüssel besitzt. Eine Signatur bei der Übertragung von Servern untereinander wird demnach verwendet um die Authentizität der Daten überprüfen zu können.\\
-\todo{Server Signatur oder einzelne Nutzer Signaturen nehmen}
-\todo{Gibt es Kommunikation die nicht vom Nutzer initiiert wurde, wenn ja können hier Server Signaturen praktisch sein}
+
+Für die Nutzung eines Schlüsselpaars pro Aktor spricht, dass es für potentielle Angreifer schwieriger wird die Schlüssel zu erhalten. Bei der Nutzung eines einzigen Server Schlüsselpaars zur Signierung und Verifikation, reicht es dieses zu entwenden. Es sei angemerkt das die privaten Schlüssel mit einer Einweg Hashfunktion, in Verbindung mit einem Passwort, verschlüsselt werden und dieses Passwort somit zusätzlich entwendet werden muss.\\
+
+Bei dieser Implementierung gibt es keine Server-zu-Server Interaktionen die nicht vom Nutzer initiiert wurden, abgesehen von der Anfrage nach Aktoren Objekten oder WebFinger Deskriptoren welche auch Nutzer initiiert sind, allerdings von Nutzern anderer Instanzen. Somit ist die Generierung eines weiteren Schlüsselpaars für den Server nicht notwendig da die Inhalte mit den entsprechenden privaten Schlüsseln der Autoren signiert werden.
