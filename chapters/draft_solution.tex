@@ -15,12 +15,14 @@
 %% | Derived from sdqthesis by Erik Burger burger@kit.edu |
 %% --------------------------------------------------------
 
-\chapter{Entwurf einer Lösung für sichere Server-zu-Server Interaktion mit ActivityPub}
-Zu Beginn dieses Kapitels ist die Frage zu stellen, wie die Architektur sicher gestaltet wird.
-
-Eine Trennung der ActivityPub Komponenten in einen eigenen Service würde für eine isolierbare Ausführung sorgen. Es
+\chapter{Entwurf einer Lösung für Server-zu-Server Interaktion mit ActivityPub}
+	Zu Beginn dieses Kapitels wird auf die Entwurfsentscheidung eingegangen und folgende Frage beantwortet:
+	\begin{itemize}
+		\item Warum wurde die im folgenden beschriebene Architektur gewählt?
+	\end{itemize}
+	Darauffolgend wird konkret auf die technische Architektur eingegangen und mit Diagrammen veranschaulicht wie diese aussieht.
 \section{Entwurfsentscheidung}
-Für die nachfolgende Architektur wurde sich in dieser Arbeit entschieden, da sie einen Modularen Charakter hat. Dies ist gegeben durch die Kapselung des Services in eine Express Middleware. Sowohl das alleinstehende betreiben des Services ist möglich als auch die Integration in einen bestehen Express Server.
+	Für die nachfolgende Architektur wurde sich in dieser Arbeit entschieden, da sie einen Modularen Charakter hat. Dies ist gegeben durch die Kapselung des Services in eine Express Middleware. Sowohl das alleinstehende betreiben des Services ist möglich als auch die Integration in einen bestehen Express Server.
 \section{Technische Architektur}
 	Der technischen Architektur liegt das Express Middleware Framework zugrunde. Der ActivityPub Service wird als Express Middleware, sowie als allein stehender Express Web Server implementiert. Bei der letzteren Variante wird anstatt die Middleware in ein bestehenden Express Server zu integrieren, ein eigener Express Server gestartet.\\
 	\begin{figure}[h]
@@ -31,8 +33,7 @@ Für die nachfolgende Architektur wurde sich in dieser Arbeit entschieden, da si
 	\end{figure}
 	In der oben gezeigten Abbildung wurde der ActivityPub Service in einen bestehenden Express Server einer GraphQL API integriert.\\
 	
-	Benutzer der API kommunizieren mit dem Web Server über das HTTP Protokoll. Der Web Server leitet die Anfragen dann an den entsprechenden Router weiter, welcher wiederum den Anfrage Inhalt transformiert und \glqq Handler\grqq~Funktionen des ActivityPub Service mit entsprechenden Parametern aufruft.\\
-	
+	Benutzer der API kommunizieren mit dem Web Server über das HTTP Protokoll. Der Web Server leitet die Anfragen dann an den entsprechenden Router weiter, welcher wiederum den Anfrage Inhalt transformiert und \glqq Handler\grqq~Funktionen des ActivityPub Service mit entsprechenden Parametern aufruft.
 	\begin{figure}[h]
 		\begin{minipage}{\textwidth}
 			\centering
@@ -41,7 +42,10 @@ Für die nachfolgende Architektur wurde sich in dieser Arbeit entschieden, da si
 			\caption{Technische Architektur als allein stehender Server}
 		\end{minipage}
 	\end{figure}
-
 	Die obige Abbildung zeigt eine detailliertere Variante des ActivityPub Service Diagramms aus Abb. 4.1.\\
+	
 	Es wird außerdem ersichtlich, dass, um eine maßgeschneiderte Version für ein weiteres Projekt zu erstellen, das Interface IDataSource implementiert werden muss.\\ 
-	Sonst wird bei der Architektur weitestgehend darauf Wert gelegt, dass die meisten ActivityPub konformen Inhalte \glqq on the fly\grqq generiert werden können. Damit wird versucht für weitere Projekte die auf diesem Prototypen aufbauen wollen einen einfachen Einstieg zu bieten um andere Datenbanken o.ä. anbinden zu können.
+	
+	Betrachtet man außerdem die ActivityPub Router als Controller und die explizite ActivityPub Klasse als Service, sowie die IDataSource Implementierung als DAO ergibt sich eine drei Schichten Architektur.\\
+	
+	Sonst wird bei der Architektur weitestgehend darauf Wert gelegt, dass die meisten ActivityPub konformen Inhalte \glqq on the fly\grqq generiert werden können. Damit wird versucht für weitere Projekte die auf diesem Prototypen aufbauen wollen einen einfachen Einstieg zu bieten um andere Datenbanken o.ä. anbinden zu können.\\

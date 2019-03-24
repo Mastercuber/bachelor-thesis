@@ -20,19 +20,46 @@
 Zu Beginn dieses Kapitels werden verschiedenste Anwendungsbeispiele anhand von Diagrammen veranschaulicht und erklärt. Insgesamt werden die folgenden fünf Anwendungsbeispiele etwas beschrieben:
 \begin{itemize}
 	\item Folgen eines Nutzers aus einem anderen Netzwerk
-	\item \glqq Liken\grqq eines Objekts in einem anderen Netzwerk
+	\item \glqq Liken\grqq~eines Objekts in einem anderen Netzwerk
 	\item Rückgängig machen einer zuvor gesendeten \glqq Follow\grqq Aktivität
 	\item Die Umkehrung eines \glqq Likes\grqq~(Dislike)
 	\item Artikel erstellen in einem anderen Netzwerk
 \end{itemize}
 Des weiteren wird eine Performanz-Messung für die Signatur Erstellung, sowie Verifikation durchgeführt und die Ergebnisse interpretiert. Bei der Messung werden 4 verschiedene Ergebnistabelle erstellt; Jeweils zwei für eine Hardwarevariation. Zum einen wird ein älteres Notebook Modell zum testen verwenden, zum anderen ein Spiele-Computer. Außerdem wird aufgrund der interpretierten Ergebnisse und anderen Aspekten Empfehlungen gegeben, welche Hashfunktion für welchen Zweck am Besten passt.
 \section{Anwendungsbeispiel}
-\todo{Diagramme Follow, Like, Undo, Dislike, Create Article}
+Bei jedem der folgenden Anwendungsbeispiele muss sich der Server mit einer HTTP Signatur authentisieren. Die Signaturen werden beim ActivityPub Protokoll mit dem privaten Schlüssel des interagierenden Nutzers erstellt und mit dem öffentlichen verifiziert. Im folgenden Diagramm wird das ersichtlich durch den Anwendungsfall \glqq HTTP Signatur verifizieren\grqq, welcher im Empfangen von Aktivitäten beinhaltet ist:\\
+\begin{figure}[h]
+	\begin{minipage}{\textwidth}
+		\centering
+		\includegraphics[scale=0.75]{figures/generel-activity-usecase.png}
+		\label{fig:generel-activity-usecase}
+		\caption{Generelles Anwendungsfalldiagramm für das Empfangen von Aktivitäten}
+	\end{minipage}
+\end{figure}
+
+\textbf{Beispiel 1} (Nutzer wird gefolgt):\\
+Eine Nutzerin Alice aus einem anderen Netzwerk oder von einer anderen Instanz des selben Netzwerks, genannt Instanz A, möchte einem Nutzer auf Instanz B folgen. Dafür muss Alice dem zu folgenden Nutzer Bob über die Suchfunktion auf Instanz A finden und anschließend auf den \glqq folgen\grqq~Knopf drücken. Dadurch wird auf der Instanz A eine Anfrage erstellt, welche mit dem privaten Schlüssel von Alice signiert wird. Trifft die signierte Anfrage bei Instanz B ein wird zuerst die Signatur mit dem öffentlichen Schlüssel von Alice geprüft. Bei einer erfolgreichen Verifikation wird die Anfrage weiter verarbeitet und vom Server entsprechend eine \glqq Accept\grqq oder \glqq Reject\grqq~Aktivität gesendet. Schlägt die Signatur-Prüfung fehl wird ein \glqq Forbidden\grqq~ Statuscode zurückgegeben.\\
+
+Auch in den folgenden Beispielen werden die Benutzer Alice und Bob als Beispielnutzer genannt welche entsprechend auf Instanz A (Alice) und Instanz B (Bob) residieren.\\
+
+\textbf{Beispiel 2} (Rückgängig machen eines vorherigen folgens):\\
+Da sich Alice und Bob gestritten haben möchte Alice keine weiteren Benachrichtigungen von Bob erhalten, deshalb folgt Sie Bob nun nicht mehr. Instanz A erstellt, signiert und sendet somit eine Anfrage mit einer \glqq Undo\grqq~Aktivität an Instanz B.\\
+
+\textbf{Beispiel 3} (Objekt eines Nutzers \glqq liken\grqq):\\
+Alice durchsucht ihre Zeitleiste nach neuen Inhalten. Sie stößt auf einen Inhalt von Bob, den Sie sehr mag. Daraufhin \glqq liked\grqq~Sie den Inhalt. Instanz A erstellt eine \glqq Like\grqq~Aktivität und signiert diese mit Alice ihrem privaten Schlüssel. Die Anfrage wird nun auf Empfängerinstanz B verifiziert und, bei Erfolg, verarbeitet.\\
+
+\textbf{Beispiel 4} (Rückgängig machen eines vorherigen \glqq likes\grqq):\\
+Der zuvor von Alice gemochte Inhalt wurde in der Zwischenzeit von Bob verändert. Alice sieht dies, liest den Inhalt erneut und wundert sich warum Bob den Inhalt verändert hat. Ihrer Ansicht nach war er vorher viel Aussagekräftiger, daher \glqq Disliked\grqq~Sie den Inhalt.\\
+
+\textbf{Beispiel 5} (Erstellen eines Inhalts):\\
+Nach einem schönen Wochenende möchte Alice ihre neuen Erfahrungen in einem Inhalt zusammenfassen und an ihre Freunde senden. Sie meldet sich bei Instanz A an und verfasst ihre Erfahrungen. Nach dem absenden erstellt Instanz A eine \glqq Create\grqq~Aktivität mit einem Artikel als Objekt und sendet signierte Anfragen an jeden ihrer Freunde.
+
+\todo{Anwendungsbeispiele Applikation selbst}
 \section{Performanz-Messungen}
 Es wurde die Performanz der Erstellung von Signaturen, sowie der Verifikation solcher gemessen. Insgesamt wurden 2 Messungen mit je 10 Testdurchläufen pro Hashfunktion durchgeführt. Die erste Messung wurde auf einem Notebook mit eingebauter Intel 2-Kern \gls{cpu} der Serie Core i5 und einer Taktfrequenz von 2,4 GH durchgeführt\footnote{\url{https://ark.intel.com/content/www/de/de/ark/products/47341/intel-core-i5-520m-processor-3m-cache-2-40-ghz.html}}. Bei der zweiten Messung kam eine 16-Kern AMD \gls{cpu} aus der \glqq Ryzen\grqq~Serie mit der Bezeichnung \glqq Threadripper 2950X\grqq~und einer Taktfrequenz von 3,5 GH zum Einsatz.\\
 
 Die Performanzmessungen wurden in der Node.js Laufzeitumgebung mit der Version 10.15.3 durchgeführt unter Zuhilfenahme der internen process.hrtime() Funktion. Diese wird vor und nach dem Erstellen sowie Verifizieren aufgerufen. Die Rückgabe des zweiten Aufrufs nach der jeweiligen Funktion enthält die Differenz zum ersten Aufruf in Nanosekunden.
-\begin{table}[H]
+\begin{table}[h]
 	\begin{tabularx}{\textwidth}{p{0.15\textwidth}|X|X|X|r}
 		& RSA-MD4 & RSA-MD5 & RSA-SHA256 & RSA-SHA512\\
 		\hline
@@ -53,7 +80,7 @@ Die Performanzmessungen wurden in der Node.js Laufzeitumgebung mit der Version 1
 \end{table}
 Beim betrachten der arithmetischen Mittel fällt auf, dass die Messwerte sehr nahe beieinander liegen. Die SHA256 Hashfunktion schneidet dabei mit einer Funktionslaufzeit von 23,418 ms am Besten ab. Auf Platz zwei liegt die MD5 Funktion mit 24,281 ms gefolgt von SHA512 mit 24,427 ms. Das Schlusslicht bildet MD4 mit einer Laufzeit von 25,122 ms.\\
 Aus Sicht der Performanz wird bei der ersten Messung somit die SHA256 Hashfunktion zur Signierung empfohlen.
-\begin{table}[H]
+\begin{table}[h]
 	\begin{tabularx}{\textwidth}{p{0.15\textwidth}|X|X|X|r}
 		& RSA-MD4 & RSA-MD5 & RSA-SHA256 & RSA-SHA512\\
 		\hline
@@ -73,7 +100,7 @@ Aus Sicht der Performanz wird bei der ersten Messung somit die SHA256 Hashfunkti
 	\caption{Testergebnisse der ersten Messung (Signatur Verifikation)}
 \end{table}
 Werden die Arithmetischen Mittel der Verifikation betrachtet ist eine Zeitspanne von 10 ms Sekunden zu Beobachten in welcher sich alle Messwerte befinden. Dabei ist der MD4 Algorithmus mit 41,183 ms auf Position eins, während sich MD5 mit 51,503 ms auf der letzten Position befindet. Die beiden Funktionen SHA256 und SHA512 liegen mit Laufzeiten von 42,065 und 43,400 ms näher an der MD4 Funktion. Zudem fällt auf, dass bei der Verifikation die ersten Messwerte stark abweichen von allen weiteren. Das ist dadurch zu erklären, dass zuerst eine HTTP Anfrage gesendet werden muss um den benötigten öffentlichen Schlüssel zu erhalten. Jegliche weitere Anfragen werden aus dem Cache bedient und sind somit um einen groben Faktor von 2 schneller als die erste Anfrage.\\
-\begin{table}[H]
+\begin{table}[h]
 	\begin{tabularx}{\textwidth}{p{0.15\textwidth}|X|X|X|r}
 		& RSA-MD4 & RSA-MD5 & RSA-SHA256 & RSA-SHA512\\
 		\hline
@@ -93,7 +120,7 @@ Werden die Arithmetischen Mittel der Verifikation betrachtet ist eine Zeitspanne
 	\caption{Testergebnisse der zweiten Messung (Signatur Erstellung)}
 \end{table}
 Anders als bei der ersten Messung liegt bei Betrachtung der arithmetischen Mittel keine Zeitspanne vor, sondern die Messwerte liegen sehr nahe beieinander. Dabei ist die SHA512 Hashfunktion am schnellsten mit 6,911 ms, dicht gefolgt von der SHA256 Funktion mit einer Laufzeit von 6,917 ms. Auf Platz drei ist die MD4 Funktion mit 7,088 ms und auf Platz vier MD5 mit 7,128 ms.\\
-\begin{table}[H]
+\begin{table}[h]
 	\begin{tabularx}{\textwidth}{p{0.15\textwidth}|X|X|X|r}
 		& RSA-MD4 & RSA-MD5 & RSA-SHA256 & RSA-SHA512\\
 		\hline
