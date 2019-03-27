@@ -14,7 +14,6 @@
 %% --------------------------------------------------------
 %% | Derived from sdqthesis by Erik Burger burger@kit.edu |
 %% --------------------------------------------------------
-
 \chapter{Entwurf einer Lösung für Server-zu-Server Interaktion mit ActivityPub}
 	Zu Beginn dieses Kapitels wird auf die Entwurfsentscheidung eingegangen und folgende Frage beantwortet:
 	\begin{itemize}
@@ -22,9 +21,13 @@
 	\end{itemize}
 	Darauffolgend wird konkret auf die technische Architektur eingegangen und mit Diagrammen veranschaulicht wie diese aussieht.
 \section{Entwurfsentscheidung}
-	Für die nachfolgende Architektur wurde sich in dieser Arbeit entschieden, da sie einen Modularen Charakter hat. Dies ist gegeben durch die Kapselung des Services in eine Express Middleware. Sowohl das alleinstehende betreiben des Services ist möglich als auch die Integration in einen bestehen Express Server.
+	Für die nachfolgende beschriebene Architektur wurde sich in dieser Arbeit entschieden aufgrund des Modularen Charakters. Dies ist gegeben durch die Kapselung des Services in eine Express Middleware. Sowohl das alleinstehende betreiben des Services ist möglich, als auch die Integration in einen bestehen Express Server. Voraussetzung ist eine Implementierung des IDataSource Interfaces zur Anbindung an eine Datenquelle.\\
+	
+	Es wurde sich für das Erstellen von Nutzern für jeden Aktor des Fediverse, welches mit dieser Instanz kommuniziert, entschieden, da dadurch die automatische Erstellung von Beziehungen erhalten bleibt.
 \section{Technische Architektur}
-	Der technischen Architektur liegt das Express Middleware Framework zugrunde. Der ActivityPub Service wird als Express Middleware, sowie als allein stehender Express Web Server implementiert. Bei der letzteren Variante wird anstatt die Middleware in ein bestehenden Express Server zu integrieren, ein eigener Express Server gestartet.\\
+	Die technische Architektur ist in drei Schichten aufgeteilt. Der \textit{ Controller}~hat die Aufgabe HTTP Anfragen entgegen zu nehmen. In der \textit{Service} Schicht bekommen alle Methoden eine Aktivität als Parameter übergeben. Zudem nutzen alle Service Methoden die IDataSource Implementierung. Diese stellt die \textit{Datenschicht} dar.\\
+	
+	Der ActivityPub Service wird als Express Middleware, sowie als allein stehender Web Server bereitgestellt. Bei der letzteren Variante wird anstatt die Middleware in ein bestehenden Express Server zu integrieren, ein eigener  Server gestartet.\\
 	\begin{figure}[h]
 		\centering
 		\includegraphics[scale=0.6]{figures/technische-architektur-activitypub.png}
@@ -33,7 +36,7 @@
 	\end{figure}
 	In der oben gezeigten Abbildung wurde der ActivityPub Service in einen bestehenden Express Server einer GraphQL API integriert.\\
 	
-	Benutzer der API kommunizieren mit dem Web Server über das HTTP Protokoll. Der Web Server leitet die Anfragen dann an den entsprechenden Router weiter, welcher wiederum den Anfrage Inhalt transformiert und \glqq Handler\grqq~Funktionen des ActivityPub Service mit entsprechenden Parametern aufruft.
+	Benutzer der API kommunizieren mit dem Web Server über das HTTP Protokoll. Der Web Server leitet die Anfragen dann an den entsprechenden Router weiter, welcher wiederum den Anfrage Inhalt transformiert und \glqq Handler\grqq~Funktionen der Service Schicht, mit entsprechenden Parametern, aufruft.
 	\begin{figure}[h]
 		\begin{minipage}{\textwidth}
 			\centering
@@ -42,10 +45,8 @@
 			\caption{Technische Architektur als allein stehender Server}
 		\end{minipage}
 	\end{figure}
-	Die obige Abbildung zeigt eine detailliertere Variante des ActivityPub Service Diagramms aus Abb. 4.1.\\
+	Die obige Abbildung zeigt eine detailliertere Variante des ActivityPub Service Diagramms aus Abb. \ref{technische-architektur-activitypub}.\\
 	
-	Es wird außerdem ersichtlich, dass, um eine maßgeschneiderte Version für ein weiteres Projekt zu erstellen, das Interface IDataSource implementiert werden muss.\\ 
+	Der Router stellt hier die Controller Schicht dar bei der die HTTP Anfragen der Nutzer eingehen und die ActivityPub Komponente ist der eigentliche Service und stellt zudem die gleich benannte Schicht dar.\\
 	
-	Betrachtet man außerdem die ActivityPub Router als Controller und die explizite ActivityPub Klasse als Service, sowie die IDataSource Implementierung als DAO ergibt sich eine drei Schichten Architektur.\\
-	
-	Sonst wird bei der Architektur weitestgehend darauf Wert gelegt, dass die meisten ActivityPub konformen Inhalte \glqq on the fly\grqq generiert werden können. Damit wird versucht für weitere Projekte die auf diesem Prototypen aufbauen wollen einen einfachen Einstieg zu bieten um andere Datenbanken o.ä. anbinden zu können.\\
+	Bei der Architektur wird weitestgehend darauf Wert gelegt, dass die meisten ActivityPub konformen Inhalte dynamisch generiert werden können. Damit wird außerdem versucht für bestehende Projekte die diesen Prototypen integrieren wollen einen einfachen Einstieg zu bieten um andere Datenbanken o.ä. anbinden zu können.\\
