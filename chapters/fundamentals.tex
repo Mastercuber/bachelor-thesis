@@ -48,8 +48,11 @@
 		\iflanguage{english}{Difference between centralised, decentralised and distributed social networks}{Unterschiedliche Klassen sozialer Netzwerke}
 		\label{sub:difference}
 	}
-	\textit{Zentrale soziale Netzwerke} haben den Nachteil eines \glqq Single point of Failures\grqq. Fällt dieser Knoten aus, bricht das ganze Netzwerk zusammen. Zudem sind sie kaum skalierbar. Ein Vorteil eines zentralen Netzwerks ist die schnelle Bereitstellbarkeit. Obwohl aus Sicht der Daten die meisten sozialen Netzwerke zentral sind, kann ihre Architektur intern sowohl verteilt als auch dezentral sein.
+	\textit{Zentrale soziale Netzwerke} haben den Nachteil eines \glqq Single point of Failures\grqq. Fällt dieser Knoten aus, bricht das ganze Netzwerk zusammen. Zudem sind sie kaum skalierbar. Ein Vorteil eines zentralen Netzwerks ist die schnelle Bereitstellbarkeit.\\
+	
+	Obwohl aus Sicht der Daten die meisten sozialen Netzwerke zentral sind, kann ihre Architektur intern sowohl verteilt als auch dezentral sein.\\
 	\begin{figure}[h] 
+		\label{fig:classes-of-networks}
 		\centering
 		\begin{subfigure}[t]{0.4\linewidth}
 			\centering
@@ -66,14 +69,32 @@
 		\vspace{4pt}
 		\quelle{(hagengraf)}
 		\caption{Klassen sozialer Netzwerke}
+	\end{figure}~\\
+	In obiger Abbildung 3.2 ist ein zentrales Netzwerk gezeigt welches aus einem zentralen Knoten (Peer) und verschiedenen Blättern (Benutzern) besteht. Fällt der zentrale Knoten aus, können die Nutzer nicht mehr auf das Netzwerk zugreifen was einen großen Flaschenhals aufzeigt.\\
+	
+	Die Praxis zeigt allerdings, dass ein ausschließlich zentrales System eher selten existiert. Meist sind es Mischformen der verschiedenen Architekturen. Auch große zentrale soziale Netzwerke müssen um Verfügbarkeit u. w. zu gewährleisten verteilte Aspekte haben.\\
+	
+	Bei einem \textit{dezentralen sozialen Netzwerk} verhält sich das anders. Fällt ein Peer aus, können die Nutzer über andere Instanzen des Netzwerks trotzdem weiterhin auf aktive Peers des gesamten zugreifen. Dabei ist allerdings eine erneute Registrierung auf einer weiteren Instanz notwendig. Zudem ist die Kontrolle über Daten auf die einzelnen Peers verteilt anstatt das die gesamten Daten des Netzwerks zentral unter Kontrolle einer Entität stehen. Jedes dezentrale, ist auch ein verteiltes Netzwerk und verfügt somit über eine Middleware Schicht zur Kommunikation der einzelnen Instanzen untereinander.\\
+	\todo{Indirektes Professoren Zitat}
+	\begin{figure}[h]
+		\begin{minipage}{\textwidth}
+			\centering
+			\includegraphics[scale=0.5]{figures/federate.png}
+			\label{fig:federated}
+			\caption{Förderieren von Netzwerken über verschiedene Protokolle}
+		\end{minipage}
 	\end{figure}
-	In der obigen Abbildung ist ein zentrales Netzwerk gezeigt welches aus einem zentralen Knoten (Peer) und verschiedenen Blättern (Benutzern) besteht. Fällt der zentrale Knoten aus, können die Nutzer nicht mehr auf das Netzwerk zugreifen was einen großen Flaschenhals aufzeigt.~\\
+	Um die Inhalte verschiedener Netzwerke zu verbinden können mehrere soziale Netzwerke zu einem großen verbunden oder \glqq förderiert\grqq~werden. Dies kann über Protokolle und Standards wie OStatus und ActivityPub geschehen oder durch Netzwerkbrücken, im Sinne von Transformatoren, realisiert werden.\\
 	
-	Die Praxis zeigt allerdings, dass ein auschließlich zentrales System eher selten existiert. Meist sind es Mischformen der verschiedenen Architekturen. Auch große zentrale soziale Netzwerke müssen um Verfügbarkeit u. w. zu gewährleisten verteilte Aspekte haben.~\\
+	Da ein dezentrales Netzwerk zugleich auch ein verteiltes ist, betrachten wir folgende allgemeine Definition verteilter Systeme von Andres S. Tanenbaum und Maarten van Steen:
+	\begin{addmargin}[1cm]{1cm}
+		\vspace{0.5cm}
+		\textit{\glqq Ein verteiltes System ist eine Ansammlung unabhängiger Computer, die den Benutzern wie ein einzelnes kohärentes System erscheinen.\grqq}\cite{distributed-systems}
+		\vspace{0.5cm}
+	\end{addmargin}
+	Ein verteiltes Netzwerk ist demnach eine Ansammlung unabhängiger Computer, in diesem Fall die Instanzen eines sozialen Netzwerks, welche den Benutzern wie ein einzelnes kohärentes Netzwerk erscheinen. Die Instanzen können über das \gls{http} Protokoll kommunizieren, was somit die Middleware-Schicht darstellt. Es können Inhalte aus mehreren Instanzen zum Darstellen zusammengetragen werden, was der kohärente Aspekt dabei ist.\\
 	
-	Bei einem \textit{dezentralen sozialen Netzwerk} verhält sich das anders. Fällt ein Peer aus, können die Nutzer über andere Instanzen des Netzwerks trotzdem weiterhin auf aktive Peers des gesamten zugreifen. Dabei ist allerdings eine erneute Registrierung auf einer weiteren Instanz notwendig. Zudem ist die Kontrolle über Daten auf die einzelnen Peers verteilt anstatt das die gesamten Daten des Netzwerks zentrale unter Kontrolle einer Entität stehen. Jedes dezentrale, ist auch ein verteiltes Netzwerk und verfügt somit über eine Middleware Schicht zur Kommunikation der einzelnen Instanzen untereinander.~\\
-
-	Um die Inhalte verschiedener Netzwerke zu verbinden können mehrere soziale Netzwerke zu einem großen verbunden oder \glqq förderiert\grqq~werden. Dies kann über Protokolle und Standards wie OStatus und ActivityPub geschehen oder durch Netzwerkbrücken, im Sinne von Transformatoren, realisiert werden.
+	Das soziale Netzwerk der Firma, für diese Abschlussarbeit angefertigt wird, hat eine zentrale System Architektur. Die einzelnen Instanzen können also nicht untereinander kommunizieren. Allerdings ist das Netzwerk aus der Sicht her dezentral, als das jede Person eine eigene Instanz des Netzwerks aufsetzten kann. Zudem ist das Netzwerk bezogen auf die Daten dezentral, da jeder der eine eigene Instanz aufsetzt die Kontrolle über auf dieser generierte Daten hat. Durch die Implementierung des ActivityPub Protokolls wird das System zugleich verteilt und föderiert. Verteilt, weil mit dem Protokoll auch eine Schnittstelle für die Kommunikation der Instanzen des Netzwerks bereitgestellt wird. Förderiert, da diese Schnittstelle auch von anderen Netzwerken implementiert wird und somit die Kommunikation zu Instanzen fremder Netzwerke möglich ist.
 	\subsection{
 		\iflanguage{english}{Security aspects of social networks}{Sicherheitsaspekte sozialer Netzwerke}
 	}
@@ -84,9 +105,9 @@
 		\item Schutz der Datenbank vor unbefugtem Zugriff
 		\item Filterung (Nutzer bekommt nur das zu sehen, was er sehen darf)
 	\end{itemize}
-	Um die einzelnen Nutzer gegenüber dem Server zu authentisieren, können Technologien wie OAuth\footnote{siehe \url{https://tools.ietf.org/html/rfc6749}} oder JSON Web Token\footnote{siehe \url{https://tools.ietf.org/html/rfc7519}} verwendet werden. Dadurch ist sichergestellt, das nur derjenige mit korrekten Anmeldedaten das Profil benutzen kann. Außerdem weiß der Server dadurch wie er die Inhalte Filtern muss um dem Nutzer das für ihn erlaubte anzeigen zu können.~\\
+	Um die einzelnen Nutzer gegenüber dem Server zu authentisieren, können Technologien wie OAuth\footnote{siehe \url{https://tools.ietf.org/html/rfc6749}} oder JSON Web Token\footnote{siehe \url{https://tools.ietf.org/html/rfc7519}} verwendet werden. Dadurch ist sichergestellt, das nur derjenige mit korrekten Anmeldedaten das Profil benutzen kann. Außerdem weiß der Server dadurch wie er die Inhalte Filtern muss um dem Nutzer das für ihn erlaubte anzeigen zu können.\\
 	
-	Das Sicherstellen der manipulationsfreien Übertragung von Inhalten ist sowohl bei der Client zu Server, als auch bei der Server zu Server Kommunikation zu Empfehlen. Bei beiden Kommunikationsszenarien werden die Daten über das Internet übertragen und sind somit potentiell manipulierbar. Sichergestellt werden kann dies z. B. über HTTP-Signaturen s. \ref{subsec:http-signaturen}.~\\
+	Das Sicherstellen der manipulationsfreien Übertragung von Inhalten ist sowohl bei der Client zu Server, als auch bei der Server zu Server Kommunikation zu Empfehlen. Bei beiden Kommunikationsszenarien werden die Daten über das Internet übertragen und sind somit potentiell manipulierbar. Sichergestellt werden kann dies z. B. über HTTP-Signaturen s. \ref{subsec:http-signaturen}.\\
 	
 	Ein weiterer wichtiger Sicherheitsaspekt ist das Schützen der Datenbank vor unbefugtem Zugriff. Bei einem sozialen Netzwerk kann man die Datenbank durchaus als das Herzstück des Netzwerkes bezeichnen, da in dieser, gerade bei \glqq sozialen Netzwerken\grqq~eine riesige Menge an Daten liegen. Schaffen es Angreifer auf diese Zugriff zu bekommen und unbemerkt zu bleiben, kann die Datenbank in Ruhe analysiert oder womöglich die Inhalte auf einen eigenen Server transferiert werden. Durch das isolieren der Datenbank, restriktiven oder keinen direkten Zugriff durch Nutzer oder eine Mehrfaktor Authentisierung kann die Sicherheit der Datenbank erhöht werden.
 \section{
@@ -132,7 +153,7 @@
 	Die bei der Signierung mit gegebenem Hashing-Algorithmus und Kopfzeilen erzeugte Signatur wird in das \textit{signature} Feld der HTTP Signatur eingetragen sowie die HTTP Signatur an sich als \glqq Signature\grqq~Kopfzeile der HTTP Anfrage gesetzt.\cite{http-signature}
 \section{ActivityPub Standard}
 \iflanguage{english}{}{
-	Der ActivityPub Standard wurde am 23 Januar 2018 von der \gls{w3c} empfohlen\cite{activityPub} und von einer Arbeitsgruppe des \gls{w3c}, der \gls{swwg}\cite{socialWg,pushSocialWeb}, entwickelt. Diese Gruppe war vom 21. Juli 2014 bis zum 13 Februar 2018 aktiv\cite{socialWg} und entwickelte unter anderem ActivityPub, \gls{asc}\cite{activityStreamsCore} und \gls{asv}\cite{activityStreamsVocabulary}. Die \gls{swwg} war eine Arbeitsgruppe des \gls{w3c} mit dem Ziel neue Protokolle, Vokabulare und \gls{api}'s zu definieren für den Zugriff auf soziale Inhalte der sogenannten \gls{owp}\cite{social-wg-charter}.~\\
+	Der ActivityPub Standard wurde am 23 Januar 2018 von der \gls{w3c} empfohlen~\cite{activityPub} und von einer Arbeitsgruppe des \gls{w3c}, der \gls{swwg}\cite{socialWg,pushSocialWeb}, entwickelt. Diese Gruppe war vom 21. Juli 2014 bis zum 13 Februar 2018 aktiv\cite{socialWg} und entwickelte unter anderem ActivityPub, \gls{asc}\cite{activityStreamsCore} und \gls{asv}\cite{activityStreamsVocabulary}. Die \gls{swwg} war eine Arbeitsgruppe des \gls{w3c} mit dem Ziel neue Protokolle, Vokabulare und \gls{api}'s zu definieren für den Zugriff auf soziale Inhalte der sogenannten \gls{owp}\cite{social-wg-charter}.~\\
 	
 	ActivityPub definiert zwei Protokollschichten, sowie Konzepte, Sammlungen und Interaktionen für dezentrale soziale Netzwerke. Eine Protokollschicht ist das Client-zu-Server Protokoll (Social API), um Clients den Zugriff auf die neusten an sie gesendeten Inhalte zu ermöglichen sowie zum entgegennehmen von Anfragen die vom Client abgesetzt wurden\cite{activityPub}.
 	\begin{figure}[h]
@@ -185,9 +206,16 @@
 	\end{figure}
 	ActivityPub benutzt die \gls{as2} Daten Syntax und das Vokabular. Zusätzlich kann ein weiteres, z. B. das im vorherigen Absatz erwähnte, Sicherheitsvokabular\footnote{Eine Ontologie die Sicherheitsaspekte definiert wie öffentliche Schlüssel, Signaturen u.v.m.} benutzt werden. Auch in Abbildung \ref{fig:actor} wurde obig beschriebenes Vokabular genutzt.~\\
 	
+	\begingroup
+		\fontsize{18pt}{12pt}\selectfont
+		\textbf{ActivityStreams 2.0}
+		\vspace{4pt}
+	\endgroup\\
 	\glqq \gls{as2}\grqq~beinhaltet Modelle für Aktoren, Aktivitäten, Intransitiven Aktivitäten, Objekte, Links, Sammlungen, Natürliche Sprachwerte (Strings) und für Internationalisierung. Das Kernvokabular von \gls{as2} wird durch \gls{asv} erweitert. Dazu gehören verschiedene Aktivitätstypen wie z.B. \glqq Accept\grqq,\glqq Add\grqq,\glqq Remove\grqq,\glqq Delete\grqq~und \glqq Create\grqq, um Aktorentypen wie \glqq Person\grqq, \glqq Application\grqq~und \glqq Group\grqq sowie um verschiedenste Objekttypen wie \glqq Article\grqq, \glqq Event\grqq, \glqq Note\grqq~und \glqq Relationship\grqq\footnote{siehe \url{https://www.w3.org/TR/activitystreams-vocabulary/}, 3}.~\\
 	
-	\gls{JSON-LD} ist eine Erweiterung des JSON Formates um verlinkte Daten zu Repräsentieren. JSON an sich, ist ein Format welches im Web häufig Anwendung findet um Daten auszutauschen. Im Kern sind \gls{as2} auch \gls{JSON-LD} Objekte. Der \gls{as2} Kontext definiert verschiedene Klassen und Eigenschaften, von denen nicht alle benutzt werden. Typische Klassen sind \glqq Activity\grqq, \glqq Link\grqq~und \glqq OrderedCollection\grqq. Ein Beispiel Notiz, sowie Artikel \gls{as2} Objekt sieht wie folgt aus:~\\
+	Objekte werden innerhalb von \gls{as2} in Aktivitäten eingehüllt um mitteilen zu können das ein Objekt, wie z. B. \glqq Article\grqq, erstellt wurde. Dies geschieht mit der \glqq Create\grqq~Aktivität. Der Mittelpunkt bilden somit Objekte, welche die eigentlichen Inhalte repräsentieren wie Audio oder Video Dateien, Bilder, Artikel und mehr. Die Umhüllenden Aktivitäten sind Metadaten um den Objekten erweiterte semantische Informationen zu geben.~\\
+	
+	Ein Beispiel Notiz, sowie Artikel \gls{as2} Objekt sieht wie folgt aus:~\\
 	\begin{figure}[h]
 		\begin{minipage}{\textwidth}
 			\centering
@@ -207,7 +235,19 @@
 	\end{figure}
 	Artikel bilden, im Gegensatz zu Notizen, längere Texte ab. Hier ist, wie oben angedeutet, das Veröffentlichungsdatum mitangegeben.~\\
 	
-	Objekte werden innerhalb von \gls{as2} in Aktivitäten eingehüllt um mitteilen zu können das ein Objekt, wie z. B. \glqq Article\grqq, erstellt wurde. Dies geschieht mit der \glqq Create\grqq~Aktivität. Der Mittelpunkt bilden somit Objekte, welche die eigentlichen Inhalte repräsentieren wie Audio oder Video Dateien, Bilder, Artikel und mehr. Die Umhüllenden Aktivitäten sind Metadaten um den Objekten erweiterte semantische Informationen zu geben.~\\
+	\begingroup
+		\fontsize{18pt}{12pt}\selectfont
+		\textbf{JSON Linked Data}
+		\vspace{4pt}
+	\endgroup\\
+	\gls{JSON-LD} ist eine Erweiterung des JSON Formates um verlinkte Daten zu Repräsentieren. JSON an sich, ist ein Format welches im Web häufig Anwendung findet um Daten auszutauschen. Im Kern sind \gls{as2} auch \gls{JSON-LD} Objekte. Der \gls{as2} Kontext definiert verschiedene Klassen und Eigenschaften, von denen nicht alle benutzt werden. Typische Klassen sind \glqq Activity\grqq, \glqq Link\grqq~und \glqq OrderedCollection\grqq.\\
+	
+	\begingroup
+		\fontsize{18pt}{12pt}\selectfont
+		\textbf{WebFinger}
+		\vspace{4pt}
+	\endgroup\\
+	Beim OStatus Protokoll wird zum Entdecken von Profilen für z. B. eine Suchfunktion das WebFinger Protokoll benutzt. Auch dieses Framework verwendet, obwohl der Standard das nicht festlegt, das WebFinger Protokoll. Dabei wird ein \gls{jrd} bereitgestellt, welcher einen Link auf das Aktoren-Objekt enthält. Über diesen kann eine AcitivtyPub konforme Repräsentation eines Nutzern (Aktoren-Objekt) erhalten werden. Beispielsweise wird WebFinger bei Mastodon benutzt um Nutzer zu suchen.
 }
 \subsection{
 	\iflanguage{english}{Authentication and data integrity}{Authentisierung und Datenintegrität}
