@@ -53,11 +53,13 @@ Der zuvor von Alice gemochte Inhalt wurde in der Zwischenzeit von Bob verändert
 
 \textbf{Beispiel 5} (Erstellen eines Inhalts):\\
 Nach einem schönen Wochenende möchte Alice ihre neuen Erfahrungen in einem Inhalt zusammenfassen und an ihre Freunde senden. Sie meldet sich bei Instanz A an und verfasst ihre Erfahrungen. Nach dem absenden erstellt Instanz A eine \glqq Create\grqq~Aktivität mit einem Artikel als Objekt und sendet signierte Anfragen an jeden ihrer Freunde.
-
+\todo{Einzelne Testfälle vorstellen und aufzeigen das sie funktionieren}
+\todo{HTTP Anfragen anzeigen}
 \todo{Anwendungsbeispiele Applikation selbst}
 \section{Performanz-Messungen}
+\todo{Performanz Messung mit JMeter}
 Es wurde die Performanz der Erstellung von Signaturen, sowie der Verifikation solcher gemessen. Insgesamt wurden 2 Messungen mit je 10 Testdurchläufen pro Hashfunktion durchgeführt. Die erste Messung wurde auf einem Notebook mit eingebauter Intel 2-Kern \gls{cpu} der Serie Core i5 und einer Taktfrequenz von 2,4 GH durchgeführt\footnote{\url{https://ark.intel.com/content/www/de/de/ark/products/47341/intel-core-i5-520m-processor-3m-cache-2-40-ghz.html}}. Bei der zweiten Messung kam eine 16-Kern AMD \gls{cpu} aus der \glqq Ryzen\grqq~Serie mit der Bezeichnung \glqq Threadripper 2950X\grqq~und einer Taktfrequenz von 3,5 GH zum Einsatz.\\
-
+\todo{Performanz-Messung in die Implementierung verschieben}
 Die Performanzmessungen wurden in der Node.js Laufzeitumgebung mit der Version 10.15.3 durchgeführt unter Zuhilfenahme der internen process.hrtime() Funktion. Diese wird vor und nach dem Erstellen sowie Verifizieren aufgerufen. Die Rückgabe des zweiten Aufrufs nach der jeweiligen Funktion enthält die Differenz zum ersten Aufruf in Nanosekunden.
 \begin{table}[h]
 	\begin{tabularx}{\textwidth}{p{0.15\textwidth}|X|X|X|r}
