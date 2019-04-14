@@ -17,15 +17,18 @@
 
 \chapter{Evaluation}
 \label{ch:Evaluation}
-Zu Beginn dieses Kapitels werden verschiedenste Anwendungsbeispiele anhand von Diagrammen veranschaulicht und erklärt. Insgesamt werden die folgenden fünf Anwendungsbeispiele etwas beschrieben:
+\todo{JMeter Test, welche Endpunkte machen sind getestet zu werden}
+Zu Beginn dieses Kapitels werden verschiedenste Anwendungsbeispiele anhand von Diagrammen veranschaulicht und erklärt. Insgesamt werden die folgenden fünf Anwendungsbeispiele beschrieben:
 \begin{itemize}
 	\item Folgen eines Nutzers aus einem anderen Netzwerk
 	\item \glqq Liken\grqq~eines Objekts in einem anderen Netzwerk
-	\item Rückgängig machen einer zuvor gesendeten \glqq Follow\grqq Aktivität
+	\item Rückgängig machen einer zuvor gesendeten \glqq Follow\grqq~Aktivität
 	\item Die Umkehrung eines \glqq Likes\grqq~(Dislike)
 	\item Artikel erstellen in einem anderen Netzwerk
 \end{itemize}
-Des weiteren wird eine Performanz-Messung für die Signatur Erstellung, sowie Verifikation durchgeführt und die Ergebnisse interpretiert. Bei der Messung werden 4 verschiedene Ergebnistabelle erstellt; Jeweils zwei für eine Hardwarevariation. Zum einen wird ein älteres Notebook Modell zum testen verwenden, zum anderen ein Spiele-Computer. Außerdem wird aufgrund der interpretierten Ergebnisse und anderen Aspekten Empfehlungen gegeben, welche Hashfunktion für welchen Zweck am Besten passt.
+Des weiteren wird eine Performanz-Messung für die Signatur Erstellung, sowie Verifikation durchgeführt und die Ergebnisse interpretiert. Es wird sich für die Messung der Signatur Erstellung sowie Verifikation entschieden, da diese beiden Schritte eine nicht geringe Zeit der gesamten Anfrage in Anspruch nehmen. Damit wird versucht eine Hilfestellung für verschiedene Situationen zu bieten. Wird z. B. auf die Performanz großen Wert gelegt, kann anhand der Ergebnisse die Entscheidung für eine Hashfunktion gefällt werden.\\
+
+Bei der Messung werden 4 verschiedene Ergebnistabellen erstellt; Jeweils zwei für eine Hardwarevariation. Zum Einen wird ein älteres Notebook Modell zum testen verwenden, zum Anderen ein Spiele-Computer. Außerdem wird aufgrund der interpretierten Ergebnisse und anderen Aspekten Empfehlungen gegeben, welche Hashfunktion für welchen Zweck am Besten passt.
 \section{Anwendungsbeispiel}
 Bei jedem der folgenden Anwendungsbeispiele muss sich der Server mit einer HTTP Signatur authentisieren. Die Signaturen werden beim ActivityPub Protokoll mit dem privaten Schlüssel des interagierenden Nutzers erstellt und mit dem öffentlichen verifiziert. Im folgenden Diagramm wird das ersichtlich durch den Anwendungsfall \glqq HTTP Signatur verifizieren\grqq, welcher im Empfangen von Aktivitäten beinhaltet ist:\\
 \begin{figure}[h]
@@ -38,7 +41,7 @@ Bei jedem der folgenden Anwendungsbeispiele muss sich der Server mit einer HTTP 
 \end{figure}
 
 \textbf{Beispiel 1} (Nutzer wird gefolgt):\\
-Eine Nutzerin Alice aus einem anderen Netzwerk oder von einer anderen Instanz des selben Netzwerks, genannt Instanz A, möchte einem Nutzer auf Instanz B folgen. Dafür muss Alice dem zu folgenden Nutzer Bob über die Suchfunktion auf Instanz A finden und anschließend auf den \glqq folgen\grqq~Knopf drücken. Dadurch wird auf der Instanz A eine Anfrage erstellt, welche mit dem privaten Schlüssel von Alice signiert wird. Trifft die signierte Anfrage bei Instanz B ein wird zuerst die Signatur mit dem öffentlichen Schlüssel von Alice geprüft. Bei einer erfolgreichen Verifikation wird die Anfrage weiter verarbeitet und vom Server entsprechend eine \glqq Accept\grqq oder \glqq Reject\grqq~Aktivität gesendet. Schlägt die Signatur-Prüfung fehl wird ein \glqq Forbidden\grqq~ Statuscode zurückgegeben.\\
+Eine Nutzerin Alice aus einem anderen Netzwerk oder von einer anderen Instanz des selben Netzwerks, genannt Instanz A, möchte einem Nutzer auf Instanz B folgen. Dafür muss Alice dem zu folgenden Nutzer Bob über die Suchfunktion auf Instanz A finden und anschließend auf den \glqq folgen\grqq~Knopf drücken. Dadurch wird auf der Instanz A eine Anfrage erstellt, welche mit dem privaten Schlüssel von Alice signiert wird. Trifft die signierte Anfrage bei Instanz B ein wird zuerst die Signatur mit dem öffentlichen Schlüssel von Alice geprüft. Bei einer erfolgreichen Verifikation wird die Anfrage weiter verarbeitet und vom Server entsprechend eine \glqq Accept\grqq~oder \glqq Reject\grqq~Aktivität gesendet. Schlägt die Signatur-Prüfung fehl wird ein \glqq Forbidden\grqq~Statuscode zurückgegeben.\\
 
 Auch in den folgenden Beispielen werden die Benutzer Alice und Bob als Beispielnutzer genannt welche entsprechend auf Instanz A (Alice) und Instanz B (Bob) residieren.\\
 
@@ -58,7 +61,9 @@ Nach einem schönen Wochenende möchte Alice ihre neuen Erfahrungen in einem Inh
 \todo{Anwendungsbeispiele Applikation selbst}
 \section{Performanz-Messungen}
 \todo{Performanz Messung mit JMeter}
-Es wurde die Performanz der Erstellung von Signaturen, sowie der Verifikation solcher gemessen. Insgesamt wurden 2 Messungen mit je 10 Testdurchläufen pro Hashfunktion durchgeführt. Die erste Messung wurde auf einem Notebook mit eingebauter Intel 2-Kern \gls{cpu} der Serie Core i5 und einer Taktfrequenz von 2,4 GH durchgeführt\footnote{\url{https://ark.intel.com/content/www/de/de/ark/products/47341/intel-core-i5-520m-processor-3m-cache-2-40-ghz.html}}. Bei der zweiten Messung kam eine 16-Kern AMD \gls{cpu} aus der \glqq Ryzen\grqq~Serie mit der Bezeichnung \glqq Threadripper 2950X\grqq~und einer Taktfrequenz von 3,5 GH zum Einsatz.\\
+Es wurde die Performanz der Erstellung von Signaturen, sowie der Verifikation solcher gemessen.
+
+Insgesamt wurden 2 Messungen mit je 10 Testdurchläufen pro Hashfunktion durchgeführt. Die erste Messung wurde auf einem Notebook mit eingebauter Intel 2-Kern \gls{cpu} der Serie Core i5 und einer Taktfrequenz von 2,4 GH durchgeführt\footnote{\url{https://ark.intel.com/content/www/de/de/ark/products/47341/intel-core-i5-520m-processor-3m-cache-2-40-ghz.html}}. Bei der zweiten Messung kam eine 16-Kern AMD \gls{cpu} aus der \glqq Ryzen\grqq~Serie mit der Bezeichnung \glqq Threadripper 2950X\grqq~und einer Taktfrequenz von 3,5 GH zum Einsatz\footnote{\url{https://www.amd.com/de/products/cpu/amd-ryzen-threadripper-2950x}}.\\
 \todo{Performanz-Messung in die Implementierung verschieben}
 Die Performanzmessungen wurden in der Node.js Laufzeitumgebung mit der Version 10.15.3 durchgeführt unter Zuhilfenahme der internen process.hrtime() Funktion. Diese wird vor und nach dem Erstellen sowie Verifizieren aufgerufen. Die Rückgabe des zweiten Aufrufs nach der jeweiligen Funktion enthält die Differenz zum ersten Aufruf in Nanosekunden.
 \begin{table}[h]
@@ -148,5 +153,5 @@ Wird bei der Erstellung und Verifikation auf die Laufzeit Wert gelegt, gelten fo
 	\item Bei der Betrachtung von Messung eins der Signatur Erstellung kann die SHA256 Funktion und von Messung zwei SHA512 empfohlen werden.
 	\item Wird die Signatur Verifikation betrachtet, kann die MD4 Funktion bei der ersten Messung und MD5 bei der zweiten empfohlen werden.
 \end{itemize}
-Aus Sicht der Sicherheit sei allerdings gesagt, dass die Funktionen MD4 und MD5 als unsicher gelten. Da SHA-1 auch die MD4 Funktion verwendet und diese bereits als unsicher gilt, ist somit auch SHA-1 nicht sicher\footnote{Vgl. Dietmar Wätjen, 2018, S. 103}. Wird also Wert auf kollisionsfrei erzeugte Hashes gelegt, sollte zulasten der Laufzeit vorzugsweise die SHA256 oder SHA512 Funktion Verwendung finden\footnote{Vgl. Bundesamt für Sicherheit in der Informationstechnik, 2019, S. 40, Tabelle 4.1}.
+Aus Sicht der Sicherheit sei allerdings gesagt, dass die Funktionen MD4 und MD5 als unsicher gelten. Da SHA-1 auch die MD4 Funktion verwendet und diese bereits als unsicher gilt, ist somit auch SHA-1 nicht sicher (Vgl. \cite[S. 103]{kryptographie}). Wird also Wert auf kollisionsfrei erzeugte Hashes gelegt, sollte zulasten der Laufzeit vorzugsweise die SHA256 oder SHA512 Funktion Verwendung finden (Vgl. \cite[S. 40, Tabelle 4.1]{bsi-empfehlungen}).
 \section{Diskussion von Vor- und Nachteilen der Lösung}
