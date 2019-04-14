@@ -15,30 +15,37 @@
 %% | Derived from sdqthesis by Erik Burger burger@kit.edu |
 %% --------------------------------------------------------
 \chapter{Entwurf einer Lösung für Server-zu-Server Interaktion mit ActivityPub}
-	Zu Beginn dieses Kapitels wird auf die Entwurfsentscheidung eingegangen und folgende Frage beantwortet:
+	Zu Beginn dieses Kapitels wird auf die Anforderungen, welche an das Framework gestellt werden eingegangen. Im zweiten Unterkapitel wird dann die Entwurfsentscheidung besprochen und dabei folgende Frage beantwortet:
 	\begin{itemize}
-		\item Warum wurde die im folgenden beschriebene Architektur gewählt?
+		\item Warum wurde die Architektur gewählt?
 	\end{itemize}
-	Darauffolgend wird konkret auf die technische Architektur eingegangen und mit Diagrammen veranschaulicht wie diese aussieht.
+	Das dritte Unterkapitel gibt Aufschluss über die konkrete technische Architektur. Diese wird anschließend anhand von Diagrammen veranschaulicht und erläutert.
+\section{Anforderungen an das Framework}
+	An das Framework werden verschiedene Anforderungen gestellt. Zum einen soll es möglichst Entwicklerfreundlich erstellt werden, sodass Entwickler, welche das Framework benutzen möchten um Ihre Applikation ActivityPub konform zu machen, es möglichst einfach haben dieses zu Integrieren oder darauf aufzubauen. Dabei wird auf das Codeverständnis Wert gelegt sowie auf die Schaffung eines einzelnen Interfaces.\\
+	
+	Durch das Erstellen von Nutzern passend zum verwendeten Datenschema soll zudem verhindert werden, dass weitere Mutationen, Anfragen sowie Entitäten für Relationen zwischen Schema-Entitäten angelegt werden müssen. Die Änderungen am vorhandenen Datenschema sollen somit so gering wie möglich gehalten werden.\\
+	
+	Eine weitere Anforderung ist die Integrationsfähigkeit in bestehende Applikationen sowie die Möglichkeit das Framework als Grundlage einer neuen Applikation zu nutzen.\\
+	
+	Auch die Nutzung verschiedener Datenquellen soll ermöglicht werden durch die Erstellung des Interfaces auf Ebene der Datenschicht. Die Controller- und Serviceschicht sollen im besten Falle nicht geändert werden müssen; Lediglich beim hinzufügen neuer Funktionalität sollen diese beiden Schichten angepasst werden müssen.
 \section{Entwurfsentscheidung}
-	Aus Gründen der Einfachheit wurde sich in dieser Arbeit für eine drei Schichten Architektur, bestehend aus Controller-Schicht, Serviceschicht und Datenschicht, entschieden. Hierbei wird die letzte Schicht implementiert und ist somit die Schnittstelle für Entwickler zum integrieren des Frameworks in eine bestehende Applikation. Es wurde sich für die Datenschicht (IDataSource) entschieden um eine breite Fläche an Datenbanken und \gls{api}'s ansprechen zu können; Abhängig davon was bereits besteht.\\
+	Aus Gründen der Einfachheit wurde sich in dieser Arbeit für eine drei Schichten Architektur, bestehend aus Controller-, Service- und Datenschicht, entschieden. Hierbei wird die letzte Schicht implementiert und ist somit die Schnittstelle für Entwickler zum integrieren des Frameworks in eine bestehende Applikation. Es wurde sich für die Datenschicht (IDataSource) entschieden um eine breite Fläche an Datenbanken und \gls{api}'s ansprechen zu können; Abhängig davon was bereits besteht.\\
 	
 	Um außerdem Entwicklern zu ermöglichen auch ohne bestehenden Express Web Server, in den das Framework integriert wird, mit dem implementieren zu beginnen kann der Service ohne Parameter initialisiert werden und startet damit einen separaten Web Server.\\
 	
-	Ein besseres Codeverständnis wurde erlangt durch die Erstellung einer Fassaden Klasse, welche Weiterleitungen zum Interface enthält. Dabei handelt es sich um Funktionalität welche mit Sammlungen zu tun hat. Die Klasse heißt dementsprechend \glqq Collections\grqq.\\
+	Ein besseres Codeverständnis wird erlangt durch die Erstellung eines Fassaden Objekts, welches Weiterleitungen zum Interface enthält. Dabei handelt es sich um Funktionalität welche mit Sammlungen zu tun hat. Das Objekt heißt dementsprechend \glqq Collections\grqq.\\
 	
 	Außerdem wurde sich für das Erstellen von Nutzern für jeden Aktor des Fediverse, welche mit dieser Instanz kommuniziert, entschieden, da dadurch die automatische Erstellung von Relationen erhalten bleibt. Somit entfallen größere Änderungen am verwendeten Datenschema.
-	\pagebreak
 \section{Technische Architektur}
-	Die technische Architektur ist in drei Schichten aufgeteilt. Der \textit{ Controller}~hat die Aufgabe HTTP Anfragen entgegen zu nehmen. In der \textit{Service} Schicht bekommen alle Methoden eine Aktivität als Parameter übergeben. Zudem nutzen alle Service Methoden die IDataSource Implementierung. Diese stellt die \textit{Datenschicht} dar.\\
+	Die technische Architektur ist in drei Schichten aufgeteilt. Der \textit{ Controller}~hat die Aufgabe HTTP Anfragen entgegen zu nehmen. In der \textit{Service} Schicht bekommen alle Methoden eine Aktivität als Parameter übergeben. Zudem nutzen alle Service Methoden die IDataSource Implementierung, welche die \textit{Datenschicht} darstellt.\\
 	
-	Der ActivityPub Service wird als Express Middleware, sowie als allein stehender Web Server bereitgestellt. Bei der letzteren Variante wird anstatt die Middleware in ein bestehenden Express Server zu integrieren, ein eigener  Server gestartet.\\
-	\begin{figure}[H]
+	Der ActivityPub Service wird als Express Middleware, sowie als allein stehender Web Server bereitgestellt. Bei der letzteren Variante wird anstatt die Middleware in ein bestehenden Express Server zu integrieren, ein eigener Server gestartet.\\
+	\begin{figure}[h]
 		\centering
 		\includegraphics[scale=0.6]{figures/technische-architektur-activitypub.png}
 		\label{fig:tech-arch}
 		\caption{Technische Architektur ActivityPub}
-	\end{figure}
+	\end{figure}\\
 	In der oben gezeigten Abbildung wurde der ActivityPub Service in einen bestehenden Express Server einer GraphQL API integriert.\\
 	
 	Benutzer der \gls{api} kommunizieren mit dem Web Server über das HTTP Protokoll. Der Web Server leitet die Anfragen dann an den entsprechenden Router weiter, welcher wiederum den Anfrage Inhalt transformiert und \glqq Handler\grqq~Funktionen der Service Schicht, mit entsprechenden Parametern, aufruft.
@@ -46,12 +53,13 @@
 		\begin{minipage}{\textwidth}
 			\centering
 			\includegraphics[scale=0.6]{figures/technical-architecture-standalone.png}
-			\label{technische-architektur-standalone}
+			\label{fig:technische-architektur-standalone}
 			\caption{Technische Architektur als allein stehender Server}
 		\end{minipage}
 	\end{figure}
-	Die obige Abbildung zeigt eine detailliertere Variante des ActivityPub Service Diagramms aus Abb. 4.1.\\
+
+	Die Abbildung 4.2 zeigt eine detailliertere Variante des ActivityPub Service Diagramms aus Abb. 4.1.\\
 	
-	Der Router stellt hier die Controller Schicht dar bei der die HTTP Anfragen der Nutzer eingehen und die ActivityPub Komponente ist der eigentliche Service und stellt zudem die gleich benannte Schicht dar.\\
+	Der Router stellt hier die Controller Schicht dar bei der die HTTP Anfragen der Nutzer eingehen. Die ActivityPub Komponente ist der eigentliche Service und stellt zudem die gleich benannte Schicht dar (Serviceschicht).\\
 	
-	Bei der Architektur wird weitestgehend darauf Wert gelegt, dass alle ActivityPub konformen Inhalte dynamisch generiert werden können. Damit wird versucht für bestehende Projekte die diesen Prototypen integrieren wollen einen einfachen Einstieg zu bieten um andere Datenbanken o.ä. anbinden zu können.\\
+	Bei der Architektur wird weitestgehend darauf Wert gelegt, dass alle ActivityPub konformen Inhalte dynamisch generiert werden können. Damit wird vermieden eine weitere Datenbank extra für den Service einrichten zu müssen.\\
