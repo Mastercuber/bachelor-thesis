@@ -99,7 +99,7 @@
 		\quelle{(Zentrale, dezentrale, verteilte Systeme \cite{hagengraf})}
 		\caption{Klassen sozialer Netzwerke}
 	\end{figure}~\\
-	In Abbildung 3.2 ist ein zentrales Netzwerk gezeigt welches aus einem zentralen Knoten (Peer) und verschiedenen Blättern (Benutzern) besteht. Fällt der zentrale Knoten aus, können die Nutzer nicht mehr auf das Netzwerk zugreifen was einen großen Flaschenhals aufzeigt.\\
+	In Abbildung 2.2 ist ein zentrales Netzwerk gezeigt welches aus einem zentralen Knoten (Peer) und verschiedenen Blättern (Benutzern) besteht. Fällt der zentrale Knoten aus, können die Nutzer nicht mehr auf das Netzwerk zugreifen was einen großen Flaschenhals aufzeigt.\\
 	
 	Die Praxis zeigt allerdings, dass ein ausschließlich zentrales System eher selten existiert. Meist sind es Mischformen der verschiedenen Architekturen. Auch große zentrale soziale Netzwerke müssen um Verfügbarkeit u. w. zu gewährleisten verteilte Aspekte haben.\\
 	
@@ -181,7 +181,7 @@
 	Die bei der Signierung mit gegebenem Hashing-Algorithmus und Kopfzeilen erzeugte Signatur wird in das \textit{signature} Feld der HTTP Signatur eingetragen sowie die HTTP Signatur an sich als \glqq Signature\grqq~Kopfzeile der HTTP Anfrage gesetzt (Vgl. \cite{http-signature}).
 \section{ActivityPub Standard}
 \iflanguage{english}{}{
-	Der ActivityPub Standard wurde am 23 Januar 2018 von der \gls{w3c} empfohlen~(Vgl. \cite{activityPub}) und von einer Arbeitsgruppe des \gls{w3c}, der \gls{swwg} (Vgl. \cite{socialWg,pushSocialWeb}), entwickelt. Diese Gruppe war vom 21. Juli 2014 bis zum 13 Februar 2018 aktiv\cite{socialWg} und entwickelte unter anderem ActivityPub, \gls{asc} (Vgl. \cite{activityStreamsCore}) und \gls{asv}(Vgl. \cite{activityStreamsVocabulary}). Die \gls{swwg} war eine Arbeitsgruppe des \gls{w3c} mit dem Ziel neue Protokolle, Vokabulare und \gls{api}'s zu definieren für den Zugriff auf soziale Inhalte der sogenannten \gls{owp} (Vgl. \cite{social-wg-charter}).\\
+	Der ActivityPub Standard wurde am 23. Januar 2018 von der \gls{w3c} empfohlen~(Vgl. \cite{activityPub}) und von einer Arbeitsgruppe des \gls{w3c}, der \gls{swwg} (Vgl. \cite{socialWg,pushSocialWeb}), entwickelt. Diese Gruppe war vom 21. Juli 2014 bis zum 13 Februar 2018 aktiv\cite{socialWg} und entwickelte unter anderem ActivityPub, \gls{asc} (Vgl. \cite{activityStreamsCore}) und \gls{asv}(Vgl. \cite{activityStreamsVocabulary}). Die \gls{swwg} war eine Arbeitsgruppe des \gls{w3c} mit dem Ziel neue Protokolle, Vokabulare und \gls{api}'s zu definieren für den Zugriff auf soziale Inhalte der sogenannten \gls{owp} (Vgl. \cite{social-wg-charter}).\\
 	
 	ActivityPub definiert zwei Protokollschichten, sowie Konzepte, Sammlungen und Interaktionen für dezentrale soziale Netzwerke. Eine Protokollschicht ist das Client-zu-Server Protokoll (Social API), um Clients den Zugriff auf die neusten an sie gesendeten Inhalte zu ermöglichen sowie zum entgegennehmen von Anfragen die vom Client abgesetzt wurden (Vgl. \cite{activityPub}).
 	\begin{figure}[h]
@@ -223,7 +223,7 @@
 	\iflanguage{english}{Related standards and components}{Zugehörige Standards und Komponenten}
 }
 \iflanguage{english}{}{
-	Am 22 April 2016 hat die \glqq W3C Community Group\grqq~einen Entwurfsbericht herausgebracht. Durch diesen wird neue Syntax und Semantik definiert um Internet basierten Applikationen das Verschlüsseln, Entschlüsseln sowie digitale Signieren und Verifizieren von verlinkten Daten (Linked Data) zu ermöglichen. Es enthält auch Vokabeln für die Erstellung und Verwaltung einer dezentralen Public-Key-Infrastruktur über das Internet (Vgl. \cite{security-vocab-linked-data}). Ein Anwendungsfall ist das holen des öffentlichen Schlüssels eines Nutzers, über dessen Aktoren Objekt, um eine von Nutzer gesendete Nachricht zu verifizieren.
+	Am 22. April 2016 hat die \glqq W3C Community Group\grqq~einen Entwurfsbericht herausgebracht. Durch diesen wird neue Syntax und Semantik definiert um Internet basierten Applikationen das Verschlüsseln, Entschlüsseln sowie digitale Signieren und Verifizieren von verlinkten Daten (Linked Data) zu ermöglichen. Es enthält auch Vokabeln für die Erstellung und Verwaltung einer dezentralen Public-Key-Infrastruktur über das Internet (Vgl. \cite{security-vocab-linked-data}). Ein Anwendungsfall ist das holen des öffentlichen Schlüssels eines Nutzers, über dessen Aktoren Objekt, um eine vom Nutzer gesendete Nachricht zu verifizieren.
 	\begin{figure}[h]
 		\begin{minipage}{\textwidth}
 			\centering
@@ -262,6 +262,7 @@
 	Artikel bilden, im Gegensatz zu Notizen, längere Texte ab. Hier ist, wie oben angedeutet, das Veröffentlichungsdatum mitangegeben.\\
 	
 	\subsubsection{JSON Linked Data}
+	\todo{Etwas genauer beschreiben}
 	\gls{JSON-LD} ist eine Erweiterung des JSON Formates um verlinkte Daten zu Repräsentieren. JSON an sich, ist ein Format welches im Web häufig Anwendung findet um Daten auszutauschen. Im Kern sind \gls{as2} auch \gls{JSON-LD} Objekte. Der \gls{as2} Kontext definiert verschiedene Klassen und Eigenschaften, von denen nicht alle benutzt werden. Typische Klassen sind \glqq Activity\grqq, \glqq Link\grqq~und \glqq OrderedCollection\grqq.\\
 	
 	\subsubsection{WebFinger}

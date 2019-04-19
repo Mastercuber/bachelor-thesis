@@ -17,7 +17,6 @@
 
 \chapter{Evaluation}
 \label{ch:Evaluation}
-\todo{JMeter Test, welche Endpunkte machen sind getestet zu werden}
 Zu Beginn dieses Kapitels werden verschiedenste Anwendungsbeispiele anhand von Diagrammen veranschaulicht und erklärt. Insgesamt werden die folgenden fünf Anwendungsbeispiele beschrieben:
 \begin{itemize}
 	\item Folgen eines Nutzers aus einem anderen Netzwerk
@@ -30,40 +29,125 @@ Des weiteren wird eine Performanz-Messung für die Signatur Erstellung, sowie Ve
 
 Bei der Messung werden 4 verschiedene Ergebnistabellen erstellt; Jeweils zwei für eine Hardwarevariation. Zum Einen wird ein älteres Notebook Modell zum testen verwenden, zum Anderen ein Spiele-Computer. Außerdem wird aufgrund der interpretierten Ergebnisse und anderen Aspekten Empfehlungen gegeben, welche Hashfunktion für welchen Zweck am Besten passt.
 \section{Anwendungsbeispiel}
-Bei jedem der folgenden Anwendungsbeispiele muss sich der Server mit einer HTTP Signatur authentisieren. Die Signaturen werden beim ActivityPub Protokoll mit dem privaten Schlüssel des interagierenden Nutzers erstellt und mit dem öffentlichen verifiziert. Im folgenden Diagramm wird das ersichtlich durch den Anwendungsfall \glqq HTTP Signatur verifizieren\grqq, welcher im Empfangen von Aktivitäten beinhaltet ist:\\
-\begin{figure}[h]
-	\begin{minipage}{\textwidth}
-		\centering
-		\includegraphics[scale=0.75]{figures/generel-activity-usecase.png}
-		\label{fig:generel-activity-usecase}
-		\caption{Generelles Anwendungsfalldiagramm für das Empfangen von Aktivitäten}
-	\end{minipage}
-\end{figure}
+Bei jedem der folgenden Anwendungsbeispiele muss sich der Server mit einer \gls{http} Signatur authentisieren. Die Signaturen werden beim ActivityPub Protokoll mit dem privaten Schlüssel des interagierenden Nutzers erstellt und mit dem öffentlichen verifiziert. Es sei außerdem erwähnt, dass die in diesem Abschnitt gezeigten Aktivitäten und Objekte keines Wegs alle zur Verfügung stehenden Attribute nutzen.\\
 
-\textbf{Beispiel 1} (Nutzer wird gefolgt):\\
+\pagebreak
+Im folgenden Diagramm wird durch den Anwendungsfall \glqq \gls{http} Signatur verifizieren\grqq~ersichtlich, dass jede eintreffende Aktivität von einem Nutzer eines anderen Server zuerst auf die Integrität geprüft wird:
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.75]{figures/generel-activity-usecase.png}
+	\label{fig:generel-activity-usecase}
+	\caption{Generelles Anwendungsfalldiagramm für das Empfangen von Aktivitäten}
+\end{figure}
+\subsection{
+	\textbf{Beispiel 1}: Nutzer wird gefolgt
+}
+\label{subsec:example-1}
 Eine Nutzerin Alice aus einem anderen Netzwerk oder von einer anderen Instanz des selben Netzwerks, genannt Instanz A, möchte einem Nutzer auf Instanz B folgen. Dafür muss Alice dem zu folgenden Nutzer Bob über die Suchfunktion auf Instanz A finden und anschließend auf den \glqq folgen\grqq~Knopf drücken. Dadurch wird auf der Instanz A eine Anfrage erstellt, welche mit dem privaten Schlüssel von Alice signiert wird. Trifft die signierte Anfrage bei Instanz B ein wird zuerst die Signatur mit dem öffentlichen Schlüssel von Alice geprüft. Bei einer erfolgreichen Verifikation wird die Anfrage weiter verarbeitet und vom Server entsprechend eine \glqq Accept\grqq~oder \glqq Reject\grqq~Aktivität gesendet. Schlägt die Signatur-Prüfung fehl wird ein \glqq Forbidden\grqq~Statuscode zurückgegeben.\\
 
-Auch in den folgenden Beispielen werden die Benutzer Alice und Bob als Beispielnutzer genannt welche entsprechend auf Instanz A (Alice) und Instanz B (Bob) residieren.\\
-
-\textbf{Beispiel 2} (Rückgängig machen eines vorherigen folgens):\\
+In der Testdatei zu diesem Anwendungsbeispiel wird im Körper der \gls{http}-Anfrage folgend abgebildeter Inhalt mitgesendet:
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.45]{figures/follow-activity.png}
+	\label{fig:follow-activity}
+	\caption{Eine Follow Aktivität}
+\end{figure}\\
+Der Typ des Inhaltes dieser Anfrage muss auf \glqq application/activity+json\grqq~gesetzt werden. Vor dem Absenden ist die \glqq Follower\grqq~Sammlung leer; Nach dem erfolgreichen Absenden der \gls{http} Anfrage wurde zur Sammlung der folgende Nutzer hinzugefügt wie in Abbildung  \ref{fig:follow-activity-result} zu sehen ist.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.7]{figures/follow-activity-result.png}
+	\label{fig:follow-activity-result}
+	\caption{Follower Sammlung von tero-vota}
+\end{figure}\\
+Auch in den folgenden Beispielen werden die Benutzer Alice und Bob als Beispielnutzer genannt welche entsprechend auf Instanz A (Alice) und Instanz B (Bob) residieren. Zudem sind die Inhaltstypen aller weiteren Anwendungsbeispiele mit dem dieses Beispiels identisch.
+\subsection{
+	\textbf{Beispiel 2}: Rückgängig machen eines vorherigen folgens
+}
 Da sich Alice und Bob gestritten haben möchte Alice keine weiteren Benachrichtigungen von Bob erhalten, deshalb folgt Sie Bob nun nicht mehr. Instanz A erstellt, signiert und sendet somit eine Anfrage mit einer \glqq Undo\grqq~Aktivität an Instanz B.\\
 
-\textbf{Beispiel 3} (Objekt eines Nutzers \glqq liken\grqq):\\
+Bei diesem Anwendungsbeispiel sendet die Testdatei eine \gls{http}-Anfrage mit folgendem Inhalt:
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.45]{figures/undo-follow-activity.png}
+	\label{fig:undo-follow-activity}
+	\caption{Eine Undo Aktivität eines vorherigen folgens}
+\end{figure}\\
+Anders als z. B. bei \ref{subsec:example-5} ist das Objekt der Aktivität ebenfalls wieder eine Aktivität.\\
+
+Der Ausgangspunkt in diesem ist das vorherige Beispiel. Nach dem Rückgängig machen der Aktivität aus \ref{subsec:example-1} sieht die \glqq Follower\grqq~Sammlung wie folgt aus:
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.7]{figures/undo-follow-activity-result.png}
+	\label{fig:undo-follow-activity-result}
+	\caption{Follower Sammlung von tero-vota}
+\end{figure}\\
+Im ersten Beispiel wurde also der Zähler inkrementiert und den Items eines hinzugefügt. In diesem Beispiel wurde der Zähler dekrementiert und das entsprechende Item entfernt.
+\subsection{
+	\textbf{Beispiel 3}: Objekt eines Nutzers \glqq liken\grqq
+}
 Alice durchsucht ihre Zeitleiste nach neuen Inhalten. Sie stößt auf einen Inhalt von Bob, den Sie sehr mag. Daraufhin \glqq liked\grqq~Sie den Inhalt. Instanz A erstellt eine \glqq Like\grqq~Aktivität und signiert diese mit Alice ihrem privaten Schlüssel. Die Anfrage wird nun auf Empfängerinstanz B verifiziert und, bei Erfolg, verarbeitet.\\
 
-\textbf{Beispiel 4} (Rückgängig machen eines vorherigen \glqq likes\grqq):\\
-Der zuvor von Alice gemochte Inhalt wurde in der Zwischenzeit von Bob verändert. Alice sieht dies, liest den Inhalt erneut und wundert sich warum Bob den Inhalt verändert hat. Ihrer Ansicht nach war er vorher viel Aussagekräftiger, daher \glqq Disliked\grqq~Sie den Inhalt.\\
+Beim \glqq liken\grqq~eines Objekts, Aktors etc., wird der nachfolgende Inhalt von der Testdatei versendet:
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.45]{figures/like-activity.png}
+	\label{fig:like-activity}
+	\caption{Eine Like Aktivität}
+\end{figure}\\
+Die Implementierung des IDataSource Interfaces in dieser Abschlussarbeit konvertiert einen \glqq like\grqq~eines Artikels zu einem \glqq shout\grqq. Man kann sagen, dass ein \glqq like\grqq~und ein \glqq shout\grqq~Äquivalent sind. Nach der Verarbeitung des in Abbildung \ref{fig:like-activity} gezeigten Anfrage Inhalts, sieht ein für diese Aktivität erstellter Artikel wie in der Abbildung zu Beginn von Seite 39 aus.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.45]{figures/like-activity-article-object-result.png}
+	\label{fig:like-activity-article-object-result}
+	\caption{Ausgerufener Test Artikel}
+\end{figure}
+\pagebreak
+\subsection{
+	\textbf{Beispiel 4}: Rückgängig machen eines vorherigen \glqq likes\grqq
+}
+Der zuvor von Alice gemochte Inhalt wurde in der Zwischenzeit von Bob verändert. Alice sieht dies, liest den Inhalt erneut und wundert sich warum Bob den Inhalt verändert hat. Ihrer Ansicht nach war er vorher viel Aussagekräftiger, daher \glqq Disliked\grqq~Sie den Inhalt. Außerdem tut sie verärgert ihrer Meinung in einem Kommentar kund.\\
 
-\textbf{Beispiel 5} (Erstellen eines Inhalts):\\
-Nach einem schönen Wochenende möchte Alice ihre neuen Erfahrungen in einem Inhalt zusammenfassen und an ihre Freunde senden. Sie meldet sich bei Instanz A an und verfasst ihre Erfahrungen. Nach dem absenden erstellt Instanz A eine \glqq Create\grqq~Aktivität mit einem Artikel als Objekt und sendet signierte Anfragen an jeden ihrer Freunde.
-\todo{Einzelne Testfälle vorstellen und aufzeigen das sie funktionieren}
-\todo{HTTP Anfragen anzeigen}
-\todo{Anwendungsbeispiele Applikation selbst}
+Nachfolgend der Körper einer weiteren \glqq Undo\grqq~Aktivität, welche eine \glqq Like\grqq~Aktivität als Objekt hat:
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.45]{figures/undo-like-activity.png}
+	\label{fig:undo-like-activity}
+	\caption{Eine Undo Aktivität eines vorherigen likens}
+\end{figure}\\
+Der Ausgangspunkt beim senden der \gls{http} Anfrage mit obigem Körper ist die Anfrage in Beispiel 3. Nach dem Absenden sieht der aktualisierte Artikel wie in Abbildung \ref{fig:undo-like-activity-result} aus.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.45]{figures/undo-like-activity-result.png}
+	\label{fig:undo-like-activity-result}
+	\caption{Nicht ausgerufener Artikel}
+\end{figure}
+\pagebreak
+\subsection{
+	\textbf{Beispiel 5}: Erstellen eines Inhalts
+}
+\label{subsec:example-5}
+Nach einem schönen Wochenende möchte Alice ihre neuen Erfahrungen in einem Inhalt zusammenfassen und mit ihren Freunden teilen. Sie meldet sich bei Instanz A an und verfasst ihre Erfahrungen. Beim Absenden erstellt Instanz A eine \glqq Create\grqq~Aktivität mit einem Artikel als Objekt und sendet signierte Anfragen an jeden ihrer Freunde.\\
+
+Der \gls{http} Körper beim Erstellen eines Artikel Objekts sieht wie folgt aus:
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.45]{figures/create-activity-article-object.png}
+	\label{fig:create-activity-article-object}
+	\caption{Eine Create Aktivität mit einem Artikel als Objekt}
+\end{figure}\\
+Zu sehen ist eine \glqq Create\grqq~Aktivität mit einem Identifikator um diese eindeutig zu identifizieren, sowie einem Artikel als Objekt. Dieses enthält seinerseits einen Identifikator um in diesem Falle das Objekt eindeutig zu identifizieren, das Veröffentlichungsdatum, den Identifikator des Senders und Empfängers, sowie den Inhalt selbst.\\
+
+Um nach dem obigen Erstellen des Artikel Objekts zu validieren ob dieses erstellt wurde, wird die \glqq Outbox\grqq~Sammlung des Senders der Aktivität betrachten:
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.45]{figures/create-activity-article-object-result.png}
+	\label{fig:create-activity-article-object-result}
+	\caption{Outbox Sammlung mit einem Artikel-Objekt-Item}
+\end{figure}\\
+Auf der Abbildung ist das Artikel-Objekt aus \ref{fig:create-activity-article-object} als Item der Sammlung zu sehen. Durch die \glqq Create\grqq~Aktivität wurde dieses Erstellt.
 \section{Performanz-Messungen}
 \todo{Performanz Messung mit JMeter}
-Es wurde die Performanz der Erstellung von Signaturen, sowie der Verifikation solcher gemessen.
-
-Insgesamt wurden 2 Messungen mit je 10 Testdurchläufen pro Hashfunktion durchgeführt. Die erste Messung wurde auf einem Notebook mit eingebauter Intel 2-Kern \gls{cpu} der Serie Core i5 und einer Taktfrequenz von 2,4 GH durchgeführt\footnote{\url{https://ark.intel.com/content/www/de/de/ark/products/47341/intel-core-i5-520m-processor-3m-cache-2-40-ghz.html}}. Bei der zweiten Messung kam eine 16-Kern AMD \gls{cpu} aus der \glqq Ryzen\grqq~Serie mit der Bezeichnung \glqq Threadripper 2950X\grqq~und einer Taktfrequenz von 3,5 GH zum Einsatz\footnote{\url{https://www.amd.com/de/products/cpu/amd-ryzen-threadripper-2950x}}.\\
+Es wurde die Performanz der Erstellung von Signaturen, sowie der Verifikation solcher gemessen. Insgesamt wurden 2 Messungen mit je 10 Testdurchläufen pro Hashfunktion durchgeführt. Die erste Messung wurde auf einem Notebook mit eingebauter Intel 2-Kern \gls{cpu} der Serie Core i5 und einer Taktfrequenz von 2,4 GH durchgeführt\footnote{\url{https://ark.intel.com/content/www/de/de/ark/products/47341/intel-core-i5-520m-processor-3m-cache-2-40-ghz.html}}. Bei der zweiten Messung kam eine 16-Kern AMD \gls{cpu} aus der \glqq Ryzen\grqq~Serie mit der Bezeichnung \glqq Threadripper 2950X\grqq~und einer Taktfrequenz von 3,5 GH zum Einsatz\footnote{\url{https://www.amd.com/de/products/cpu/amd-ryzen-threadripper-2950x}}.\\
 \todo{Performanz-Messung in die Implementierung verschieben}
 Die Performanzmessungen wurden in der Node.js Laufzeitumgebung mit der Version 10.15.3 durchgeführt unter Zuhilfenahme der internen process.hrtime() Funktion. Diese wird vor und nach dem Erstellen sowie Verifizieren aufgerufen. Die Rückgabe des zweiten Aufrufs nach der jeweiligen Funktion enthält die Differenz zum ersten Aufruf in Nanosekunden.
 \begin{table}[h]
@@ -106,7 +190,7 @@ Aus Sicht der Performanz wird bei der ersten Messung somit die SHA256 Hashfunkti
 	\end{tabularx}
 	\caption{Testergebnisse der ersten Messung (Signatur Verifikation)}
 \end{table}
-Werden die Arithmetischen Mittel der Verifikation betrachtet ist eine Zeitspanne von 10 ms Sekunden zu Beobachten in welcher sich alle Messwerte befinden. Dabei ist der MD4 Algorithmus mit 41,183 ms auf Position eins, während sich MD5 mit 51,503 ms auf der letzten Position befindet. Die beiden Funktionen SHA256 und SHA512 liegen mit Laufzeiten von 42,065 und 43,400 ms näher an der MD4 Funktion. Zudem fällt auf, dass bei der Verifikation die ersten Messwerte stark abweichen von allen weiteren. Das ist dadurch zu erklären, dass zuerst eine HTTP Anfrage gesendet werden muss um den benötigten öffentlichen Schlüssel zu erhalten. Jegliche weitere Anfragen werden aus dem Cache bedient und sind somit um einen groben Faktor von 2 schneller als die erste Anfrage.\\
+Werden die Arithmetischen Mittel der Verifikation betrachtet ist eine Zeitspanne von 10 ms Sekunden zu Beobachten in welcher sich alle Messwerte befinden. Dabei ist der MD4 Algorithmus mit 41,183 ms auf Position eins, während sich MD5 mit 51,503 ms auf der letzten Position befindet. Die beiden Funktionen SHA256 und SHA512 liegen mit Laufzeiten von 42,065 und 43,400 ms näher an der MD4 Funktion. Zudem fällt auf, dass bei der Verifikation die ersten Messwerte stark abweichen von allen weiteren. Das ist dadurch zu erklären, dass zuerst eine \gls{http} Anfrage gesendet werden muss um den benötigten öffentlichen Schlüssel zu erhalten. Jegliche weitere Anfragen werden aus dem Cache bedient und sind somit um einen groben Faktor von 2 schneller als die erste Anfrage.\\
 \begin{table}[h]
 	\begin{tabularx}{\textwidth}{p{0.15\textwidth}|X|X|X|r}
 		& RSA-MD4 & RSA-MD5 & RSA-SHA256 & RSA-SHA512\\
