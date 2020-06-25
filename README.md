@@ -64,4 +64,4 @@ Here I, and others from the *Open App Ecosystem*, have collected some informatio
 * [Federated WordPress blogging](https://github.com/pterotype-project/pterotype) via ActivityPub  
 * [Bridge](https://github.com/snarfed/bridgy-fed) between IndiWeb and federated social Networks(Fediverse)  
 * [Differences between IRI URI URL URN](http://fusion.cs.uni-jena.de/fusion/blog/2016/11/18/iri-uri-url-urn-and-their-differences/) (GERMAN)  
-* End-to-End Encrypted & Decentralized [Messaging Service](https://github.com/fedimos) for the Fediverse  
+* End-to-End Encrypted & Decentralized [Messaging Service](https://github.com/fedimos) for the Fediverse (ABANDONED)
