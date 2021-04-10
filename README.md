@@ -24,7 +24,7 @@ Here I, and others from the *Open App Ecosystem*, have collected some informatio
 * .. and a [blog post](https://hacks.mozilla.org/2018/11/decentralizing-social-interactions-with-activitypub/) from the author of the above minimal server  
 * [Link collection](https://github.com/w3c/activitypub)  
 * A go implementation [Tutorial](https://go-fed.org/tutorial)  
-* Also a link to the [Federative protocol implementations](https://github.com/go-fed/https://github.com/go-fed/) in golang github organization    
+* Also a link to the [Federative protocol implementations](https://github.com/go-fed/) in golang github organization    
 * An WIP [generic federated server implementation](http://commonspub.org/) of the ActivityPub Standard in elixier  
 
 ### Some resources related to Webfinger (Discovery of "Profiles")
@@ -48,7 +48,6 @@ Here I, and others from the *Open App Ecosystem*, have collected some informatio
 * The main entry point: https://fediverse.party
 * An high [OVERVIEW of the Fediverse](https://fediverse.party/en/fediverse/), used protocols, networks and used programming languages  
 * [OVERVIEW of projects](https://fediverse.party/en/miscellaneous/) in the Fediverse
-* Another [OVERVIEW of the Fediverse](https://ethercalc.org/fediverse-stacks) in table form, with "What it's for", "Alternative to", "Front-end/Back-end stack" and links to the code  
 * [List of network nodes](https://the-federation.info/) in the Fediverse  
 * [Fediverse Report 2018](https://fediverse.network/reports/2018)  
 
